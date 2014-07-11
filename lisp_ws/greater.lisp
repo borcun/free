@@ -1,2 +1,5 @@
-(defun greater (x y) 
-  (if (> x y) x y))
+(defun greater (x y)
+  (if (> x y)
+    x
+    y))
+

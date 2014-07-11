@@ -1,4 +1,4 @@
 workspace
 =========
 
-my dashboard
+my workspace

@@ -1,0 +1,10 @@
+#include <stdio.h>
+
+typedef struct Stack
+{
+  int *data;
+  int size;
+  int top_of_stack;
+} Stack;
+
+int pop(Stack stack

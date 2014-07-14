@@ -14,7 +14,7 @@ int init(StackPtr stack, int _size)
   }
 
   stack->size = _size;
-  stack->top_of_stack = 0;
+  stack->top = 0;
 }
 
 // function that pops the top element from stack
@@ -25,18 +25,18 @@ int pop(StackPtr stack)
     return FALSE;
   }
 
-  return stack->data[stack->top_of_stack--];
+  return stack->data[stack->top--];
 }
 
 // function that pushs an element into stack
 int push(StackPtr stack, int elem)
 {
-  if(stack->size == MAX_SIZE || stack->top_of_stack == stack->size) {
+  if(stack->size == MAX_SIZE || stack->top == stack->size) {
     fprintf(stderr, "%s\n", "Stack is full");
     return FALSE;
   }
 
-  stack->data[stack->top_of_stack++] = elem;
+  stack->data[stack->top++] = elem;
 
   return TRUE;
 }
@@ -44,13 +44,13 @@ int push(StackPtr stack, int elem)
 // function that checks whether stack is empty
 int isEmpty(Stack stack)
 {
-  return stack.top_of_stack == 0;
+  return stack.top == 0;
 }
 
 // function that gets elements count of stack
 int size(Stack stack)
 {
-  return stack.top_of_stack;
+  return stack.top;
 }
 
 // function that deallocates memory
@@ -70,7 +70,7 @@ void print(Stack stack)
     return;
   }
 
-  for(i = stack.top_of_stack -1 ; i >= 0 ; --i)
+  for(i = stack.top -1 ; i >= 0 ; --i)
     printf("%d\n", stack.data[i]);
 
   return;

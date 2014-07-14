@@ -2,6 +2,7 @@
 #define STACK_H
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #define MAX_SIZE 100
 #define TRUE 1
@@ -12,7 +13,7 @@ typedef struct Stack
 {
   int *data;
   int size;
-  int top_of_stack;
+  int top;
 } Stack;
 
 typedef struct Stack *StackPtr;

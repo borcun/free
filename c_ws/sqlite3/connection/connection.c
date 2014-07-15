@@ -13,7 +13,7 @@ int main(int argc, char* argv[])
    * attempts to open the database file by using its value. if no file by
    * that name exists, sqlite3_open() will open a new database file by that name 
    */
-  if(sqlite3_open("connection.db", &db)){
+  if(sqlite3_open("connection.sqlite", &db)){
     fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
     return -1;
   }
@@ -27,9 +27,9 @@ int main(int argc, char* argv[])
    * the error message Unable to close due to unfinalized statements. 
    */
   if(SQLITE_OK == sqlite3_close(db))
-  	printf("Closed database successfully\n");
-	else
-  	printf("Can't close database: %s\n", sqlite3_errmsg(db));
+    printf("Closed database successfully\n");
+  else
+    printf("Can't close database: %s\n", sqlite3_errmsg(db));
 
   return 0;
 }

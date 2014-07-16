@@ -194,10 +194,8 @@ void dealloc(List list)
 
   if(0 == list.size)
     return;
-  else if(1 == list.size) {
+  else if(1 == list.size)
     free(list.head);
-    return;
-  }
   else {
     cur = list.head;
     iter = cur->next;

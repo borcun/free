@@ -119,16 +119,45 @@ int pop_front(List *list)
 }
 
 /* function that gets the last element of list */
-int back(List list);
+int back(List list)
+{
+  Node *iter;
+
+  if(0 == list.size) {
+    fprintf(stderr, "The list is empty.\n");
+    return -1;
+  }
+
+  iter = list.head;
+
+  while(NULL != iter->next)
+    iter = iter->next;
+
+  return iter->elem;
+}
 
 /* function that gets the first element of list */
-int front(List list);
+int front(List list)
+{
+  if(0 == list.size) {
+    fprintf(stderr, "The list is empty.\n");
+    return -1;
+  }
+
+  return list.head->elem;
+}
 
 /* function that inserts the element into indication position of list */
-int insert(List *list, int elem, int pos);
+int insert(List *list, int elem, int pos)
+{
+  return FALSE;
+}
 
 /* function that removes the element which is indicates with position value from list*/
-int delete(List *list, int pos);
+int delete(List *list, int pos)
+{
+  return FALSE;
+}
 
 /* function that gets element count of the list */
 int size(List list)

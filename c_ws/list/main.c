@@ -20,18 +20,29 @@ int main()
   print(*list);
   printf("list size: %d\n", size(*list));
 
+  printf("Front: %d\n", front(*list));
+  printf("Back: %d\n", back(*list));
+
   push_back(list, 4);
   print(*list);
   printf("list size: %d\n", size(*list));
+
+  printf("Front: %d\n", front(*list));
+  printf("Back: %d\n", back(*list));
 
   push_front(list, 5);
   print(*list);
   printf("list size: %d\n", size(*list));
 
+  printf("Front: %d\n", front(*list));
+
   push_front(list, -7);
   print(*list);
   printf("list size: %d\n", size(*list));
 
+  printf("Front: %d\n", front(*list));
+  printf("Back: %d\n", back(*list));
+
   pop_back(list);
   print(*list);
   printf("list size: %d\n", size(*list));
@@ -39,6 +50,8 @@ int main()
   pop_back(list);
   print(*list);
   printf("list size: %d\n", size(*list));
+
+  printf("Back: %d\n", back(*list));
 
   pop_front(list);
   print(*list);
@@ -48,17 +61,13 @@ int main()
   print(*list);
   printf("list size: %d\n", size(*list));
 
-  pop_back(list);
-  print(*list);
-  printf("list size: %d\n", size(*list));
+  printf("Back: %d\n", back(*list));
 
   pop_back(list);
   print(*list);
   printf("list size: %d\n", size(*list));
 
-  pop_back(list);
-  print(*list);
-  printf("list size: %d\n", size(*list));
+  printf("Back: %d\n", back(*list));
 
   pop_back(list);
   print(*list);

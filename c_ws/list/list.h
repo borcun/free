@@ -10,14 +10,18 @@
 /* node structure */
 typedef struct Node
 {
+  // data part
   int elem;
+  // link part
   struct Node *next;
 } Node;
 
-/* head pointer of list */
+/* list structure */
 typedef struct List
 {
+  // head pointer of list
   Node *head;
+  // list size
   int size;
 } List;
 

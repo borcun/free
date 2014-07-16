@@ -39,7 +39,34 @@ int push_back(List *list, int elem)
 }
 
 /* function that removes the element from end of list */
-int pop_back(List *list);
+int pop_back(List *list)
+{
+  Node *iter;
+
+  if(0 == list->size) {
+    fprintf(stderr, "The list is empty.\n");
+    return FALSE;
+  }
+  else if(1 == list->size) {
+    iter = list->head;
+    free(iter);
+    list->head = NULL;
+    --list->size;
+  }
+  else {
+    iter = list->head;
+
+    // go to the end of list
+    while(NULL != iter->next->next)
+      iter = iter->next;
+
+    free(iter->next);
+    iter->next = NULL;
+    --list->size;
+  }
+
+  return TRUE;
+}
 
 /* function that adds the element in front of list */
 int push_front(List *list, int elem)
@@ -67,7 +94,29 @@ int push_front(List *list, int elem)
 }
 
 /* function that removes the element from front of list */
-int pop_front(List *list);
+int pop_front(List *list)
+{
+  Node *iter;
+
+  if(0 == list->size) {
+    fprintf(stderr, "The list is empty.\n");
+    return FALSE;
+  }
+  else if(1 == list->size) {
+    iter = list->head;
+    free(iter);
+    list->head = NULL;
+    --list->size;
+  }
+  else {
+    iter = list->head;
+    list->head = iter->next;
+    free(iter);
+    --list->size;
+  }
+
+  return TRUE;
+}
 
 /* function that gets the last element of list */
 int back(List list);

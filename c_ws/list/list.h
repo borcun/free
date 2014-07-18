@@ -10,14 +10,18 @@
 /* node structure */
 typedef struct Node
 {
+  // data part
   int elem;
+  // link part
   struct Node *next;
 } Node;
 
-/* head pointer of list */
+/* list structure */
 typedef struct List
 {
+  // head pointer of list
   Node *head;
+  // list size
   int size;
 } List;
 
@@ -41,10 +45,10 @@ int insert(List *list, int elem, int pos);
 /* function that removes the element which is indicates with position value from list*/
 int delete(List *list, int pos);
 /* function that gets element count of the list */
-int size(List *list);
+int size(List list);
 /* function that prints the all list */
 void print(List list);
 /* function that deallocate the list content */
-void dealloc(List *list);
+void dealloc(List list);
 
 #endif

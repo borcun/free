@@ -123,9 +123,9 @@ int back(List list)
 {
   Node *iter;
 
-  if(0 == list.size) {
+  if(0 == list.size || NULL == list.head) {
     fprintf(stderr, "The list is empty.\n");
-    return -1;
+    return FALSE;
   }
 
   iter = list.head;
@@ -150,13 +150,56 @@ int front(List list)
 /* function that inserts the element into indication position of list */
 int insert(List *list, int elem, int pos)
 {
-  return FALSE;
+  Node *iter;
+  Node *new_node;
+  int i;
+
+  if((NULL == list->head && 0 != pos) || (pos > list->size) || (pos < 0)) {
+    fprintf(stderr, "Invalid Position\n");
+    return FALSE;
+  }
+  else if(NULL == list->head && 0 == pos)
+    return push_front(list, elem);
+  else {
+    iter = list->head;
+
+    for(i=1 ; i < pos - 1 ; ++i)
+      iter = iter->next;
+
+    new_node = (Node *)malloc(sizeof(Node));
+    new_node->elem = elem;
+    new_node->next = iter->next;
+    iter->next = new_node;
+    ++list->size;
+
+    return TRUE;
+  }
 }
 
-/* function that removes the element which is indicates with position value from list*/
-int delete(List *list, int pos)
+/* function that removes the element from list */
+int delete(List *list, int elem)
 {
-  return FALSE;
+  Node *iter;
+  Node *temp;
+
+  iter = list->head;
+
+  // if the element which will be removed is first element
+  if(iter->elem == elem)
+    return pop_front(list);
+
+  while(iter != NULL && iter->next->elem != elem)
+    iter = iter->next;
+
+  if(NULL == iter)
+    return FALSE;
+
+  temp = iter->next;
+  iter->next = iter->next->next;
+  free(temp);
+  --list->size;
+
+  return TRUE;
 }
 
 /* function that gets element count of the list */

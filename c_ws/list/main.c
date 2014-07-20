@@ -2,7 +2,7 @@
 
 int main()
 {
-  List *list;
+  List *list = (List *)malloc(sizeof(List));
 
   init(list);
   print(*list);

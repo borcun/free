@@ -1,22 +1,14 @@
-<<<<<<< HEAD
-compile: list.c main.c
-	gcc -Wall -c list.c main.c
-
-all: list.o main.o
-	gcc main.o list.o -o list
-
-clear:
-	rm -rf list.o main.o list
-=======
 CC = gcc
-FLAGS = -Wall -c
+CFLAGS = -Wall -c
+SRC = main.c list.c
+OBJ = main.o list.o
+EXEC = list
 
-compile: list.c main.c
-	${CC} ${FLAGS} main.c list.c
+compile: ${SRC}
+	${CC} ${CFLAGS} ${SRC}
 
-all: list.o main.o
-	${CC} list.o main.o -o list
+all: ${OBJ}
+	${CC} ${OBJ} -o ${EXEC}
 
 clear:
-	rm -rf list.o main.o list
->>>>>>> 62df991aa43b1193490e7f5ac14fd1f1d6a5e78f
+	rm -rf ${OBJ} ${EXEC}

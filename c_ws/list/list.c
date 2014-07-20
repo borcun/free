@@ -158,6 +158,7 @@ int insert(List *list, int elem, int pos)
     fprintf(stderr, "Invalid Position\n");
     return FALSE;
   }
+  // when the element which will be inserted, if the list is empty, call push_front
   else if(NULL == list->head && 0 == pos)
     return push_front(list, elem);
   else {

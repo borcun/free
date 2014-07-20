@@ -3,7 +3,6 @@
 // main function
 int main()
 {
-  // head and tail pointer
   Queue *queue = (Queue *)malloc(sizeof(Queue));
   int elem;
 

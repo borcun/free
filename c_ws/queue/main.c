@@ -8,6 +8,7 @@ int main()
   int elem;
 
   init(queue);
+
   push(queue, 2);
   push(queue, 5);
   push(queue, -1);
@@ -25,6 +26,8 @@ int main()
   printf("Removen element: %d\nQueue size: %d\nFirst element: %d\n", 
 	 elem, size(*queue), peek(*queue));
   print(*queue);
+
+  dealloc(queue);
 
   return 0;
 }

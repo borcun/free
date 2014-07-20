@@ -119,6 +119,7 @@ void dealloc(Queue *queue)
   }
 
   queue->tail = NULL;
+  printf("The queue is deallocated.\n");
 
   return;
 }

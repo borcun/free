@@ -27,6 +27,7 @@ int main()
   print(*queue);
 
   dealloc(queue);
+  free(queue);
 
   return 0;
 }

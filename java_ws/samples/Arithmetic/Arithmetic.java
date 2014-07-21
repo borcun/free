@@ -4,9 +4,9 @@ public class Arithmetic
 	public static void main(String args[])
 	{
 		int toplam,
-			fark,
-			carpim,
-			mod;
+				fark,
+				carpim,
+				mod;
 		
 		double bolum;
 		

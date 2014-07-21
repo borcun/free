@@ -54,7 +54,7 @@ int main(int argc, char **argv)
     
     printf("Polynom I : %dx^2 + %dx^1 + %d\n", p1.x2, p1.x1, p1.c);
     printf("Polynom II: %dx^2 + %dx^1 + %d\n", p2.x2, p2.x1, p2.c);
-    printf("Total Polynom: %dx^2 + %dx^1 + %d\n", p1.x2 + p2.x2, p1.x1 + p2.x1 , p1.c + p2.c);
+    printf("Total     : %dx^2 + %dx^1 + %d\n", p1.x2 + p2.x2, p1.x1 + p2.x1 , p1.c + p2.c);
   }
   else if(!strcmp(SUB, command)) {
     parsePolynom(&p1, polynom1);
@@ -62,7 +62,7 @@ int main(int argc, char **argv)
     
     printf("Polynom I : %dx^2 + %dx^1 + %d\n", p1.x2, p1.x1, p1.c);
     printf("Polynom II: %dx^2 + %dx^1 + %d\n", p2.x2, p2.x1, p2.c);
-    printf("Total Polynom: %dx^2 + %dx^1 + %d\n", p1.x2 - p2.x2, p1.x1 - p2.x1 , p1.c - p2.c);
+    printf("Result    : %dx^2 + %dx^1 + %d\n", p1.x2 - p2.x2, p1.x1 - p2.x1 , p1.c - p2.c);
   }
   else {
     fprintf(stderr, "invalid command\n");

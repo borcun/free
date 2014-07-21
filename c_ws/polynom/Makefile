@@ -1,8 +1,14 @@
-compile: main.c
-	gcc -c -Wall main.c
+CC = gcc
+CFLAGS = -Wall -c
+SRC = polynom.c
+OBJ = polynom.o
+EXEC = polynom
 
-all: main.o
-	gcc main.o -o main
-	
+compile: ${SRC}
+	${CC} ${CFLAGS} ${SRC}
+
+all: ${OBJ}
+	${CC} ${OBJ} -o ${EXEC}
+
 clear:
-	rm -rf main.o main
+	rm -rf ${OBJ} ${EXEC}

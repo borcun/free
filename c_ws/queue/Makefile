@@ -1,12 +1,12 @@
 CC = gcc
 CFLAGS = -Wall -c
-SRC = main.c list.c
-OBJ = main.o list.o
-EXEC = list
+SRC = main.c queue.c
+OBJ = main.o queue.o
+EXEC = queue
 
 compile: ${SRC}
 	${CC} ${CFLAGS} ${SRC}
-
+	
 all: ${OBJ}
 	${CC} ${OBJ} -o ${EXEC}
 

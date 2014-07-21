@@ -2,7 +2,7 @@
 
 int main()
 {
-  List *list;
+  List *list = (List *)malloc(sizeof(List));
 
   init(list);
   print(*list);
@@ -44,6 +44,18 @@ int main()
   printf("Back: %d\n", back(*list));
 
   pop_back(list);
+  print(*list);
+  printf("list size: %d\n", size(*list));
+
+  delete(list, 5);
+  print(*list);
+  printf("list size: %d\n", size(*list));
+
+  insert(list, -9, 3);
+  print(*list);
+  printf("list size: %d\n", size(*list));
+
+  insert(list, 6, 5);
   print(*list);
   printf("list size: %d\n", size(*list));
 

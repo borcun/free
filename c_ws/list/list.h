@@ -42,8 +42,8 @@ int back(List list);
 int front(List list);
 /* function that inserts the element into indication position of list */
 int insert(List *list, int elem, int pos);
-/* function that removes the element which is indicates with position value from list*/
-int delete(List *list, int pos);
+/* function that removes the element from list */
+int delete(List *list, int elem);
 /* function that gets element count of the list */
 int size(List list);
 /* function that prints the all list */

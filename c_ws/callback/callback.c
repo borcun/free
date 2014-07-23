@@ -1,6 +1,8 @@
 #include <stdio.h>
 
+// add function
 int add(int, int);
+// evaluation function
 int eval(int (*)(int, int), int, int);
 
 int main()

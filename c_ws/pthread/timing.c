@@ -2,13 +2,16 @@
 #include <pthread.h>
 #include <unistd.h>
 
+// thread function
 void *foo(void *param);
 
 int main()
 {
 	pthread_t thread;
 
+	// create thread
 	pthread_create(&thread, NULL, foo, NULL);
+	// wait parent thread until child one finishs its job
 	pthread_join(thread, NULL);
 
 	return 0;

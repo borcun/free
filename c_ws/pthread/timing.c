@@ -2,7 +2,7 @@
 #include <pthread.h>
 #include <unistd.h>
 
-// thread function
+// thread function prototype
 void *foo(void *param);
 
 int main()

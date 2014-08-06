@@ -1,8 +1,5 @@
 #!/usr/bin/bash
 
-num1=0
-num2=0
-
 read -p "Enter first number  : "  num1
 read -p "Enter second number : "  num2
 

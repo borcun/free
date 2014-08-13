@@ -18,7 +18,10 @@ int main(int argc, char* argv[])
   fprintf(stderr, "Opened database successfully\n");
   /* create insertion query */
   insertion = "INSERT INTO staff(ID, NAME, AGE) VALUES (1, 'Burak', 27);" \
-    "INSERT INTO staff(ID, NAME, AGE) VALUES (2, 'Mehmet', 20);";
+    "INSERT INTO staff(ID, NAME, AGE) VALUES (2, 'Mehmet', 20);" \
+    "INSERT INTO staff(ID, NAME, AGE) VALUES (3, 'Ahmet', 20);" \
+    "INSERT INTO staff(ID, NAME, AGE) VALUES (4, 'Ali', 25);" \
+    "INSERT INTO staff(ID, NAME, AGE) VALUES (5, 'Veli', 17);";
 
   /* execute table creation query */
   if(SQLITE_OK != sqlite3_exec(db, creation, NULL, NULL, &err_msg)) { 

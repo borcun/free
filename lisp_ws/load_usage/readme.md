@@ -4,12 +4,15 @@ which are in script file can be used directly.
 command
 -------
 
-*;; run own interpreter
+;; run own interpreter
+
 sbcl
 
-*;; load script file. it hasn't to be relative path.
+;; load script file. it hasn't to be relative path.
+
 (load "power.lisp")
 
 
-*;; now, functions are available for usage.
+;; now, functions are available for usage.
+
 (second_power 4)

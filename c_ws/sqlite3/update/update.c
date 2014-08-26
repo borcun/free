@@ -45,7 +45,7 @@ int main(int argc, char **argv)
     "INSERT INTO staff(ID, NAME, AGE) VALUES (4, 'Ali', 25);" \
     "INSERT INTO staff(ID, NAME, AGE) VALUES (5, 'Veli', 17);";
 
-  /* execute table creation query */
+  /* execute create query */
   if(SQLITE_OK != sqlite3_exec(db, creation, NULL, NULL, &err_msg)) { 
      fprintf(stderr, "SQL error: %s\n", err_msg);
      sqlite3_free(err_msg);
@@ -63,21 +63,21 @@ int main(int argc, char **argv)
 
 	printf("before update operation\n\n");
   selection = "SELECT * from STAFF";
-	/* execute SQL statement */
+	/* execute selection statement */
 	if(SQLITE_OK != sqlite3_exec(db, selection, callback, NULL, &err_msg)){
 		fprintf(stderr, "SQL error: %s\n", err_msg);
 		sqlite3_free(err_msg);
 	}
 
   update = "UPDATE STAFF set AGE = 22 where ID = 3";
-	/* execute SQL statement */
+	/* execute update statement */
 	if(SQLITE_OK != sqlite3_exec(db, update, callback, NULL, &err_msg)){
 		fprintf(stderr, "SQL error: %s\n", err_msg);
 		sqlite3_free(err_msg);
 	}
 
 	printf("\nafter update operation\n\n");
-	/* execute SQL statement */
+	/* execute selection statement */
 	if(SQLITE_OK != sqlite3_exec(db, selection, callback, NULL, &err_msg)){
 		fprintf(stderr, "SQL error: %s\n", err_msg);
 		sqlite3_free(err_msg);

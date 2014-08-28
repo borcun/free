@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for i in "ls ../"
+for i in $(ls ../)
 do
-		$i
+		echo $i
 done

@@ -1,0 +1,48 @@
+introduction
+------------
+test is binary file which is created by a cpp source file and complied with -g parameter
+
+fundamental
+-----------
+gdb test : run test binary file with gdb
+run : run test file
+run arg1 arg2 ... : run test file with parameters
+kill : kill command kills the stopped program, finishes debugging
+
+display
+-------
+list : list 10 lines of source code and when repeating, it lists next 10 lines
+backtrace : show crash point and information about it, actually crash stack 
+frame : the command is used to display backtrace log line for more details
+info frame : more more details about crash point 
+info locals : information about local variables
+info args : information about arguments
+info breakpoints : information about breakpoints (lines, status, address etc)
+info watchpoints : information about watchpoints
+info registers : information about registers
+disassemble main : display main function memory address
+
+help
+----
+help : display gdb help menu
+
+debugging
+---------
+call foo() : the call command calls function named foo
+break 7 : the command places a breakpoint on 7th line 
+break test.cpp:10 : for placing a breakpoint on 10th line of test.cpp
+break foo : for placing breakpoint for a function named foo
+break Test::foo(int) : specific usage of break command for cpp class functions (Test is a class)
+tbreak : this command creates a temporary break point which is used once
+disable 2 : the disable command disables second breakpoint
+ignore 3 7 : ignores all breakpoints from third breakpoints to seventh breakpoints
+clear 1 : remove first breakpoint
+continue : if the program is stopped in any way, continue can continues the process
+next : when the program is stopped, the next goes on. (go over function)
+step : when the program is stopped, the step goes on. (go into function)
+
+watchpoint
+----------
+watch x : the command watch variable content named x (the breakpoint have to be used after x)
+rwatch x : read-only watch point for x variable
+awatch x : read-write watch point for x variable

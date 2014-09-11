@@ -1,10 +1,14 @@
 CC = gcc
+CFLAGS = -c -Wall
+SRC = Stack.c main.c
+OBJ = Stack.o main.o
+EXEC = stack
 
-compile: Stack.c main.c
-	${CC} -c *.c
+compile: ${SRC}
+	${CC} ${CFLAGS} ${SRC}
 
-all: Stack.o main.o
-	${CC} *.o -o stack
-	
+all: ${OBJ}
+	${CC} ${OBJ} -o ${EXEC}
+
 clear:
-	rm -rf *.o stack
+	rm -rf ${OBJ} ${EXEC}

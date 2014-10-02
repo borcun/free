@@ -1,4 +1,5 @@
 t, Twitter Client Application
+=============================
 
 t is twitter client application which you can manage your account, tweet, display tweets.
 it is based-on ruby, so the ruby have to be installed in order to use t application.
@@ -17,13 +18,13 @@ it is based-on ruby, so the ruby have to be installed in order to use t applicat
 4. In this step, the application requests a PIN code, so it opens a new web page for PIN code. Copy and paste
 	 it to terminal.
 	 
-5. After these log in operations, the account is set. 't account' command gives you your account information.
-   't whois @USER'      		 : shows USER account information.
-   't stream timeline'  		 : lists your timeline.
-   't update "Message"  		 : post "Message" tweet
-   't follow @USER'     		 : follow USER account
-   't mentions'							 : lists current 20 mentions about you
-	 't mentions -n 10'   		 : lists last 10 mentions about you
-	 't search timeline "word" : search tweets which contains "word" keyword 
-   't friends USER'			     : lists friends of USER account
+5. After these log in operations, the account is set. 't account' command gives you your account information.<br>
+   't whois @USER'      		 : shows USER account information. <br>
+   't stream timeline'  		 : lists your timeline. <br>
+   't update "Message"  		 : post "Message" tweet <br>
+   't follow @USER'     		 : follow USER account <br>
+   't mentions'							 : lists current 20 mentions about you <br>
+	 't mentions -n 10'   		 : lists last 10 mentions about you <br>
+	 't search timeline "word" : search tweets which contains "word" keyword <br>
+   't friends USER'			     : lists friends of USER account <br>
 	 't favorites USER'				 : return 20 most recent favorite tweet of USER account

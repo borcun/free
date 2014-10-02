@@ -3,8 +3,8 @@ t, Twitter Client Application
 t is twitter client application which you can manage your account, tweet, display tweets.
 it is based-on ruby, so the ruby have to be installed in order to use t application.
 
-1. First of all, you have to install ruby-dev package. After that, t have to be installed via gem.
-   sudo apt-get / yum install ruby-dev
+1. First of all, you have to install ruby-dev package. After that, t have to be installed via gem.<br>
+   sudo apt-get / yum install ruby-dev<br>
    sudo gem install t
    
 2. Next, visit https://dev.twitter.com/apps/new page to create a twitter application. There are

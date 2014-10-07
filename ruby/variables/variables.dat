@@ -1,0 +1,21 @@
+Variables in Ruby
+=================
+
+# Local Variables: 
+Methodlarin icinde olusturulmus degiskenlere verilen isimdir. Local degiskenlere
+method disindan erismek mumkun degildir, ayrica local _ veya kucuk harf ile baslar.
+
+# Instance Variables:
+Instance deiskenlere methodlar, class belli objectlerinden erismek mumkundur.
+Bunun anlami, instance degiskenler nesneden nesneye degisirler. Instance 
+degiskenler @ isaretini takip eden bir isimle isimlendirirler.
+
+# Class Variables:
+Class degiskenlerine farkli nesneler tarafindan erisilebilir. Bir class degiskeni
+bir sinifa aittir ve o sinifin karakteristik ozelligidir. Class degiskenleri
+@@ isaretini takip eden bir isimle isimlendirilirler.
+
+# Global Variables:
+Class degiskenleri farkli siniflar arasi erisilebilir degildir. Eger tum siniflar
+tarafindan erisilebilen bir degisken istiyorsa, o zaman bu degiskeni global olarak
+tanimlamak gerekir. Global degiskenler daima $ isareti ile baslarlar.

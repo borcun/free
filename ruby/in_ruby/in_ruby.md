@@ -8,7 +8,7 @@ learn for me. In addition, I like it so much compared to Python, LISP or Rust.
 
  I wanna mention about its some features which are inspired from other languages.
 
- ==1. Hello World==
+ --1. Hello World--
   puts and print functions are like Python's.
   
   puts "Hello World"

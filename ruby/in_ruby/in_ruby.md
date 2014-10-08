@@ -113,3 +113,8 @@ learn for me. In addition, I like it so much compared to Python, LISP or Rust.
 	The ternary condition operator is from C.
 
 	The range operators .. and ... make easy some operations. .. operator is in Python too.
+
+ 10. Unary Resolution Operator
+ -----------------------------
+  In C++, unary resolution operator is used to indicate global variable which has same name with
+  local variable. This feature belongs to Ruby too.

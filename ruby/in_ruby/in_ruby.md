@@ -40,8 +40,6 @@ learn for me. In addition, I like it so much compared to Python, LISP or Rust.
   -----------
 	 The one line comment style is like Python, # operator comments the line.
  
-   # comment
-
   4. Variables
 	------------
 	 The variables in Ruby are special to self, I haven't seen familiar variable

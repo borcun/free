@@ -1,0 +1,1 @@
+this directory contains some design patterns which are implemented with Ruby

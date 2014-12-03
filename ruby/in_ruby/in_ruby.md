@@ -116,5 +116,5 @@ learn for me. In addition, I like it so much compared to Python, LISP or Rust.
 
  10. Unary Resolution Operator
  -----------------------------
-  In C++, unary resolution operator is used to indicate global variable which has same name with
-  local variable. This feature belongs to Ruby too.
+  In C++, unary resolution operator is used to indicate global variable which has same name  
+	with local variable. This feature belongs to Ruby too.

@@ -20,10 +20,17 @@ def match(pattern, sting)
     # if character is digit, add current character times digit - 1
     # cause of -1, the character was always written above if statement one time.
     elsif c =~ /[0-9]/
+      if c.ord == $DIGIT_ACODE then
+        _sting.chop
+        puts "Now sting #{_sting}"
       # ord function gets ASCII integer value of character
-      _sting += (curr * (c.ord - $DIGIT_ACODE - 1))
+      else
+        _sting += (curr * (c.ord - $DIGIT_ACODE - 1))
+      end
     end
   end
+
+  puts "_sting: #{_sting}"
 
   if _sting == sting then
     return true

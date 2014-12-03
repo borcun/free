@@ -1,0 +1,64 @@
+Command Line
+============
+
+Linux Shells
+------------
+1. bash - bourne again shell
+2. bsh - bourne shell
+3. tcsh - based on csh
+4. csh - original C shell
+5. ksh - korn shell takes good features of bsh and csh
+6. zsh - z shell is evolution of ksh
+
+Using Shell
+-----------
+cd - change directory
+echo - prints parameter on terminal
+exec - execute command
+set - set bash operation
+unset - unset bash operation
+exit - close terminal, terminate shell
+pwd - print work directory
+mkdir - make directory (-p parameter prevent error if dir was already created)
+ls - list directory content(-l list top-down, -a shows hidden files)
+touch - create file (if file was already created, it touches it)
+less, more, cat - display file content. (less is more than more)
+man - display manual page of commands
+
+bash has command completion, command history, search in history features.
+# To complete command, Tab button is used.
+# To display command history, up/down arrow buttons or Ctrl+P and Ctrl+N keystrokes are used.
+# To search any command in history, Ctrl+R keystroke helps.
+# To go to begin or end of a long command, Ctrl+A and Ctrl+E keystrokes are preferred.
+  Sometimes, left/right arrow or Ctrl+B and Ctrl+F keystrokes are used to go forward or
+  backward one character. Some of these features were moved after Emacs editor was released.
+# Ctrl+D keystroke works as delete button.
+# Ctrl+K deletes all characters after cursor position in like Emacs.
+# Ctrl+T transposes character before cursor with character under cursor.
+# U, L and C button after ESC are used for uppercase, lowercase. ESC, then U converts all 
+  characters uppercase, meanwhile L converts all lowercase. C converts only character under
+  cursor uppercase.
+# Ctrl+X, then Ctrl+E starts default editor which is defined with $FCEDIT or $EDITOR.
+
+Shell Configuration
+-------------------
+~/.bashrc, ~/.profile or ~/.bash_profile files are user configuration files of bash.
+/etc/bashrc and /etc/profile files are global configuration files as well.
+
+Environment Variables
+---------------------
+Environment variables are shell variables. They can be defined implicitly and explicitly.
+export command is used to define any variable explicitly.
+
+export EDITOR=/opt/local/bin/emacs
+
+The configuration files may be used to define EDITOR environment variables. The above 
+command is added inside configuration file, so in each startup, the command is run and
+EDITOR environment variable set as emacs.
+
+env command prints all environment variables of system.
+
+Stream, Redirection and Pipes
+-----------------------------
+tee
+YXFMRTRPKRFA

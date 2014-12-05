@@ -27,7 +27,25 @@ man - display manual page of commands
 cat - concatenate shortly, prints its parameter on its output place.
 more - display text file
 less - display text file, is more than more command.
-join - join two or more files
+join - join two or more files by first common columns (can be adjusted) and display result.
+paste - similar to join. while join command print one common columns in output file, paste prints two columns.
+expand - convert tab to space in a file.
+unexpand - opposote of expand.
+od - display a file content in octal mode.
+sort - sort content of any file. by default, it use alphabetic priority, but configurable mostly.
+split - split a file to two or more files. cut and paste some columns from input file and create and paste output file.
+tac - this command is reverse of cat command, prints file as reverse.
+tr - format standart input with differet character set.
+uniq - remove duplicate words in its parameter. generally, it is used with sort command.
+fmt - format output file as user wants. for example, each line may be 30 characters.
+nl - display number lines of files.
+pr, lpr - prints file.
+head - prints first 10 lines of a file.
+tail - prints last 10 lines of a file.
+cut - similar to split but it doesn't second file, prints splitted parts on screen.
+wc - count characters, words and lines of a file.
+grep - expanded search operation in files.
+sed - expanded editing operation in files.
 
 bash has command completion, command history, search in history features.
 # To complete command, Tab button is used.
@@ -101,3 +119,35 @@ as xargs but a little different.
 $ rm -rf `find /home/user -name h*`
 
 it wraps around command.
+
+regex
+-----
+Regular Expression is, important feature of Linux, used to indicate names more than one with one statement.
+
+*brackets : ( [] ) bracket expressions match any one character within the brackets. for example, b[aeu]ll
+statement match ball, bell and bull words. 
+
+*range: brackets may contains ranges, book[1-5].pdf statement match book1.pdf, book2.pdf, book3.pdf, 
+book4.pdf and book5.pdf words.
+
+*single character: The dot ( . ) match any single characters. b.ll may match ball, bell, bull, b4ll, bXll ...etc.
+
+*repetition: ( * ) represents zero or more occurences, ( + ) represents one or more occurences, ( ? ) 
+represents zero or one match.
+
+*multiple possible string: ( | ) represents its all parameters. home|user may be home or user.
+
+*parenthesis: it makes an expression subexpression, so the expression gain priority.
+
+process management
+------------------
+ps: list all foregorund process
+ps -e (ps ax): list all running (foreground and backgroup) process
+top: dynamic ps command like task manager applications.
+jobs: list jobs
+fg: makes foreground job
+bg: makes background job (both of them use job id)
+nice: manages process priority
+renice: change process priority
+kill: kill process with process id
+killall: kill all process with name

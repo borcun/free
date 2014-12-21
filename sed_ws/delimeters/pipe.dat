@@ -1,0 +1,1 @@
+echo /usr/local/bin | sed 's|/local|/orcun|'

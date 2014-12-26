@@ -1,5 +1,5 @@
-Command Line
-============
+1. Command Line
+===============
 
 Linux Shells
 ------------
@@ -24,6 +24,28 @@ ls - list directory content(-l list top-down, -a shows hidden files)
 touch - create file (if file was already created, it touches it)
 less, more, cat - display file content. (less is more than more)
 man - display manual page of commands
+cat - concatenate shortly, prints its parameter on its output place.
+more - display text file
+less - display text file, is more than more command.
+join - join two or more files by first common columns (can be adjusted) and display result.
+paste - similar to join. while join command print one common columns in output file, paste prints two columns.
+expand - convert tab to space in a file.
+unexpand - opposote of expand.
+od - display a file content in octal mode.
+sort - sort content of any file. by default, it use alphabetic priority, but configurable mostly.
+split - split a file to two or more files. cut and paste some columns from input file and create and paste output file.
+tac - this command is reverse of cat command, prints file as reverse.
+tr - format standart input with differet character set.
+uniq - remove duplicate words in its parameter. generally, it is used with sort command.
+fmt - format output file as user wants. for example, each line may be 30 characters.
+nl - display number lines of files.
+pr, lpr - prints file.
+head - prints first 10 lines of a file.
+tail - prints last 10 lines of a file.
+cut - similar to split but it doesn't second file, prints splitted parts on screen.
+wc - count characters, words and lines of a file.
+grep - expanded search operation in files.
+sed - expanded editing operation in files.
 
 bash has command completion, command history, search in history features.
 # To complete command, Tab button is used.
@@ -50,7 +72,7 @@ Environment Variables
 Environment variables are shell variables. They can be defined implicitly and explicitly.
 export command is used to define any variable explicitly.
 
-export EDITOR=/opt/local/bin/emacs
+$ export EDITOR=/opt/local/bin/emacs
 
 The configuration files may be used to define EDITOR environment variables. The above 
 command is added inside configuration file, so in each startup, the command is run and
@@ -60,5 +82,72 @@ env command prints all environment variables of system.
 
 Stream, Redirection and Pipes
 -----------------------------
-tee
-YXFMRTRPKRFA
+tee commands splits application output as two receivers. For instance,
+
+$ ifconfig | tee result.dat
+
+ifconfig command outputs two places: standart output and result.dat file.
+
+>  - create new file for standart output, write it. if it is existed, overwrite it.
+>> - create new file for standart output, write it. if it is existed, append it. 
+2> - create new file for standart error, write it. if it is existed, overwrite it.
+2>> - create new file for standart error, write it. if it is existed, append it. 
+&> - create new file for standart output and error, write it. if it is existed, overwrite it.
+<> - causes the specified file to be used for both standard input and stan- dard output.
+
+Pipeline (a.k.a pipe)
+---------------------
+Pipe ( | ) is used to link output of any program to input of any program. It can link numerious
+program each other.
+
+$ first | second | third | ...
+
+first program gives an output, pipeline take it and give it to second program as input. In similar,
+it performs same operation between second and third program.
+
+xargs
+-----
+xargs command is used with pipeline and change pipeline behaviour a bit. While pipeline give output
+of left command to right command as input, xargs gives it as parameter. Let's sample:
+
+$ find /home/user -name h* | xargs rm -rf
+
+find command finds all files start with h in /home/user directory, pipeline gives them to xargs and
+finally, xargs runs rm -rf command with its input, that is files start with h. Backtick ( ` ) treats
+as xargs but a little different.
+
+$ rm -rf `find /home/user -name h*`
+
+it wraps around command.
+
+regex
+-----
+Regular Expression is, important feature of Linux, used to indicate names more than one with one statement.
+
+*brackets : ( [] ) bracket expressions match any one character within the brackets. for example, b[aeu]ll
+statement match ball, bell and bull words. 
+
+*range: brackets may contains ranges, book[1-5].pdf statement match book1.pdf, book2.pdf, book3.pdf, 
+book4.pdf and book5.pdf words.
+
+*single character: The dot ( . ) match any single characters. b.ll may match ball, bell, bull, b4ll, bXll ...etc.
+
+*repetition: ( * ) represents zero or more occurences, ( + ) represents one or more occurences, ( ? ) 
+represents zero or one match.
+
+*multiple possible string: ( | ) represents its all parameters. home|user may be home or user.
+
+*parenthesis: it makes an expression subexpression, so the expression gain priority.
+
+process management
+------------------
+ps: list all foregorund process
+ps -e (ps ax): list all running (foreground and backgroup) process
+top: dynamic ps command like task manager applications.
+jobs: list jobs
+fg: makes foreground job
+bg: makes background job (both of them use job id)
+nice: manages process priority
+renice: change process priority
+kill: kill process with process id
+killall: kill all process with name

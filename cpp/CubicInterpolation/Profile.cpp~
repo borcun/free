@@ -1,0 +1,55 @@
+#include "Profile.hpp"
+
+// constructor
+Profile::Profile()
+{
+}
+// destructor
+Profile::~Profile()
+{
+}
+
+// load function
+void Profile::load(const char *path)
+{
+  // load coeffcient file
+  // fill coefficient array
+}
+
+// value function
+float Profile::value(float param)
+{
+}
+
+// sampler function
+void Profile::sampler(const float param)
+{
+  float res = 0.0;
+
+  // res = call timer with parameter
+  // put value into queue
+  // condvar signal
+
+  return;
+}
+
+// profiler function
+void Profile::profiler()
+{
+  // while(true)
+  // wait condvar
+  // pop value from queue
+  // write file
+
+  return;
+}
+
+// timer function
+void Profiler::timer()
+{
+  // while
+  // sleep
+  // call sampler function
+
+  return;
+}

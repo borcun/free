@@ -1,0 +1,61 @@
+#ifndef PROFILE_HPP
+#define PROFILE_HPP
+
+#include "Solver.hpp"
+#include <pthread.h>
+#include <tbb/concurrent_queue>
+#include <stdio.h>
+#include <vector>
+
+// polynom coefficient structure
+struct PolynomCoefficients
+{
+  float a;
+  float b:
+  float c;
+  float d;
+};
+
+typedef struct PolynomCoefficients Coefficients;
+
+// Profile Class
+class Profile
+{
+public:
+  // default constructor
+  Profile();
+  // destructor
+  ~Profile();
+  // function that loads coefficients
+  void load(const char *path);
+  // functiton that calculates result of polynom with parameter
+  float value(float param);
+  // sampler function
+  void sampler(const float param);
+  // profile function
+  void profiler();
+
+private:
+  // input file
+  FILE *m_input_file;
+  // output file
+  FILE *m_output_file;
+  // output file
+  FILE *m_output_file;
+  // coefficient vector
+  vector<Coefficients> m_coeff_vec;
+  // message queue
+  tbb::concurrent_queue<float> m_queue;
+  // profiler thread
+  pthread_t m_profiler_thread;
+  // profiler mutex
+  pthread_mutex_t m_profiler_mutex;
+  // profiler condition variable
+  pthread_cond_t m_profiler_condvar;
+
+  // timer function
+  void timer();
+
+};
+
+#endif

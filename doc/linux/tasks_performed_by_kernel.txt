@@ -1,0 +1,53 @@
+# Process Scheduling
+  Islem Zamanlamasi: Bir bilgisayar, program talimatlarini calistiran bir yada birden fazla CPU
+  adindaki merkezi islem birimlerini sahiptir. Diger UNIX sistemlerinde oldugu gibi, Linux de
+  preemptive multitasking isletim sistemidir, multitasking'den kasit; birden fazla islemin
+  paralel olarak hafizada bulunabilmesi ve her birinin islemcinin kullanimini devralabilmesidir.
+  Preemptive ise CPU kullanimini devralan islemlerin hukum kurallari ve kernel process scheduler
+  tarafindan ne kadar calisacaginin hesaplanmasi anlamina gelir. Islemler (process) buna kendileri
+  karar vermezler.
+
+# Memory Management
+  Hafiza Yonetimi: Bilgisayar hafizalari son on yil icerisinde giderek buyurken, yazilimlarin
+  boyutlari da buna karsilik olarak giderek artti, bu sebeple kernel tarafindan processler arasinda
+  esit ve etkili bir yontemle paylasilmasi gereken fiziksel hafiza (RAM) sinirli bir kaynak olarak
+  kalir. Cogu modern isletim sisteminde oldugu gibi, Linux de sanal hafiza yonetimi adi verilen bir
+  teknik kullanmaya basladi. Bu teknigi 2 tane avantaji vardir.
+
+  - Processler birbirlerinden ve kernelden izole edilirler, boylece bir process baska bir processin
+    veya kernelin hafizasina erisemez ve bu alanlari okuyamaz.
+  - Bir processin belli bir kisminin hafizada saklanmasi gerekir, bu da RAM icerisinde es zamanli 
+    olarak her processin daha az hafiza ihtiyacinin olmasina ve daha fazla processin saklanmasina 
+    olanak saglar.
+
+# Dosya sistemi saglanmasi
+  Provision of a file system: Kernel, disk uzerinde yaratilmak, kullanilmak, guncellenmek, silinmek
+  ve benzeri islemler icin bir dosya sistemi saglar.
+
+# Creation and termination of process:
+  Islem yaratma ve sonlandirma: Kernel, calistirilacak bir programi hafizaya yukler ve onun icin
+  gerekli kaynaklari (CPU, hafiza, dosyalara erisim) saglar. Calisan bir program terimsel olarak
+  process olarak adlandirilir. Bir process calismasini tamamladigi zaman, kernel, bu processin
+  kullandigi kaynaklari baska programlarin kullanmasi icin geri alir.
+
+# Access to devices
+  Donanima erisim: Donanimlar (fare, monitor, klavye, disk, manyetik disk vb) kendilerine dis dunya
+  ile bilgisayar arasinda erisim (okuma, yazma) destegi sunan bilgisayarlara baglanirlar. Kernel,
+  birden fazla processin ayni anda donanima erismesi icin standartlastirilmis ve basitlestirilmis 
+  bir interface saglar.
+
+# Networking
+  Networking: Kernel, kullanici processleri icin network mesajlari (paket) alir ve gonderir. Bu
+  gorev, hedef sisteme network paketlerinin yonlendirilmesi islemidir.
+
+# Provision of a system call application programming interface (API)
+  Sistem cagri API'lerinin saglanmasi: Processler, system call olarak bilinen kernel giris 
+  noktalarini kullanan farkli gorevleri kullanmak icin kernelden istekte bulunabilirler.
+
+Bu maddelere ek olarak, Linux gibi cok kullanicili isletim sistemleri, her kullanicinin sisteme
+girmesi ve diger kullanicilardan bagimsiz olarak islem yapabilmesi icin 'virtual private computer'
+yapisi saglarlar. Ornegin; her kulanici disk uzerinde kendilerine has home klasorune sahiptir.
+Ayrica, kullanicilar CPU'yu paylasan ve kendi kisisel virtual private computer'larinda bulunan, 
+network uzerinden bilgi transferi yapabilen ve bagimsiz olarak donanima erisebilien programlar 
+calistirabilir. Kernel donanima erisimde olabilecek potansiyel cakisma problemlerini cozer, boylece
+kullanicilar ve processler genellikle cakismalardan haberdar olmazlar. 

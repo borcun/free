@@ -1,0 +1,2 @@
+echo abcd123 | sed 's/\([a-z]*\)/\1/'
+echo abcd123 | sed 's/\([a-z]*\).*/\1/'

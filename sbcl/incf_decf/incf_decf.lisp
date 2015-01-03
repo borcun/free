@@ -1,0 +1,7 @@
+(defvar x)
+(setq x 10)
+(format t "~A~%" x)
+(incf x 2)
+(format t "~A~%" x)
+(decf x 5)
+(format t "~A~%" x)

@@ -1,0 +1,10 @@
+# LISP programs run either on an interpreter or compiled code.
+# LISP expressions are called symbolic expression or s-expression.
+# LISP uses prefix notation.
+# LISP programs are made up of three building blocks:
+  atom, list and string
+  atom: is a number or string of contiguos characters.
+  list: is sequence of atoms and/or other lists.
+  string: is character group.
+# ; is comment syntax of LISP.
+

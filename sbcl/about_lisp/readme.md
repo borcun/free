@@ -3,9 +3,9 @@
 # LISP uses prefix notation.
 # LISP programs are made up of three building blocks:
   atom, list and string
-  - atom is a number or string of contiguos characters.
-  - list is sequence of atoms and/or other lists.
-  - string is character group.
+  atom is a number or string of contiguos characters.
+  list is sequence of atoms and/or other lists.
+  string is character group.
 # ; is comment syntax of LISP.
 # LISP evaluates everything, except numbers, t (true/false) and nil.
 # LISP variables consist of any number and character, except whitespace,

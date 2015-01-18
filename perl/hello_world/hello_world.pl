@@ -10,9 +10,14 @@
 		In Perl, function calls are made both using parenthesis or not. 
 		Both calls are valid. Besides, Perl file extension is .pl or .PL.
 
+		The whitespace character is ignored but newline characters is processed.
+
 		The first line is shebang which indicates perl binary file path, so
 		if the file execution permission is set, it can be executed with ./.
 =cut
 
 print "Hello World without parenthesis\n";
 print("Hello World with parenthesis\n");
+print    "Hello World with whitespace\n";
+print "Hello
+          World with new line\n";

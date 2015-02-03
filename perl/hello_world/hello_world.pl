@@ -16,6 +16,13 @@
 		if the file execution permission is set, it can be executed with ./.
 =cut
 
+$var = << "EOF";
+this lines are documentation lines which is created with EOF keyword by
+assign to a variable. then, when the variable is printed, the documentation
+is printed.
+EOF
+print "$var\n";
+
 print "Hello World without parenthesis\n";
 print("Hello World with parenthesis\n");
 print    "Hello World with whitespace\n";

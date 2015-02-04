@@ -15,12 +15,12 @@ $count = 2;
 $init = 2;
 
 while ($num != 1) {
-		if($num % $count == 0) {
-				print "$count\n";
-				$num /= $count;
-				$count = $init;
-		}
-		else {
-				$count++;
-		}
+  if($num % $count == 0) {
+	  print "$count\n";
+		$num /= $count;
+		$count = $init;
+	}
+	else {
+	  $count++;
+  }
 }

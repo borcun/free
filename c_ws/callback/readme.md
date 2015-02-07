@@ -1,1 +1,0 @@
-function pointer sample

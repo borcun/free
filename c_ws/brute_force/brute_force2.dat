@@ -1,1 +1,0 @@
-for i in {1..50}; do echo $i | ./brute_force2; doney

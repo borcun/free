@@ -1,1 +1,0 @@
-C and SQLite samples

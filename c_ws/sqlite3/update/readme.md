@@ -1,1 +1,0 @@
-sqlite & C update operation

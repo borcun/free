@@ -1,1 +1,0 @@
-if statement usage sample

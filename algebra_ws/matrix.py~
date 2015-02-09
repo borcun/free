@@ -1,3 +1,0 @@
-import numpy
-
-arr = arange(10).reshape(3, 5)

@@ -1,13 +1,26 @@
+x86_64
+======
+
 rsp, rbp : special purpose pointer
 eax, ebp : general purpose pointer
 
 rbp : base pointer of stack
 rsp : top pointer of stack
+eax : high byte can be accessed with AX, because it is 32-bit. (32-bit core)
+      x86 calling convention dictates that a function return value is stored
+      int eax register.
+eal : low byte can be accessed with AL.
+(eax) : parenthesis say that this is a memory address.
+-0x4  : displacement because stack grows downward.
+movl  : l indicates that the operation is performed with long (32-bit).
+	      other suffixes are b(yte), s(hort), w(ord), q(uad), t(en). If
+	      there isn't suffix, it inferred standart eax size.
+
 
 rbp is always bigger than rsp, because stack grows downward.
 
- -----
+| ... |  <-- top address (rsp)
+| ... |
+| ... |
 | rbp |  <-- base address
-| ... |
-| ... |
-| rsp |  <-- top address
+ -----

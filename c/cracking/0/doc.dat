@@ -1,0 +1,13 @@
+rsp, rbp : special purpose pointer
+eax, ebp : general purpose pointer
+
+rbp : base pointer of stack
+rsp : top pointer of stack
+
+rbp is always bigger than rsp, because stack grows downward.
+
+ -----
+| rbp |  <-- base address
+| ... |
+| ... |
+| rsp |  <-- top address

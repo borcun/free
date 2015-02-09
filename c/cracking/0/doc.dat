@@ -6,6 +6,7 @@ eax, ebp : general purpose pointer
 
 rbp : base pointer of stack
 rsp : top pointer of stack
+rip : next instruction pointer always contains next instruction address
 eax : high byte can be accessed with AX, because it is 32-bit. (32-bit core)
       x86 calling convention dictates that a function return value is stored
       int eax register.

@@ -1,0 +1,26 @@
+
+crackme.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <main>:
+   0:	55                   	push   %rbp
+   1:	48 89 e5             	mov    %rsp,%rbp
+   4:	48 83 ec 10          	sub    $0x10,%rsp
+   8:	48 8d 45 fc          	lea    -0x4(%rbp),%rax
+   c:	48 89 c6             	mov    %rax,%rsi
+   f:	bf 00 00 00 00       	mov    $0x0,%edi
+  14:	b8 00 00 00 00       	mov    $0x0,%eax
+  19:	e8 00 00 00 00       	callq  1e <main+0x1e>
+  1e:	8b 45 fc             	mov    -0x4(%rbp),%eax
+  21:	83 f8 05             	cmp    $0x5,%eax
+  24:	75 0c                	jne    32 <main+0x32>
+  26:	bf 00 00 00 00       	mov    $0x0,%edi
+  2b:	e8 00 00 00 00       	callq  30 <main+0x30>
+  30:	eb 0a                	jmp    3c <main+0x3c>
+  32:	bf 00 00 00 00       	mov    $0x0,%edi
+  37:	e8 00 00 00 00       	callq  3c <main+0x3c>
+  3c:	b8 00 00 00 00       	mov    $0x0,%eax
+  41:	c9                   	leaveq 
+  42:	c3                   	retq   

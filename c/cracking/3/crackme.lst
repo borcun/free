@@ -1,0 +1,86 @@
+   1              		.file	"crackme.c"
+   2              		.text
+   3              		.globl	natural_generator
+   5              	natural_generator:
+   6              	.LFB0:
+   7              		.cfi_startproc
+   8 0000 55       		pushq	%rbp
+   9              		.cfi_def_cfa_offset 16
+  10              		.cfi_offset 6, -16
+  11 0001 4889E5   		movq	%rsp, %rbp
+  12              		.cfi_def_cfa_register 6
+  13 0004 C745FC01 		movl	$1, -4(%rbp)
+  13      000000
+  14 000b 8B050000 		movl	b.1724(%rip), %eax
+  14      0000
+  15 0011 83C001   		addl	$1, %eax
+  16 0014 89050000 		movl	%eax, b.1724(%rip)
+  16      0000
+  17 001a 8B150000 		movl	b.1724(%rip), %edx
+  17      0000
+  18 0020 8B45FC   		movl	-4(%rbp), %eax
+  19 0023 01D0     		addl	%edx, %eax
+  20 0025 5D       		popq	%rbp
+  21              		.cfi_def_cfa 7, 8
+  22 0026 C3       		ret
+  23              		.cfi_endproc
+  24              	.LFE0:
+  26              		.section	.rodata
+  27              	.LC0:
+  28 0000 25640A00 		.string	"%d\n"
+  29              		.text
+  30              		.globl	main
+  32              	main:
+  33              	.LFB1:
+  34              		.cfi_startproc
+  35 0027 55       		pushq	%rbp
+  36              		.cfi_def_cfa_offset 16
+  37              		.cfi_offset 6, -16
+  38 0028 4889E5   		movq	%rsp, %rbp
+  39              		.cfi_def_cfa_register 6
+  40 002b B8000000 		movl	$0, %eax
+  40      00
+  41 0030 E8000000 		call	natural_generator
+  41      00
+  42 0035 89C6     		movl	%eax, %esi
+  43 0037 BF000000 		movl	$.LC0, %edi
+  43      00
+  44 003c B8000000 		movl	$0, %eax
+  44      00
+  45 0041 E8000000 		call	printf
+  45      00
+  46 0046 B8000000 		movl	$0, %eax
+  46      00
+  47 004b E8000000 		call	natural_generator
+  47      00
+  48 0050 89C6     		movl	%eax, %esi
+  49 0052 BF000000 		movl	$.LC0, %edi
+  49      00
+  50 0057 B8000000 		movl	$0, %eax
+  50      00
+  51 005c E8000000 		call	printf
+  51      00
+  52 0061 B8000000 		movl	$0, %eax
+  52      00
+  53 0066 E8000000 		call	natural_generator
+  53      00
+  54 006b 89C6     		movl	%eax, %esi
+  55 006d BF000000 		movl	$.LC0, %edi
+  55      00
+  56 0072 B8000000 		movl	$0, %eax
+  56      00
+  57 0077 E8000000 		call	printf
+  57      00
+  58 007c B8000000 		movl	$0, %eax
+  58      00
+  59 0081 5D       		popq	%rbp
+  60              		.cfi_def_cfa 7, 8
+  61 0082 C3       		ret
+  62              		.cfi_endproc
+  63              	.LFE1:
+  65              		.data
+  66              		.align 4
+  69              	b.1724:
+  70 0000 FFFFFFFF 		.long	-1
+  71              		.ident	"GCC: (GNU) 4.8.3 20140911 (Red Hat 4.8.3-7)"
+  72              		.section	.note.GNU-stack,"",@progbits

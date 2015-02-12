@@ -1,0 +1,72 @@
+VPN Nedir?
+==========
+
+Sanal Gizli Ag (VPN), bir servis saglayicisi tarafindan olusturulmus gizli bir ag veya
+internet gibi, herkese acik bir ag uzerinden guvenli ag baglantilari olusturan bir ag 
+teknolojisidir. Buyuk sirketler, egitim enstituleri ve hukumet ajanlari, guvenli sekilde
+gizli bir aga dahil olmak icin uzak kullanici olarak VPN teknolojisini kullanirlar.
+
+Bir VPN, Genis Alan Agi (WAN) gibi cok uzaktaki bir cok siteye baglanabilir. VPN'ler 
+genelde, genis kullanici tabakasina bilgi ve haber yaymak uzere yerel agin genisletilmesi
+ile kullanilir. Ornegin egitim enstituleri, VPN'i ulke veya dunya uzerine yayilmis kampuslerine
+baglanmak icin kullanirlar.
+
+Gizli aga erisebilmek icin, kullanici tek bir isim ve sifre ile yetkilendirilir. Bu yetki,
+kullanicinin sahip oldugu PIN adi verilen kisisel kimlik numarasi araciligiyla gizli aga 
+baglanmasi icin kullanilir. PIN, belli bir frekansa gore (genellikle 30 saniye) degisen biricik
+yetki kodudur.
+
+VPN Tipleri
+===========
+
+3 farkli VPN tipi vardir.
+
+# Uzak Erisimli VPN: VPDN adi da verilen uzak erisimli VPN, nihai bir aga uzaktan erisilmek istenildigi
+  zaman kullanilir. Uzak erisimli VPN, bir sirketin gizli agi ile 3rd party veya Enterprise servis 
+  saglayicilari kullanan kullanicilar arasindaki veri erisimine izin verir. Ornegin; bir sirkete ait
+  satis ekibi kuresel alanda bu VPN tipini kullanirlar ve bu VPN'i kullanarak gerekli bilgileri 
+  guncellerler.
+
+# Mekan-Mekana VPN: Bu VPN tipi kurumsal ortamda kullanilir. Mekan-Mekana VPN, ayni veya farki sirketlerin
+  iki veya daha fazla Yerel Alan Ag (LAN) bilesenleri arasinda sifrelenmis baglanti saglar. Yani cografi
+  olarak birbirinden ayri yerlerde bulunan ofisler tek bir yerel agdaymis gibi sanal olarak koprulenirler
+  ve kullanicilar ag uzerinden birbirlerinin verilerine erisebilirler.
+  
+  
+Single Point of Failure (SPOF)
+==============================
+
+SPOF, basarisizliga ugradigi zaman tum sistemin calismasini durduran sistemin bir parcasi olarak tasvir edilebilir.
+SPOF, calisma ortamlari, yazilim uygulamalari veya endustriyel sistemler gibi yuksek guvenligin hedeflendigi sistemlerde
+istenmeyen bilesenlerdir.
+
+RFC 1918 
+========
+
+Internet adres mimarisinde, IPv4 adres uzayini anlatan internet standardidir.
+
+ChaosVPN
+========
+
+ChaosVPN, bilgisayar korsanlarini (hacker) birbirlerine baglayan bir VPN sistemidir.
+
+SPOF'un olmamasi gereken, full sifrelenmis kullanim iceren, RFC1918 IP araligini kullanan, yuzden fazla ag yapisina kadar
+genisleyebilen, router gibi gomulu bir hardware uzerinde calisabilecek dizayni prensiplerine sahip olmalidir. Ayrica agdaki 
+hic kimse baska birisinin trafigini goremeyecek sekilde dizayn edilmelidir. Aga bir kullanici dahil oldugunda veya agdan bir 
+kullanici ayrildiginda gercekten bir seyler yapilmasina ihtiyac oldugunda, agin yonetici olmayan bir kullanici bir seyler 
+yapabilmesi otomatik ayarlanabilmelidir. SPOF olmayan bir ag bulmak istenildiginde, agin dusuk gecikmeye sahip olmasina ve 
+bir kisi tarafindan sonlandirilan ag tabanli bir yapi ile sonlandirilan trafigin baska birisi tarafindan gorulememesi 
+gerekmektedir. Boylece, geldigimiz nokta tinc cozumudur. tinc, tam olarak birbiri icerisine gecmis noktadan noktaya ag 
+olusturur ve tuneller tanimlamaktansa son noktalar (endpoints) tanimlar.
+
+ChaonVPN, nerede olurlarsa olsunlar bilgisayar korsanlarini birbirine baglar. Yol savascilarini (otellerde özel hizmetler 
+ve taşınabilir bilgisayar teknolojisi talep eden iş yolcusu için kullanılan pazarlama ifadesi) birbirlerine baglar. Sunuculari,
+hatta Veri Merkezlerindeki sanal sunuculari ve bilgisayar korsanlarinin bulunduklari ortamlari birbirlerine baglar. Ozetle,
+ChaosVPN aglari birbirlerine baglar.
+
+ChaosVPN, guncel olarak faaliyetlerini surduruyor ve gun gectikce kullanimi, katilimcilarinin sayisi ve servisleri artiyor.
+
+ChaosVPN'e Nasil Katilinir?
+===========================
+
+Generic How To:

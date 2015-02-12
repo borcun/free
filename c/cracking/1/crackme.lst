@@ -1,0 +1,53 @@
+   1              		.file	"crackme.c"
+   2              		.section	.rodata
+   3              	.LC0:
+   4 0000 256400   		.string	"%d"
+   5              	.LC1:
+   6 0003 62696E67 		.string	"bingo"
+   6      6F00
+   7              	.LC2:
+   8 0009 74727920 		.string	"try again"
+   8      61676169 
+   8      6E00
+   9              		.text
+  10              		.globl	main
+  12              	main:
+  13              	.LFB0:
+  14              		.cfi_startproc
+  15 0000 55       		pushq	%rbp
+  16              		.cfi_def_cfa_offset 16
+  17              		.cfi_offset 6, -16
+  18 0001 4889E5   		movq	%rsp, %rbp
+  19              		.cfi_def_cfa_register 6
+  20 0004 4883EC10 		subq	$16, %rsp
+  21 0008 488D45FC 		leaq	-4(%rbp), %rax
+  22 000c 4889C6   		movq	%rax, %rsi
+  23 000f BF000000 		movl	$.LC0, %edi
+  23      00
+  24 0014 B8000000 		movl	$0, %eax
+  24      00
+  25 0019 E8000000 		call	__isoc99_scanf
+  25      00
+  26 001e 8B45FC   		movl	-4(%rbp), %eax
+  27 0021 83F805   		cmpl	$5, %eax
+  28 0024 750C     		jne	.L2
+  29 0026 BF000000 		movl	$.LC1, %edi
+  29      00
+  30 002b E8000000 		call	puts
+  30      00
+  31 0030 EB0A     		jmp	.L3
+  32              	.L2:
+  33 0032 BF000000 		movl	$.LC2, %edi
+  33      00
+  34 0037 E8000000 		call	puts
+  34      00
+  35              	.L3:
+  36 003c B8000000 		movl	$0, %eax
+  36      00
+  37 0041 C9       		leave
+  38              		.cfi_def_cfa 7, 8
+  39 0042 C3       		ret
+  40              		.cfi_endproc
+  41              	.LFE0:
+  43              		.ident	"GCC: (GNU) 4.8.3 20140911 (Red Hat 4.8.3-7)"
+  44              		.section	.note.GNU-stack,"",@progbits

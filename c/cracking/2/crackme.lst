@@ -1,0 +1,25 @@
+   1              		.file	"crackme.c"
+   2              		.text
+   3              		.globl	main
+   5              	main:
+   6              	.LFB0:
+   7              		.cfi_startproc
+   8 0000 55       		pushq	%rbp
+   9              		.cfi_def_cfa_offset 16
+  10              		.cfi_offset 6, -16
+  11 0001 4889E5   		movq	%rsp, %rbp
+  12              		.cfi_def_cfa_register 6
+  13 0004 C745FC05 		movl	$5, -4(%rbp)
+  13      000000
+  14 000b 8B45FC   		movl	-4(%rbp), %eax
+  15 000e 83C006   		addl	$6, %eax
+  16 0011 8945F8   		movl	%eax, -8(%rbp)
+  17 0014 B8000000 		movl	$0, %eax
+  17      00
+  18 0019 5D       		popq	%rbp
+  19              		.cfi_def_cfa 7, 8
+  20 001a C3       		ret
+  21              		.cfi_endproc
+  22              	.LFE0:
+  24              		.ident	"GCC: (GNU) 4.8.3 20140911 (Red Hat 4.8.3-7)"
+  25              		.section	.note.GNU-stack,"",@progbits

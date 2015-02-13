@@ -69,4 +69,62 @@ ChaosVPN, guncel olarak faaliyetlerini surduruyor ve gun gectikce kullanimi, kat
 ChaosVPN'e Nasil Katilinir?
 ===========================
 
-Generic How To:
+Bu dokuman bir debian kullanicisi tarafindan yazilmistir. Bu sebep ile farkli paket yoneticisi kullanan Linux dagitimlarinda
+ufak tefek degisiklikler ile kurulabilir.
+
+1. Oncelikle ChaosVPN icin gerekli olan yardimci programlari kurulmalidir
+--------------------------------------------------------------------------
+
+# apt-get install tinc iproute libssl0.9.8 zlib1g
+# apt-get install build-essential git-core bison flex libssl-dev zlib1g-dev
+
+tinc Uygulamasinin Kurulumu ve Ayarlari
+=======================================
+apt-get install tinc komutu ile tinc kurulumu gerceklestirebilmek icin Debian squeeze/unstable surumunu kullanmak 
+veya direk olarak lenny backport ( http://debian.sdinet.de/lenny/sdinet/tinc/ ) linkindeki paketlerin indirilmesi 
+gerekmektedir. tinc programinin 1.0.10'dan sonraki herhangi bir versiyonu ChaosVPN icin yeterlidir.
+
+Kurulum esnasinda,
+
+> ./MAKEDEV: don't know how to make device "tun"
+
+seklinde bir hata mesaji ile karsilasinilirsa, manual olarak,
+
+# mkdir -p /dev/net
+# mknod /dev/net/tun c 10 200
+# chown root:root /dev/net/tun
+# chmod 600 /dev/net/tun
+
+komutlarini sirasi ile calistirilabilir.
+
+ChaosVPN Kurulumu
+=================
+
+# mkdir -p /etc/tinc/chaos
+# git clone git://github.com/ryd/chaosvpn.git
+# cd chaosvpn
+
+ 1. YOL : git snapshot debian paketi yaratmak
+ --------------------------------------------
+ # apt-get install devscripts
+ # make deb
+   ; bagimlilik ile ilgili hatalar olusursa, birinci adimdaki uygulamalari tekrar kurmayi deneyiniz.
+ # sudo dpkg -i ../chaosvpn_2.0*.deb
+ 	 ; deb paketi haline getirilmis paketler yuklenir.
+
+ 2. YOL: debian paketi yarat ve yukle
+ ------------------------------------
+ # debuild
+ # sudo dpkg -i ../chaosvpn_2.0*.deb
+
+ 3. YOL: derle ve binary dosyayi yukle
+ --------------------------------------
+ # make
+ # make install
+
+Merkezi Ayarlara Eklenmis Yeni Katilimcilari Bulmak
+===================================================
+
+ Kullanacagin biricik IP araligini ve ag-kullanici adini dusunmek
+ ----------------------------------------------------------------
+	Nodename olarak da isimlendirilen ag-kullanici adi, VPN yaziliminin calisacagi son kullanici isimidir.

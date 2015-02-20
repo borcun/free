@@ -1,42 +1,36 @@
 VPN Nedir?
 ==========
 
-Sanal Gizli Ag (VPN), bir servis saglayicisi tarafindan olusturulmus gizli bir ag veya
-internet gibi, herkese acik bir ag uzerinden guvenli ag baglantilari olusturan bir ag 
-teknolojisidir. Buyuk sirketler, egitim enstituleri ve hukumet ajanlari, guvenli sekilde
-gizli bir aga dahil olmak icin uzak kullanici olarak VPN teknolojisini kullanirlar.
+Sanal Gizli Ag (VPN), bir servis saglayicisi tarafindan olusturulmus gizli bir ag veya internet gibi, herkese 
+acik bir ag uzerinden guvenli ag baglantilari olusturan bir ag teknolojisidir. Buyuk sirketler, egitim enstituleri 
+ve hukumet ajanlari, guvenli sekilde gizli bir aga dahil olmak icin uzak kullanici olarak VPN teknolojisini kullanirlar.
 
-Bir VPN, Genis Alan Agi (WAN) gibi cok uzaktaki bir cok siteye baglanabilir. VPN'ler 
-genelde, genis kullanici tabakasina bilgi ve haber yaymak uzere yerel agin genisletilmesi
-ile kullanilir. Ornegin egitim enstituleri, VPN'i ulke veya dunya uzerine yayilmis kampuslerine
-baglanmak icin kullanirlar.
+Bir VPN, Genis Alan Agi (WAN) gibi cok uzaktaki bir cok siteye baglanabilir. VPN'ler genelde, genis kullanici tabakasina
+bilgi ve haber yaymak uzere yerel agin genisletilmesi ile kullanilir. Ornegin egitim enstituleri, VPN'i ulkeleri veya dunya 
+uzerine yayilmis kampuslerine baglanmak icin kullanirlar.
 
-Gizli aga erisebilmek icin, kullanici tek bir isim ve sifre ile yetkilendirilir. Bu yetki,
-kullanicinin sahip oldugu PIN adi verilen kisisel kimlik numarasi araciligiyla gizli aga 
-baglanmasi icin kullanilir. PIN, belli bir frekansa gore (genellikle 30 saniye) degisen biricik
-yetki kodudur.
+Gizli aga erisebilmek icin, kullanici tek bir isim ve sifre ile yetkilendirilir. Bu yetki, kullanicinin sahip oldugu PIN 
+adi verilen kisisel kimlik numarasi araciligiyla gizli aga baglanmasi icin kullanilir. PIN, belli bir frekansa gore 
+(genellikle 30 saniye) degisen biricik yetki kodudur.
 
 VPN Tipleri
 ===========
 
-3 farkli VPN tipi vardir.
+2 farkli VPN tipi vardir.
 
-# Uzak Erisimli VPN: VPDN adi da verilen uzak erisimli VPN, nihai bir aga uzaktan erisilmek istenildigi
-  zaman kullanilir. Uzak erisimli VPN, bir sirketin gizli agi ile 3rd party veya Enterprise servis 
-  saglayicilari kullanan kullanicilar arasindaki veri erisimine izin verir. Ornegin; bir sirkete ait
-  satis ekibi kuresel alanda bu VPN tipini kullanirlar ve bu VPN'i kullanarak gerekli bilgileri 
-  guncellerler.
+# Uzak Erisimli VPN: VPDN adi da verilen uzak erisimli VPN, nihai bir aga uzaktan erisilmek istenildigi zaman kullanilir. 
+  Uzak erisimli VPN, bir sirketin gizli agi ile 3rd party veya Enterprise servis saglayicilari kullanan kullanicilar arasinda 
+  veri erisimine izin verir. Ornegin; bir sirkete ait satis ekibi kuresel alanda bu VPN tipini kullanirlar ve bu VPN'i kullanarak 
+  farkli ulkelerden gerekli bilgileri guncellerler.
 
-# Mekan-Mekana VPN: Bu VPN tipi kurumsal ortamda kullanilir. Mekan-Mekana VPN, ayni veya farki sirketlerin
-  iki veya daha fazla Yerel Alan Ag (LAN) bilesenleri arasinda sifrelenmis baglanti saglar. Yani cografi
-  olarak birbirinden ayri yerlerde bulunan ofisler tek bir yerel agdaymis gibi sanal olarak koprulenirler
-  ve kullanicilar ag uzerinden birbirlerinin verilerine erisebilirler.
-  
+# Mekan-Mekana VPN: Bu VPN tipi kurumsal ortamda kullanilir. Mekan-Mekana VPN, ayni veya farki sirketlerin iki veya daha fazla 
+  Yerel Alan Ag (LAN) bilesenleri arasinda sifrelenmis baglanti saglar. Yani cografi olarak birbirinden ayri yerlerde bulunan 
+  ofisler tek bir yerel agdaymis gibi sanal olarak koprulenirler ve kullanicilar ag uzerinden birbirlerinin verilerine erisebilirler.
   
 Single Point of Failure (SPOF)
 ==============================
 
-SPOF, basarisizliga ugradigi zaman tum sistemin calismasini durduran sistemin bir parcasi olarak tasvir edilebilir.
+SPOF, basarisizliga ugradigi zaman tum sistemin calismasini durduran ve sistemin bir bileseni olarak tasvir edilebilir.
 SPOF, calisma ortamlari, yazilim uygulamalari veya endustriyel sistemler gibi yuksek guvenligin hedeflendigi sistemlerde
 istenmeyen bilesenlerdir.
 
@@ -45,24 +39,51 @@ RFC 1918
 
 Internet adres mimarisinde, IPv4 adres uzayini anlatan internet standardidir.
 
+tinc Nedir?
+===========
+
+tinc, bilgisayarlar ile internet arasindaki agi, guvenli ve gizli bir hale getirmek icin sifreleme ve tunelleme kullanan bir
+VPN uygulamasidir. Iki ve daha sonraki versiyonlari, Free Software adi altinda GNUGPL lisansi ile yayinlanmaktadir, dolayisiyla 
+ucretsiz bir uygulamadir. VPN, normal ag cihazlari gibi IP katman ag kodu gibi gorundugunden dolayi, herhangi bir yazilimla 
+adaptasyon islemine ihtiyac duymamaktadir. Bu da, VPN sitelerinin internet uzerinden diger cihazlarla herhangi ek bir gereksinime 
+ihtiyac duymadan bilgi paylasabilmesini saglamaktadir. Ek olarak tinc, asagidaki ozellikleri icerir:
+
+- Sifreleme, Dogrulama ve Sıkıştırma 
+   Butun ag trafigi istege bagli olarak, ag trafigini sifreleyen, mesaj dogrulama kodlarindan ve siralama numaralarindan koruyan
+   zlib, LZO veya OpenSSL gibi yapilari kullanarak sıkıştırır. 
+   
+- Otomatik Full Mesh Yonlendirmesi
+   Diger aglara baglanmak icin kullanilan tinc uygulamasinin nasil ayarlandigina bakmaksizin, VPN trafigi (mumkun oldugunca)
+   varilacak noktaya araci hop kullanilmadan direk olarak gonderilir.
+ 
+- Kolayca Genisletilebilir
+   VPN'e bir katilimci eklemek istenildiginde, yapilmasi gereken tek sey, fazladan bir ayar dosyasi eklemektir. Uygulamayi yeniden
+   baslatmaya veya cihazlari ve ag arayuzu yeniden yaratmaya veya duzenlemeye ihtiyac yoktur.
+   
+- Internet Dilimlerini Kopruleme
+   Birden fazla internet dilimleri tek bir LAN'da olacak sekilde koprulenir, bu sayede sanki LAN'da oyun oynar veya uygulama 
+   calistirir gibi davranabilirsiniz.
+   
+- Bir cok Isletim Sisteminde Calisir, IPv6 Destekler
+   Guncel olarak Linux, FreeBSD, OpenBSD, NetBSD, MacOS/X, Solaris, Windows 2000, XP, Vista, 7, 8 gibi bir platformu destekler.
+   Ayrica tinc, IPv6 yapisina da tam destek saglar.
+
 ChaosVPN
 ========
 
 ChaosVPN, bilgisayar korsanlarini (hacker) birbirlerine baglayan bir VPN sistemidir.
 
-SPOF'un olmamasi gereken, full sifrelenmis kullanim iceren, RFC1918 IP araligini kullanan, yuzden fazla ag yapisina kadar
-genisleyebilen, router gibi gomulu bir hardware uzerinde calisabilecek dizayni prensiplerine sahip olmalidir. Ayrica agdaki 
-hic kimse baska birisinin trafigini goremeyecek sekilde dizayn edilmelidir. Aga bir kullanici dahil oldugunda veya agdan bir 
-kullanici ayrildiginda gercekten bir seyler yapilmasina ihtiyac oldugunda, agin yonetici olmayan bir kullanici bir seyler 
-yapabilmesi otomatik ayarlanabilmelidir. SPOF olmayan bir ag bulmak istenildiginde, agin dusuk gecikmeye sahip olmasina ve 
-bir kisi tarafindan sonlandirilan ag tabanli bir yapi ile sonlandirilan trafigin baska birisi tarafindan gorulememesi 
-gerekmektedir. Boylece, geldigimiz nokta tinc cozumudur. tinc, tam olarak birbiri icerisine gecmis noktadan noktaya ag 
-olusturur ve tuneller tanimlamaktansa son noktalar (endpoints) tanimlar.
+ChaosVPN, SPOF'un olmamasi gereken, full sifrelenmis kullanim iceren, RFC1918 IP araligini kullanan, yuzden fazla ag yapisina kadar
+genisleyebilen, router gibi gomulu bir hardware uzerinde calisabilecek dizayn prensiplerine sahip olan bir VPN'dir. Ayrica agdaki 
+hic kimse baska birisinin trafigini goremeyecek sekilde dizayn edilmistir. Aga bir kullanici dahil oldugunda veya agdan bir kullanici 
+ayrildiginda ve paralelinde gercekten bir seyler yapilmasina ihtiyac oldugunda, ag yonetici olmayan bir kullanicinin yetki sahibi 
+olmasi otomatik olarak ayarlanmistir. Boylece, geldigimiz nokta tinc cozumudur. tinc, tam olarak birbiri icerisine gecmis noktadan 
+noktaya ag olusturur, tuneller tanimlamaktansa son noktalar (endpoints) tanimlayarak sistemi kurar.
 
 ChaonVPN, nerede olurlarsa olsunlar bilgisayar korsanlarini birbirine baglar. Yol savascilarini (otellerde özel hizmetler 
 ve taşınabilir bilgisayar teknolojisi talep eden iş yolcusu için kullanılan pazarlama ifadesi) birbirlerine baglar. Sunuculari,
 hatta Veri Merkezlerindeki sanal sunuculari ve bilgisayar korsanlarinin bulunduklari ortamlari birbirlerine baglar. Ozetle,
-ChaosVPN aglari birbirlerine baglar.
+ChaosVPN her turlu aglari, birbirlerine baglar.
 
 ChaosVPN, guncel olarak faaliyetlerini surduruyor ve gun gectikce kullanimi, katilimcilarinin sayisi ve servisleri artiyor.
 
@@ -70,7 +91,9 @@ ChaosVPN'e Nasil Katilinir?
 ===========================
 
 Bu dokuman bir debian kullanicisi tarafindan yazilmistir. Bu sebep ile farkli paket yoneticisi kullanan Linux dagitimlarinda
-ufak tefek degisiklikler ile kurulabilir.
+ufak tefek degisiklikler gorulebilir. Benzer isleve sahip komutlar ile yine kurulum gerceklestirilebilir.
+
+Not: # ile baslayan komutlar super user yetkisi ile calistirilir.
 
 1. Oncelikle ChaosVPN icin gerekli olan yardimci programlari kurulmalidir
 --------------------------------------------------------------------------
@@ -80,9 +103,9 @@ ufak tefek degisiklikler ile kurulabilir.
 
 tinc Uygulamasinin Kurulumu ve Ayarlari
 =======================================
-apt-get install tinc komutu ile tinc kurulumu gerceklestirebilmek icin Debian squeeze/unstable surumunu kullanmak 
-veya direk olarak lenny backport ( http://debian.sdinet.de/lenny/sdinet/tinc/ ) linkindeki paketlerin indirilmesi 
-gerekmektedir. tinc programinin 1.0.10'dan sonraki herhangi bir versiyonu ChaosVPN icin yeterlidir.
+apt-get install tinc komutu ile tinc kurulumu gerceklestirebilmek icin Debian squeeze/unstable surumunu kullanmak veya direk olarak 
+lenny backport ( http://debian.sdinet.de/lenny/sdinet/tinc/ ) linkindeki paketlerin indirilmesi gerekmektedir. tinc programinin 
+1.0.10'dan sonraki herhangi bir versiyonu ChaosVPN icin yeterlidir.
 
 Kurulum esnasinda,
 
@@ -100,31 +123,148 @@ komutlarini sirasi ile calistirilabilir.
 ChaosVPN Kurulumu
 =================
 
+; tinc dizini altinda chaos adinda bir klasor olusturulur.
 # mkdir -p /etc/tinc/chaos
+
+; github'da host eden chaosvpn programi indirilir.
 # git clone git://github.com/ryd/chaosvpn.git
+
+; indirilen chaosvpn klasoru icerisine girilir.
 # cd chaosvpn
 
  1. YOL : git snapshot debian paketi yaratmak
  --------------------------------------------
+ ; developer scriptleri yuklenerek, uygulama kodlari debian paketi haline getirilip kurulabilir.
  # apt-get install devscripts
  # make deb
-   ; bagimlilik ile ilgili hatalar olusursa, birinci adimdaki uygulamalari tekrar kurmayi deneyiniz.
+ ; bagimlilik ile ilgili hatalar olusursa, birinci adimdaki uygulamalari tekrar kurmayi deneyiniz.
  # sudo dpkg -i ../chaosvpn_2.0*.deb
- 	 ; deb paketi haline getirilmis paketler yuklenir.
 
  2. YOL: debian paketi yarat ve yukle
  ------------------------------------
  # debuild
- # sudo dpkg -i ../chaosvpn_2.0*.deb
+ # sudo dpkg -i ../2.0*.deb
 
  3. YOL: derle ve binary dosyayi yukle
  --------------------------------------
+ ; direk olarak kaynak kod derlenir ve yuklenir.
  # make
  # make install
 
-Merkezi Ayarlara Eklenmis Yeni Katilimcilari Bulmak
-===================================================
+Yeni Katilimci Eklemek
+======================
 
- Kullanacagin biricik IP araligini ve ag-kullanici adini dusunmek
- ----------------------------------------------------------------
-	Nodename olarak da isimlendirilen ag-kullanici adi, VPN yaziliminin calisacagi son kullanici isimidir.
+ Kullanilacak biricik IP araliginin ve ag-kullanici adinin belirlenmesi
+ ----------------------------------------------------------------------
+  Nodename olarak da isimlendirilen ag-kullanici adi, VPN yaziliminin calisacagi son kullanici isimidir. Gecerli imla sekli a-z harf
+  araligi, 0-9 rakam araligi ve _ isaretidir.
+  
+  Oncelikle http://wiki.hamburg.ccc.de/ChaosVPN:IPRanges linkinde bulunan IP araliginin disinda ve daha onceden kullanilmayan bir IP 
+  adresi secilerek, katilimcinin kendini anlattigi bir wiki sayfasi yazilir. Gecerli IP araligi Avrupa icin 172.31.*.* iken Kuzey Amerika 
+  icin 10.100.*.* araligindadir. 
+  
+  Kullanilan IP araligini isaretlemek icin IP Aralik listesine, kendinizi eklemeyi unutmayiniz.
+  
+  IPv4 gibi IPv6 kullanimi da mumkundur fakat sistem kuruculari IPv6 icin merkezi bir IP araligina sahip degillerdir.
+  
+ Host Adi
+ ---------
+  Gateway, bir dinamik IP adresine isaret eden DynDNS (veya benzer) host adina veya sabit bir host adina (sabit IP adresine) sahip olabilir. 
+  Katilimcinin IP adresi sabit ise, yalin bir IP adresi yerine daha iyi olabilecek bir host adi saglayabilir, boylece ihtiyac halinde ChaosVPN 
+  yoneticileri ile iletisim kurmasina gerek kalmaz ve IP adresini istedigi zaman degistirebilir.
+  
+ Anahtar Uretme
+ --------------
+  # tinc --net=chaos generate-keys 2048
+  
+  Enter tusuna 4 kere basilir ve /etc/tinc/chaos/ecdsa_key.priv, ecdsa_key.pub, rsa_key ve rsa_key.pub dosyalarini harici cihazda 
+  yedeklenir.
+  
+ tinc 1.0.xx ile Anahtar Uretme
+ ------------------------------
+  # mkdir /etc/tinc/chaos/
+  
+  komutu ile chaos icin bir ayar klasoru yaratilir.
+  
+  # tincd --net=chaos --generate-keys=2048
+  
+  acik ve gizli anahtar uretmek icin yukaridaki komutu yazilip, 2 kere Enter tusuna basilir, .pub dosyalarini harici cihazda yedeklenir.
+  
+ Bilgileri Mail Atma
+ -------------------
+  Katilimci chaosvpn-join@hamburg.ccc.de adresine bilgilerini e-mail yolu ile gondermelidir.
+  
+  ChaosVPN saglayicilari, kullanici bilgilerine ihtiyac duymaktadirlar. Ek olarak katilimcilardan nazik olmalarini ve kendilerini ve neden
+  ChaosVPN'e katilmak istediklerini anlatan kisa bir yazi ya da en azindan onlari guldurebilecek bir mail istemektedirler. 
+
+  E-mail icerisinden # isaretleri ile baslayan satirlar kaldirilip, gonderilir.
+  
+	[<nodename>]
+
+  	gatewayhost=<clienthost>
+  	# This should be the external hostname or ip address of the client host, not a VPN address.
+	# If the client is not reachable over the internet leave it out and set hidden=1 below.
+	# If possible supply a hostname (even dyndns) and not an ip address for easier changing
+	# from your side without touching the central config.
+	
+	network=<ipv4 subnet in the vpn>
+	network6=<ipv6 subnet in the vpn>
+	# (mandatory, must include)
+	# this may be more than one, IPv4 or IPv6, network6 with  IPv6 is optional
+	#
+	# These subnets must be unique in our vpn,
+	# simply renumber your home network (or use something like NETMAP) with a network block that is still free.
+	#
+	# Please use the list of assigned networks on ChaosVPN:IPRanges, and add yourself there.
+	
+	owner=
+	# (mandatory, must include)
+	# Admin of the VPN gateway, with email address - a way to contact the responsible
+	# person in case of problems with your network link.
+	
+	port=4712
+	# (optional)
+	# if not specified tinc works on tcp+udp port 655
+	# it is better if everyone chooses a random port for this.
+	# either this specified port or port 655 should accept TCP and UDP traffic from internet.
+	
+	hidden=0
+	# (optional)
+	# "I cannot accept inbound tunnel connections, I can only connect out."
+	# (e.g. behind a NAT)
+	silent=0
+	# (optional)
+	# "I cannot connect out, but you can connect to me."
+	# Only ONE of hidden=1 or silent=1 is possible. 
+	
+	Ed25519PublicKey=<something>
+	# (optional)
+	# tinc 1.1pre11+ only, contents of your /etc/tinc/chaos/ed25519_key.pub
+	-----BEGIN RSA PUBLIC KEY-----
+	....
+	-----END RSA PUBLIC KEY-----
+	# (mandatory)
+	# rsa-public-key - contents of your /etc/tinc/chaos/rsa_key.pub
+	
+  Cevap icin katilimcilardan bir kac gun sure istenilmektedir.
+  
+Ayar Dosyalarini Duzenleme
+==========================
+
+ /etc/tinc dizini altindaki chaosvpn.conf dosyasi icerisindeki asagidaki satirlar duzenlenir.
+ 
+ $my_peerid = <nodename>
+ $my_vpn_ip = 172.31.<your Subnet>.[1-255]
+
+ ; <nodename> katilimci adi, <yout Subnet> IP araligi
+ 
+ChaosVPN'i Calistirma
+=====================
+ 
+  Eger ChaosVPN duzgun bir sekilde yuklenildiyse sira calistirma islemine gelmis demektir. ChaosVPN otomatik olarak calismaz.
+  Bu yuzden /etc/default/chaosvpn dosyasi duzenlenerek, RUN=line satiri RUN=yes sekline getirilir. Ardindan,
+  
+  # /etc/init.d/chaosvpn start
+  
+  komutu yazilarak chaosvpn uygulamasi calistirilir. Eger her sey duzgun bir sekilde yuklenmis ve calistirilmissa, tinc daemon uygulamasinin
+  calistigi gorulur ve 'route -n' komutunun ciktisi katilimciya, yeni chaos_vpn ag arayuzunu gosterecektir.

@@ -1,0 +1,6 @@
+10:13:11 **** Incremental Build of configuration Debug for project PClient ****
+make all 
+make: Nothing to be done for `all'.
+
+10:13:12 Build Finished (took 115ms)
+

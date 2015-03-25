@@ -1,0 +1,1 @@
+1. row and column scan loops have to be made a method because after any shifting, the rows and columns might be rescanned.

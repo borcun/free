@@ -1,3 +1,5 @@
+package ccs;
+
 import java.util.Random;
 
 // CCS Table class
@@ -122,6 +124,16 @@ public class CCSTable {
 	return;
     }
 
+    // method that fills space with random character
+    public void fillGaps() {
+        for( int i=0 ; i < m_table.length ; ++i ) {
+            for( int j=0 ; j < m_table[i].length ; ++j ) {
+                if( m_table[i][j] == ' ')
+                    m_table[i][j] = m_iconset.getRandomIcon();
+            }
+        }
+    }
+    
     // method that print CCS table
     public void print() {
 	for( char[] row : m_table ) {

@@ -1,5 +1,3 @@
-package ccs;
-
 import java.util.Scanner;
 
 // CCSGame class
@@ -32,7 +30,8 @@ public class CCSGame {
 
     // method that starts game
     public void start( int row, int col, char[] icons, int move, int score ) {
-        System.out.println( "\nLoading Game" );
+        System.out.println( "\nLoading Game..." );
+        System.out.println( "Note: As to table size, generate operation may take long." );
 	m_table = new CCSTable( row, col );
 	m_table.create( icons );
         
@@ -74,7 +73,7 @@ public class CCSGame {
                     coordinate = move.split(",");
                     
                     if( coordinate.length == 4 ) {
-                        int counter = 0;
+                        int counter;
                         for(counter=0 ; counter < coordinate.length ; ++counter) {
                             if( Character.isDigit( Integer.parseInt(coordinate[counter]) ) ) {
                                 System.err.println("invalid move format");
@@ -85,14 +84,16 @@ public class CCSGame {
                                     System.err.println("invalid row value : " + coordinate[counter]);
                                     break;
                                 }
-                                else if( Integer.parseInt(coordinate[counter]) > m_table.column()) {
+                            }
+                            else if( counter % 2 == 1 ) {
+                                if( Integer.parseInt(coordinate[counter]) > m_table.column()) {
                                     System.err.println("invalid column value : " + coordinate[counter]);
                                     break;
                                 }
                             }
                         }
                         
-                        if( !coordinate[0].equals(coordinate[2]) || !coordinate[1].equals(coordinate[3]) )
+                        if( !coordinate[0].equals(coordinate[2]) && !coordinate[1].equals(coordinate[3]) )
                             System.err.println("invalid move format");
                         else if( coordinate[0].equals(coordinate[2]) && coordinate[1].equals(coordinate[3]) )
                             System.err.println("invalid move format");                            
@@ -100,19 +101,22 @@ public class CCSGame {
                             int coor1 = Integer.parseInt(coordinate[1]);
                             int coor2 = Integer.parseInt(coordinate[3]);
                             
-                            if( (coor1 != coor2 + 1) || (coor1 != coor2 - 1) )
+                            if( (coor1 != coor2 + 1) && (coor1 != coor2 - 1) )
                                 System.err.println("invalid move format");                            
+                            if( 4 == counter )
+                                is_valid = false;
                         }
                         else if( coordinate[1].equals(coordinate[3]) ) {
                             int coor1 = Integer.parseInt(coordinate[0]);
                             int coor2 = Integer.parseInt(coordinate[2]);
                             
-                            if( (coor1 != coor2 + 1) || (coor1 != coor2 - 1) )
-                                System.err.println("invalid move format");                            
+                            if( (coor1 != coor2 + 1) && (coor1 != coor2 - 1) )
+                                System.err.println("invalid move format");
+                            if( 4 == counter )
+                                is_valid = false;
                         }
-                        else if( 4 == counter )
-                            is_valid = false;
-                    } else
+                    } 
+                    else
                         System.err.println("missing parameter");
                 }
                 while( is_valid );
@@ -148,41 +152,34 @@ public class CCSGame {
                 for( int i = table.length - 1 ; i >= 0 ; --i ) {
                     int[] section = new int[2];
 
-                    while( find( m_table.getRow( i ), section ) ) {
-                        m_table.print();
+                    if( find( m_table.getRow( i ), section ) ) {
                         shift( i, section, CCSTable.line_t.ROW );
-                        m_table.print();
                         is_row_operated = true;
                         extra_row = true;
-                        i = table.length - 1;
+                        i = table.length;
                     }
                     
-                    if( extra_row ) {
+                    if( extra_row )
                         table = m_table.getTable();
-                    }
                     extra_row = false;
                 }
 
                 is_col_operated = false;
-                m_table.print();
 
                 for( int j = 0 ; j < table[0].length ; ++j ) {
                     int[] section = new int[2];
 
-                    while( find( m_table.getColumn( j ), section ) ) {
+                    if( find( m_table.getColumn( j ), section ) ) {
                         shift( j, section, CCSTable.line_t.COLUMN );
                         is_col_operated = true;
                         extra_col = true;
                         j = 0;
                     }
                     
-                    if( extra_col ) {
+                    if( extra_col )
                         table = m_table.getTable();
-                    }
                     extra_col = false;
                 }
-
-                m_table.print();
 
                 if( !is_row_operated && !is_col_operated )
                     ++try_prepare;
@@ -190,10 +187,6 @@ public class CCSGame {
                     try_prepare = 0;
             }
 	} while( is_row_operated || is_col_operated );        
-        
-        System.out.println( try_prepare );
-        System.out.println( is_row_operated );
-        System.out.println( is_col_operated );
     }
 
     // method that checks whether the game continues
@@ -210,7 +203,6 @@ public class CCSGame {
     private void update( int _row, int _col, int row, int col ) {
 	char[][] table = m_table.getTable();
 	int shuffle = 0;
-	boolean is_ok = false;
         boolean is_row_operated = false;
         boolean is_col_operated = false;
         boolean can_continue = true;
@@ -235,7 +227,7 @@ public class CCSGame {
                 for( int i = table.length - 1 ; i >= 0 ; --i ) {
                     int[] section = new int[2];
 
-                    while( find( m_table.getRow( i ), section ) && !is_row_operated ) {
+                    if( find( m_table.getRow( i ), section ) ) {
                         String str = String.copyValueOf(m_table.getRow( i ));
                         System.out.printf( "%d. row, from %d to %d : %s\n\n", i, section[0], section[0]+section[1], 
                                 str.substring( section[0], section[0]+section[1] ) );
@@ -243,8 +235,7 @@ public class CCSGame {
                         m_table.print();
                         is_row_operated = true;
                         m_score += Math.pow(section[1] - section[0], 2);
-                        // start again
-                        i = table.length - 1;
+                        i = table.length;
                     }
                 }
 
@@ -253,14 +244,15 @@ public class CCSGame {
                 for( int i = 0 ; i < table[0].length ; ++i ) {
                     int[] section = new int[2];
 
-                    while( find( m_table.getColumn( i ), section ) && !is_col_operated ) {
+                    if( find( m_table.getColumn( i ), section ) ) {
                         String str = String.copyValueOf( m_table.getColumn( i ) );
                         System.out.printf( "%d. column, from %d to %d : %s\n\n", i, section[0], section[0]+section[1], 
-                                str.substring(section[0], section[0]+section[1]) );
+                                str.substring(section[0], section[0] + section[1]) );
                         shift( i, section, CCSTable.line_t.COLUMN );
                         m_table.print();
                         m_score += Math.pow(section[1] - section[0], 2);
                         is_col_operated = true;
+                        i = 0;
                     }
                 }
 
@@ -282,16 +274,19 @@ public class CCSGame {
     private boolean find( char[] line, int[] section ) {
         String str = String.valueOf(line);           
 
-        for( int j = 1 ; j <= str.length() - CCSRule.MIN_SEQUENCE + 1 ; ++j ) {
-            char ch = str.charAt(j-1);
-            String kernel = "";
+        for( int j = 0 ; j <= str.length() - CCSRule.MIN_SEQUENCE + 1 ; ++j ) {
+            char ch = str.charAt(j);
 
-            for( int k = 0 ; k <= str.length() - j ; ++k)
-                kernel += ch;
+            for( int i = str.length() - CCSRule.MIN_SEQUENCE + 1 ; i >= CCSRule.MIN_SEQUENCE ; --i ) {
+                String filter = "";
+    
+                for( int k = 0 ; k < i ; ++k)
+                    filter += ch;
 
-            if( -1 != ( section[0] = str.indexOf( kernel ) ) ){
-                section[1] = str.length() - j + 1;
-                return true;
+                if( -1 != ( section[0] = str.indexOf( filter ) ) ){
+                    section[1] = i;
+                    return true;
+                }
             }
         }
         
@@ -302,25 +297,39 @@ public class CCSGame {
     public void shift( int index, int[] section, CCSTable.line_t line ) {
         char[][] table = m_table.getTable();
         String str;
+        int sec;
         
         switch( line ) {
             case ROW:
+                sec = section[0] >= section[1] ? section[0] + section[1] : section[1];
                 // jump first line
                 for( int i=index ; i > 0 ; --i ) {
-                    for( int j = section[0] ; j < section[0] + section[1] ; ++j ) {
-                        table[i][j] = table[i-1][j];
+                    for( int j = section[0] ; j < sec ; ++j ) {
+                        try {
+                            table[i][j] = table[i-1][j];
+                        } catch( Exception ex ) {
+                            m_table.print();
+                            System.out.println( ex.getMessage() );
+                        }
                     }
                 }
                 
                 m_table.setTable( table );
-                m_table.fillGaps( 0, section[0], section[1], line );
+                m_table.fillGaps( 0, section[0], sec, line );
             break;
             case COLUMN:
                 str = String.copyValueOf( m_table.getColumn(index) );
                 String replacement = str.substring(0, section[0]);
-                int sec = section[0] + section[1] - 1;
-                for( int i= replacement.length() -1 ; i >= 0 ; --i )
-                    table[ sec-- ][ index ] = replacement.charAt(i);
+                sec = section[0] >= section[1] ? section[0] + section[1] : section[1];
+
+                for( int i= replacement.length() -1 ; i >= 0 ; --i ) {
+                    try {
+                        table[ --sec ][ index ] = replacement.charAt(i);
+                    } catch( Exception ex ) {
+                       m_table.print();
+                       System.out.println( ex.getMessage() );
+                    }
+               }
                     
                 m_table.setTable( table );
                 m_table.fillGaps( index, 0, section[1] - section[0], line );

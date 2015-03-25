@@ -1,5 +1,3 @@
-package ccs;
-
 import java.util.Scanner;
 
 public class CCS {

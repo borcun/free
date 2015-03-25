@@ -1,5 +1,3 @@
-package ccs;
-
 import java.util.Random;
 
 // CCS Table class
@@ -137,12 +135,22 @@ public class CCSTable {
     public void fillGaps( int index, int start, int length, line_t line ) {
         switch( line ) {
             case ROW:
-                for( int i=start ; i < start+length ; ++i )
-                    m_table[ index ][ i ] = m_iconset.getRandomIcon();
+                for( int i=start ; i < length ; ++i ) {
+                    try {
+                        m_table[ index ][ i ] = m_iconset.getRandomIcon();
+                    } catch( Exception ex ) {
+                        System.err.println( ex.getMessage() );
+                    }
+                }
             break;
             case COLUMN:
-                for( int i=start ; i < start+length ; ++i )
-                    m_table[ i ][ index ] = m_iconset.getRandomIcon();
+                for( int i=start ; i < length ; ++i ) {
+                    try {
+                        m_table[ i ][ index ] = m_iconset.getRandomIcon();
+                    } catch( Exception ex ) {
+                        System.err.println( ex.getMessage() );
+                    }
+                }
             break;
             default:
                 System.err.println( "invalid line type" );

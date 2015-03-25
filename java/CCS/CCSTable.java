@@ -27,10 +27,14 @@ public class CCSTable {
 	}
     } // end of IconSet class
 
-    private int m_row;
-    private int m_col;
+    private final int m_row;
+    private final int m_col;
     private char[][] m_table;
-    private IconSet m_iconset;
+    private final IconSet m_iconset;
+    // line type
+    public static enum line_t {
+      ROW, COLUMN  
+    };
 
     // constructor
     public CCSTable( int row, int col ) {
@@ -50,13 +54,11 @@ public class CCSTable {
 		m_table[i][j] = m_iconset.getRandomIcon();
 	    }
 	}
-	return;
     }
 
     // method that sets CCS table with new table
     public void setTable( char[][] table ) {
 	m_table = table;
-	return;
     }
 
     // method that gets CCS table
@@ -120,18 +122,23 @@ public class CCSTable {
 	    for( int j=0 ; j < m_table.length ; ++j )
 		m_table[j][i] = col[j];
 	}
-
-	return;
     }
 
     // method that fills space with random character
-    public void fillGaps() {
-        for( int i=0 ; i < m_table.length ; ++i ) {
-            for( int j=0 ; j < m_table[i].length ; ++j ) {
-                if( m_table[i][j] == ' ')
-                    m_table[i][j] = m_iconset.getRandomIcon();
-            }
-        }
+    public void fillGaps( int index, int start, int length, line_t line ) {
+        switch( line ) {
+            case ROW:
+                for( int i=start ; i < start+length ; ++i )
+                    m_table[ index ][ i ] = m_iconset.getRandomIcon();
+            break;
+            case COLUMN:
+                for( int i=start ; i < start+length ; ++i )
+                    m_table[ i ][ index ] = m_iconset.getRandomIcon();
+            break;
+            default:
+                System.err.println( "invalid line type" );
+            break;
+        } // end of switch
     }
     
     // method that print CCS table
@@ -146,7 +153,5 @@ public class CCSTable {
 	}
 
         System.out.print("\n\n");
- 
-        return;
     }
 }

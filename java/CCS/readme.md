@@ -1,1 +1,2 @@
-1. row and column scan loops have to be made a method because after any shifting, the rows and columns might be rescanned.
+1. play without score until the game needs shuffle
+2. find method will be fixed

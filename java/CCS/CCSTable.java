@@ -72,7 +72,6 @@ public class CCSTable {
 	    System.err.println( "invalid row index" );
 	    return null;
 	}
-
 	return m_table[ row ];
     }
 
@@ -89,6 +88,16 @@ public class CCSTable {
 	    column[i] = m_table[i][col];
 	
 	return column;
+    }
+    
+    // method that gets row count of table
+    public int row() {
+        return m_row;
+    }
+
+        // method that gets row count of table
+    public int column() {
+        return m_col;
     }
 
     // method that shuffles table

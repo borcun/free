@@ -68,6 +68,7 @@ public class CCSGame {
                 do {
                     System.out.printf( "Move : %d (%d), Score : %d (%d)\n", m_move, CCSRule.MAX_MOVE, m_score, CCSRule.SCORE );
                     System.out.println( "To shuffle table, use s parameter (it\'s not extra move)" );
+                    System.out.println( "To exit, use e parameter" );
                     System.out.print( "Enter a move : " );
                     String move = scanner.next();
                     
@@ -77,11 +78,7 @@ public class CCSGame {
                     if( 4 == coordinate.length ) {
                         int counter;
                         for(counter=0 ; counter < coordinate.length ; ++counter) {
-                            if( !Character.isDigit( Integer.parseInt(coordinate[counter]) ) ) {
-                                System.err.println("invalid move format");
-                                break;
-                            }
-                            else if( counter % 2 == 0 ) {
+                            if( counter % 2 == 0 ) {
                                 if( Integer.parseInt(coordinate[counter]) > m_table.row() || 
                                     Integer.parseInt(coordinate[counter]) < 1 ) 
                                 {
@@ -128,19 +125,28 @@ public class CCSGame {
                         prepare();
                         m_table.print();
                     }
+                    else if( 1 == coordinate.length && coordinate[0].equalsIgnoreCase("e") ) {
+                        System.out.println( "The game is being terminated..." );
+                        System.out.printf( "Move : %d (%d), Score : %d (%d)\n", m_move, CCSRule.MAX_MOVE, m_score, CCSRule.SCORE );
+                        is_continue = false;
+                        is_valid = false;
+                    }
                     else
                         System.err.println( "missing parameter" );
                 }
                 while( is_valid );
 
                 is_valid = true;
-		// The 1 substraction is for adjusting user input as index value
-		update( Integer.parseInt( coordinate[0] ) - 1, 
-			Integer.parseInt( coordinate[1] ) - 1, 
-			Integer.parseInt( coordinate[2] ) - 1, 
-			Integer.parseInt( coordinate[3] ) - 1);
+                
+                if( is_continue ) {
+                    // The 1 substraction is for adjusting user input as index value
+                    update( Integer.parseInt( coordinate[0] ) - 1, 
+                            Integer.parseInt( coordinate[1] ) - 1, 
+                            Integer.parseInt( coordinate[2] ) - 1, 
+                            Integer.parseInt( coordinate[3] ) - 1);
 
-                ++m_move;
+                    ++m_move;
+                }
 		break;
 	    } // end of switch
 	} // end of while

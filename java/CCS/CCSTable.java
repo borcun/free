@@ -105,11 +105,11 @@ public class CCSTable {
 	    char[] row = getRow( i );
 	    
 	    // Fisher-Yates shuffle method
-	    for( int j=1 ; j < row.length ; ++j ) {
-		int index = random.nextInt( row.length - 1 );
+	    for( int j = row.length - 1 ; j > 0 ; --j ) {
+		int index = random.nextInt( j + 1 );
 		char ch = row[index];
-		row[index] = row[i];
-		row[i] = ch;
+		row[index] = row[j];
+		row[j] = ch;
 	    }
 	}
 
@@ -117,11 +117,11 @@ public class CCSTable {
 	    char[] col = getColumn( i );
 	    
 	    // Fisher-Yates shuffle method
-	    for( int j=1 ; j < col.length ; ++j ) {
-		int index = random.nextInt( col.length - 1 );
+	    for( int j = col.length - 1 ; j > 0 ; --j ) {
+		int index = random.nextInt( j + 1 );
 		char ch = col[index];
-		col[index] = col[i];
-		col[i] = ch;
+		col[index] = col[j];
+		col[j] = ch;
 	    }
 
 	    // columns aren't reference as rows, so shuffled 

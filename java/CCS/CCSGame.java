@@ -25,13 +25,14 @@ public class CCSGame {
 
     // default constructor
     public CCSGame() {
-        System.out.println( "Welcome to Candy Crush Saga\n" );
+        System.out.println( "Welcome to Candy Crush Saga Terminal Version" );
+        System.out.println( "The game score is calculated by symbol which are sequence." );
+        System.out.println( "Note: As to table size, table generation may take long.\n" );
     }
 
     // method that starts game
     public void start( int row, int col, char[] icons, int move, int score ) {
-        System.out.println( "\nLoading Game..." );
-        System.out.println( "Note: As to table size, generate operation may take long." );
+        System.out.println( "Loading Game..." );
 	m_table = new CCSTable( row, col );
 	m_table.create( icons );
         
@@ -66,27 +67,32 @@ public class CCSGame {
 
                 do {
                     System.out.printf( "Move : %d (%d), Score : %d (%d)\n", m_move, CCSRule.MAX_MOVE, m_score, CCSRule.SCORE );
-                    System.out.print("Enter a move : ");
+                    System.out.println( "To shuffle table, use s parameter (it\'s not extra move)" );
+                    System.out.print( "Enter a move : " );
                     String move = scanner.next();
                     
                     System.out.println();
                     coordinate = move.split(",");
                     
-                    if( coordinate.length == 4 ) {
+                    if( 4 == coordinate.length ) {
                         int counter;
                         for(counter=0 ; counter < coordinate.length ; ++counter) {
-                            if( Character.isDigit( Integer.parseInt(coordinate[counter]) ) ) {
+                            if( !Character.isDigit( Integer.parseInt(coordinate[counter]) ) ) {
                                 System.err.println("invalid move format");
                                 break;
                             }
                             else if( counter % 2 == 0 ) {
-                                if( Integer.parseInt(coordinate[counter]) > m_table.row() ) {
+                                if( Integer.parseInt(coordinate[counter]) > m_table.row() || 
+                                    Integer.parseInt(coordinate[counter]) < 1 ) 
+                                {
                                     System.err.println("invalid row value : " + coordinate[counter]);
                                     break;
                                 }
                             }
                             else if( counter % 2 == 1 ) {
-                                if( Integer.parseInt(coordinate[counter]) > m_table.column()) {
+                                if( Integer.parseInt(coordinate[counter]) > m_table.column() || 
+                                    Integer.parseInt(coordinate[counter]) < 1 ) 
+                                {
                                     System.err.println("invalid column value : " + coordinate[counter]);
                                     break;
                                 }
@@ -115,18 +121,24 @@ public class CCSGame {
                             if( 4 == counter )
                                 is_valid = false;
                         }
-                    } 
+                    }
+                    else if( 1 == coordinate.length && coordinate[0].equalsIgnoreCase("s") ) {
+                        System.out.println( "Table is being shuffled..." );
+                        m_table.shuffle();
+                        prepare();
+                        m_table.print();
+                    }
                     else
-                        System.err.println("missing parameter");
+                        System.err.println( "missing parameter" );
                 }
                 while( is_valid );
 
                 is_valid = true;
-		// if table isn't steady, shuffle it until shuffle reaches maximum shuffle
-		update( Integer.parseInt( coordinate[0] ), 
-			Integer.parseInt( coordinate[1] ), 
-			Integer.parseInt( coordinate[2] ), 
-			Integer.parseInt( coordinate[3] ) );
+		// The 1 substraction is for adjusting user input as index value
+		update( Integer.parseInt( coordinate[0] ) - 1, 
+			Integer.parseInt( coordinate[1] ) - 1, 
+			Integer.parseInt( coordinate[2] ) - 1, 
+			Integer.parseInt( coordinate[3] ) - 1);
 
                 ++m_move;
 		break;

@@ -1,4 +1,3 @@
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CCS {
@@ -10,33 +9,23 @@ public class CCS {
         int move = 0, score = 0;
 
         do {
-            try {
-                System.out.print( "Enter table row : ");
-                row = scanner.nextInt();
-                System.out.print( "Enter table column : ");
-                col = scanner.nextInt();
-                
-                if( row < 0 || col < 0 )
-                    System.err.println( "Please, enter positive value for row and column" );            
-            } catch( InputMismatchException ex ) {
-                System.err.println( "invalid input, try again" );
-                scanner = new Scanner( System.in );
-            }            
+            System.out.print( "Enter table row : ");
+            row = scanner.nextInt();
+            System.out.print( "Enter table column : ");
+            col = scanner.nextInt();
+
+            if( row < 0 || col < 0 )
+                System.err.println( "Please, enter positive value for row and column" );            
         } while( row <= 0 || col <= 0 );
 
         do {
-            try {
-                System.out.print( "Enter move count : " );
-                move = scanner.nextInt();
-                System.out.print( "Enter score : " );
-                score = scanner.nextInt();
-                            
-                if( move < 0 || score < 0 )
-                    System.err.println( "Please, enter positive value for move and score" );            
-            } catch( InputMismatchException ex ) {
-                System.err.println( "invalid input, try again" );
-                scanner = new Scanner( System.in );
-            }  
+            System.out.print( "Enter move count : " );
+            move = scanner.nextInt();
+            System.out.print( "Enter score : " );
+            score = scanner.nextInt();
+
+            if( move < 0 || score < 0 )
+                System.err.println( "Please, enter positive value for move and score" );            
         } while( move <=0 || score <=0 );
         
 	ccs.start( row, col, icons, move, score );

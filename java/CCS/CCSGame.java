@@ -54,19 +54,19 @@ public class CCSGame {
 	    switch( check() ) {
 	    case WIN:
 		System.out.println( "Congrulation. The CCS game finished." );
-		System.out.printf( "You moved %d times, score is %d, \n", m_move ,m_score );
+		System.out.println( "You moved " + m_move + " times, score is " + m_score );
 		is_continue = false;
 		break;
 	    case LOST:
 		System.out.println( "Failure. The CCS game finished." );
-		System.out.printf( "You moved %d times, score is %d, \n", m_move ,m_score );
+		System.out.println( "You moved " + m_move + " times, score is " + m_score );
 		is_continue = false;
 		break;
 	    case CONTINUE:
                 m_table.print();
 
                 do {
-                    System.out.printf( "Move : %d (%d), Score : %d (%d)\n", m_move, CCSRule.MAX_MOVE, m_score, CCSRule.SCORE );
+                    System.out.println( "Move : " + m_move + " (" + CCSRule.MAX_MOVE + "), Score : " + m_score + " (" + CCSRule.SCORE + ")" );
                     System.out.println( "To shuffle table, use s parameter (it\'s not extra move)" );
                     System.out.println( "To exit, use e parameter" );
                     System.out.print( "Enter a move : " );
@@ -127,7 +127,7 @@ public class CCSGame {
                     }
                     else if( 1 == coordinate.length && coordinate[0].equalsIgnoreCase("e") ) {
                         System.out.println( "The game is being terminated..." );
-                        System.out.printf( "Move : %d (%d), Score : %d (%d)\n", m_move, CCSRule.MAX_MOVE, m_score, CCSRule.SCORE );
+                        System.out.println( "Move : " + m_move + " (" + CCSRule.MAX_MOVE + "), Score : " + m_score + " (" + CCSRule.SCORE + ")" );
                         is_continue = false;
                         is_valid = false;
                     }
@@ -247,8 +247,8 @@ public class CCSGame {
 
                     if( find( m_table.getRow( i ), section ) ) {
                         String str = String.copyValueOf(m_table.getRow( i ));
-                        System.out.printf( "%d. row, from %d to %d : %s\n\n", i, section[0], section[0]+section[1], 
-                                str.substring( section[0], section[0]+section[1] ) );
+                        System.out.println( i + ". row, from " + section[0] + " to " + 
+                            (section[0]+section[1]) + " " + str.substring( section[0], section[0]+section[1] ) );
                         shift( i, section, CCSTable.line_t.ROW );
                         m_table.print();
                         is_row_operated = true;
@@ -264,8 +264,8 @@ public class CCSGame {
 
                     if( find( m_table.getColumn( i ), section ) ) {
                         String str = String.copyValueOf( m_table.getColumn( i ) );
-                        System.out.printf( "%d. column, from %d to %d : %s\n\n", i, section[0], section[0]+section[1], 
-                                str.substring(section[0], section[0] + section[1]) );
+                        System.out.println( i + ". column, from " + section[0] + " to " + 
+                            (section[0]+section[1]) + " " + str.substring( section[0], section[0]+section[1] ) );
                         shift( i, section, CCSTable.line_t.COLUMN );
                         m_table.print();
                         m_score += Math.pow(section[1] - section[0], 2);
@@ -323,12 +323,7 @@ public class CCSGame {
                 // jump first line
                 for( int i=index ; i > 0 ; --i ) {
                     for( int j = section[0] ; j < sec ; ++j ) {
-                        try {
-                            table[i][j] = table[i-1][j];
-                        } catch( Exception ex ) {
-                            m_table.print();
-                            System.out.println( ex.getMessage() );
-                        }
+                        table[i][j] = table[i-1][j];
                     }
                 }
                 
@@ -341,12 +336,7 @@ public class CCSGame {
                 sec = section[0] >= section[1] ? section[0] + section[1] : section[1];
 
                 for( int i= replacement.length() -1 ; i >= 0 ; --i ) {
-                    try {
-                        table[ --sec ][ index ] = replacement.charAt(i);
-                    } catch( Exception ex ) {
-                       m_table.print();
-                       System.out.println( ex.getMessage() );
-                    }
+                    table[ --sec ][ index ] = replacement.charAt(i);
                }
                     
                 m_table.setTable( table );

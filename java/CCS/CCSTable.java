@@ -136,20 +136,12 @@ public class CCSTable {
         switch( line ) {
             case ROW:
                 for( int i=start ; i < length ; ++i ) {
-                    try {
-                        m_table[ index ][ i ] = m_iconset.getRandomIcon();
-                    } catch( Exception ex ) {
-                        System.err.println( ex.getMessage() );
-                    }
+                    m_table[ index ][ i ] = m_iconset.getRandomIcon();
                 }
             break;
             case COLUMN:
                 for( int i=start ; i < length ; ++i ) {
-                    try {
-                        m_table[ i ][ index ] = m_iconset.getRandomIcon();
-                    } catch( Exception ex ) {
-                        System.err.println( ex.getMessage() );
-                    }
+                    m_table[ i ][ index ] = m_iconset.getRandomIcon();
                 }
             break;
             default:
@@ -163,10 +155,10 @@ public class CCSTable {
 	for( char[] row : m_table ) {
             System.out.print("| ");
 	    for( char col : row ) {
-		System.out.printf( "%c ", col );
+		System.out.print( col + " " );
 	    }
             
-	    System.out.printf("%s\n", "|");
+	    System.out.print("|\n");
 	}
 
         System.out.print("\n\n");

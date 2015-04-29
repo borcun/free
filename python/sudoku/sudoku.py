@@ -24,6 +24,22 @@ def print_board( board ) :
         print("")
 # end of print_board function
 
+# brief  : 
+# param  :
+# param  :
+# return :
+def find_neighbor( board, row, col, impossible_numbers ) :
+    row_index = int( row / 3 ) * 3
+    col_index = int( col / 3 ) * 3
+
+    mini_board = [ board[i][ col_index : col_index + 3 ] for i in range(row_index, row_index + 3) ]
+
+    for i in range( 3 ) :
+        for j in range( 3 ) :
+            if SYMBOL != mini_board[i][j] :
+                impossible_numbers.append( ord( mini_board[i][j] ) - 48 )
+# end of scan square function
+
 # brief  : function that gets possible numbers which the indices are indicated on board
 # param  : board - sudoku board
 # param  : row - row index
@@ -32,6 +48,8 @@ def print_board( board ) :
 def get_possible_numbers( board, row, col ) :
     # array which will store impossible numbers to eliminate from possibles
     impossible_numbers = []
+    # array which will store possible numbers
+    possible_numbers = []
 
     if row < 0 or col < 0 or row >= MAX_ROW or col >= MAX_COL :
         print( "error : invalid index" )
@@ -51,10 +69,15 @@ def get_possible_numbers( board, row, col ) :
                 # thus, impossible numbers are made as integer to eliminate easy.
                 impossible_numbers.append( ( ord( board[i][j] ) - 48 ) )
 
+    
+    find_neighbor( board, row, col, impossible_numbers );
+
+    print("")
     # scan all number list and find possible numbers not inside impossible numbers array
     for i in NUMBERS : 
         if not ( i in impossible_numbers ) :
-            print( i )
+            print( "%d " % i, end="" )
+    print("")
  
 # end of get_possible_numbers function
 
@@ -90,4 +113,4 @@ board[8][8] = '5'
 
 print_board( board )
 
-get_possible_numbers( board, 3, 4 )
+get_possible_numbers( board, 7, 5 )

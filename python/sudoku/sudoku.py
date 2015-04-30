@@ -53,8 +53,6 @@ def find_neighbor( board, row, col, impossible_numbers ) :
 def get_possible_numbers( board, row, col ) :
     # array which will store impossible numbers to eliminate from possibles
     impossible_numbers = []
-    # array which will store possible numbers
-    possible_numbers = []
 
     if row < 0 or col < 0 or row >= MAX_ROW or col >= MAX_COL :
         print( "error : invalid index" )
@@ -82,7 +80,6 @@ def get_possible_numbers( board, row, col ) :
     for i in NUMBERS : 
         if not ( i in impossible_numbers ) :
             print( "%d " % i, end="" )
-    print("")
  
 # end of get_possible_numbers function
 
@@ -121,3 +118,4 @@ print_board( board )
 get_possible_numbers( board, 7, 5 )
 get_possible_numbers( board, 3, 4 )
 get_possible_numbers( board, 2, 6 )
+print("")

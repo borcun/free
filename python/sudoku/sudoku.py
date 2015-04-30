@@ -24,16 +24,21 @@ def print_board( board ) :
         print("")
 # end of print_board function
 
-# brief  : 
-# param  :
-# param  :
-# return :
+# brief  : function that finds 1-distance neighbor of value at row and col indices of board
+# param  : board - sudoku board
+# param  : row - row index
+# param  : col - column index
+# param  : impossible_numbers - impossible numbers array
+# return : -
 def find_neighbor( board, row, col, impossible_numbers ) :
     row_index = int( row / 3 ) * 3
     col_index = int( col / 3 ) * 3
 
+    # the board contains 9 mini boards which are 3x3 boards
+    # slice mini board which is indicated by row and column indices
     mini_board = [ board[i][ col_index : col_index + 3 ] for i in range(row_index, row_index + 3) ]
 
+    # scan mini boards to find impossible numbers to add impossible_array
     for i in range( 3 ) :
         for j in range( 3 ) :
             if SYMBOL != mini_board[i][j] :
@@ -72,7 +77,7 @@ def get_possible_numbers( board, row, col ) :
     
     find_neighbor( board, row, col, impossible_numbers );
 
-    print("")
+    print("\n[%d %d] : " % ( row, col ), end="" )
     # scan all number list and find possible numbers not inside impossible numbers array
     for i in NUMBERS : 
         if not ( i in impossible_numbers ) :
@@ -114,3 +119,5 @@ board[8][8] = '5'
 print_board( board )
 
 get_possible_numbers( board, 7, 5 )
+get_possible_numbers( board, 3, 4 )
+get_possible_numbers( board, 2, 6 )

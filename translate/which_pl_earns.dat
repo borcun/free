@@ -1,0 +1,37 @@
+[B]Hangi Programlama Dili Daha Cok Kazandirir?[/B]
+
+Ingiltere'ye ait yerel haberleri yayinlayan Quartz adindaki bir firma hangi programlama
+dilinin daha cok kazandirdigi konusu uzerine bir calisma yapmis. Sonuclar bizim ulkemiz
+icin gecerli olmayabilir fakat yurt disinda durum nedir paylasmak istedim.
+
+Burning Glass ve Brookings Institution firmalarinin ekonomistleri tarafindan olusturulan
+guvenilir verilere gore, Ruby on Rails, Objective-C ve Python programlama yetenekleri yilda
+100 bin dolardan daha fazla ucret kazandiriyor. Bunlarin ardindan JAVA, C++, C ve R dilleri
+de listenin basinda yer aliyorlar ve yilda 90 bin ve uzeri kazanmanizi sagliyorlar.
+
+Quartz firmasi, "Veri kumeleri kusursuz degildir, daha yeni olan teknolojileri kaciriyor 
+olabiliriz. Is hayatinda populerligi yukselen Erlang ve Haskell gibi diller de mevcut 
+fakat bu diller henuz is ilanlarinda veya ozgecmisler cok fazla gozukmemektedir. Ayrica is 
+ilanlarinin buyuk cogunlugunda yine ucretler de belirtilmemektedir.", seklinde bir aciklama 
+yapti.
+
+Ucretler, populerlik ile yeteri kadar uyumlu olmayabilir. Bundan onceki yillarda, ornegin
+bir teknoloji-endustri firmasi olan RedMonk, en cok kullanilan diller listesini yayinladi. 
+Bu listede JAVA ile Javascript ipi goguslerken, onlari PHP, Python, C# ve C++ / Ruby gibi 
+diller takip ettiler. RedMonk, suanda az kullanilmasina ragmen Apple'in Swift ve Google'un 
+Go gibi dilleri icin de tahminde bulundu. Bu dillerin gelecek bir kac yil icerisinde 
+kullanicilarini artiracagi yonunde sonuclar elde ettiler.
+
+Bu arada Dice adli web sitenin is ilanlari icerisinde aranan yeteneklerden birisi olan Python, 
+yine ayni web sitesinin en hizli yukselen teknolojiler listesinde. Python, universite
+seviyesindeki bilgisayar kurslarinda ogretilen temel dillerden birisi ve TIOBE'nin duzenledigi 
+populer programlama dilleri icerisinde devamli ust siralara oynayan bir dil. (Python'a ek olarak
+JAVA, MATLAB, C++, C, Scheme ve Scratch gibi diller de universitelerde programlamaya giris 
+dilleri olarak yer aliyorlar.)
+
+Matt Asay bir yazisinda, bugunun programcilari icin dilemma olan, "Kisi icin en iyi programlama 
+dili, kisiye kalici bir is bulan programlama dilidir, ne kadar kazandirdiginin bir onemi yok." 
+sozlerini sarf etmistir.
+
+Diger bir deyisle, dillin kazandirdigi ucretten dolayi o dili takip etmek veya ogrenmek icin
+cabalamak her sartta programci icin en iyi secenek olmayabilir. 

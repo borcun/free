@@ -31,6 +31,7 @@ def login(username, password):
             users.close()
             return True;
 
+    users.close()
     return False
 
 # correct username and password

@@ -1,0 +1,10 @@
+Kernel Mod ve User Mod
+======================
+ Modern islemci mimarileri tipik olarak CPU'nun en az iki farkli modda islem yapmasina izin verir:
+user mod ve kernel mod (supervisor mod olarak da gecer). Donanim talimatlari bir moddan digerine 
+gecise izin verir. Paralelinde, sanal hafiza alani da user space'in veya kernel space'in bir parcasi
+olarak isaretlenebilir. Kernel, user modda calisirken sadece user space'e erisebilir, kernel space'e
+erismek isterse donanim hatasi alir. Kernel modda calisan kernel ise hem user hem de kernel space'e
+erisebilir.
+
+ Kesin operasyonlar, sadece islemci kernel modda calisirken performans gosterirler.

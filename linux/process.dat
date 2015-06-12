@@ -1,0 +1,6 @@
+A process is logically divided into four segments:
+ - Text  : the instructions of the program 
+ - Data  : the static variables used by program
+ - Heap  : an area from which programs can dynamically allocate extra memory
+ - Stack : a piece of memory that grows and shrinks as functions are called and return and
+ 	 			 	 that is used to allocate storage for local variables and function call linkage information.

@@ -1,0 +1,81 @@
+SynFlood
+========
+SynFlood, TCP protokolunde temel haberlesme algoritmasinin ( three handshaking ) suistimal
+edilerek, server bilgisayari islem disi birakma islemidir. 
+
+TCP Handshaking
+===============
+TCP protokolunu guvenli ve connection-oriented yapan yetenek, protokolun iletisim kurulumu
+esnasinda socketler arasindaki iletisim agini kontrol etmesinden dolayidir. Bu islem three
+shaking, SYN-SYN/ACK-ACK veya three message handshaking olarak bilinir. Bu surecin calisma
+duzeni su sekildedir.
+
+# Server ile iletisime gecmek isteyen client, server bilgisayara bir adet SYN paketi
+  gonderir.
+
+# SYN paketini alan server, client bilgisayara bu paketi aldigina dair SYN-ACK paketi
+  gonderir.
+
+# Son olarak client, server bilgisayara durumundan haberi oldugunu ve veri iletisimine
+  basladigini bildiren bir ACK paketi gonderir.
+
+Client tarafindan server bilgisayara ACK paketi gonderilene kadar, server baglantiyi
+belli bir sure beklemeye alir.
+
+Spoof Packet
+============
+Server, client tarafindan gonderilecek ACK paketlerine beklerken, client tarafinda
+gonderilecek paketler programci tarafindan kasti bir sekilde yanlis bilgilerle doldurulur
+veya hic bir sekilde gonderilmezse server bekleme islemi devam eder. Iste bu isleme 
+SynFlood adi verilir. Syn, SYN paketlerini, Flood ise devamli suregelen farkli paket
+gonderme islemini temsil eder. Dolayisiyla, SynFlood saldirisi server bilgisayara devamli
+gecersiz paket gondererek server bilgisayari islem yapamaz hale getirme islemidir.
+
+SynFlood Design
+================
+SynFlood algoritmasi, client-side bir algoritmadir. IP ve port numarasi bilinen bir server
+bilgisayara baglanarak devamli veri gonderen bir mantikla kodlanir. Bu islem icin, genelde
+UNIX vari bir isletim sistemi tercih edilir. UNIX vari bir sistemin secilmesinin nedeni
+SynFlood saldirisi surecinde 'raw socket' tipinde bir socket kullanilmasinin isleri daha
+kolay hale getirmesidir cunku raw socketler server bilgisayardan herhangi bir istekte
+bulunmadan TCP paketleri gonderebilirler. Windows sistemlerde socket tasarim konusunda 
+oldukca basarisizlik yasanmasindan dolayi SynFlood algoritmalari UNIX ile ozdeslesmis 
+algoritmalardir.
+
+socket
+======
+
+socket fonksiyonu bir endpoint yaratir ve ardindan bir tane dosya indeksi return eder. 
+Domain parametresi bir protokol ailesi secer. IPv4 icin AF_INET parametresi kullanilir. 
+Socketin tipi parametresi ise acilan socketin hangi tip bir protokol kullanacagini soyler.
+SOCK_STREAM degeri sirali, guvenli, cift yonlu ve baglanti yonelimli bir TCP socketi 
+olustururken, SOCK_DGRAM degeri UDP tipinde veri boyutu sabit ve guvensiz baglantili olan 
+baglanti yonelimsiz bir socket tipi olusturur.
+
+socket fonksiyonu sys/socket.h header dosyasi icerisinde bulunur.
+
+-------------------------------------------------
+int socket( int domain, int type, int protocol );
+-------------------------------------------------
+
+POSIX standartlarina uygun bir sekilde socket olusturma islemini belirten fonksiyondur. 
+Eger fonksiyon basarili bir sekilde socket yaratirsa pozitif bir dosya indeksi return 
+eder. Socket acma isleminin basarisiz olmasi durumunda fonksiyon -1 sayisini return eder 
+ve errno degiskenini set eder.
+
+SynFlood Source Code
+====================
+SynFlood islemi icin olusturulan socket;
+
+------------------------------------------
+socket( PF_INET, SOCK_RAW, IPPROTO_TCP );
+------------------------------------------
+
+yukaridaki syntaxa sahiptir. PF_INET, gunumuz kodlarinda AF_INET olarak da kullanilabilir.
+SOCK_RAW parametresi socketin 'raw' socket oldugunu belirtir. IPPROTO_TCP ile baglanti
+tpinin TCP oldugunu soyler. Bu sekilde olusturulan bir socket, SynFlood algoritmasi icin
+uygun bir socket olacaktir.
+
+Socket olusturulduktan sonra SYN paketi icin gercek bir client IP adresi, ACK paketi icin
+sahte bir IP adresi gerekmektedir. Bu IP adresleri icin Unix isletim sistemi icerisinde
+tanimlanmis iphdr ve tcphdr adli struct tiplerine ihtiyac duyulmaktadir.

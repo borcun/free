@@ -1,0 +1,33 @@
+Orta Seviye Cpp Icin Neler Bilmek Gerekir?
+==========================================
+C++, uzman olunabilecek kolay bir dil degildir. Bir cok insan C++ ile alakali islerde,
+C++ gurusu olmadan calisabilmektedir. Ote yandan, C++ ile mutlu olmak ve is seciminde
+daha iyi sanslar yakalamak icin C++ dilini daha fazla bilmek gerekir. Eger C++ dilinin
+temellerini ogrenmissen, bir sonraki seviyeye gecmeyi isteyeceksin. Neden boyle oldugunun
+sebebini asagidaki yazida bulabilirsiniz.
+
+Daha onceki 'Is Bulabilmek Icin Ne Kadar C++ Bilmek Gereklidir?' adli yazida C++ 
+temellerinden bahsetmistik. Bir yorumcu, C++ dilinde orta seviye olabilmek icin copy
+constructor isleminin harika bir parca oldugundan bahsetmisti cunku C++ dilinin bir cok
+ozelligini anlamak icin boyle bilgilere ihtiyacin vardir: Constructor'lar nasil calisir,
+constructor'larini nasil overload edersin, operatorleri nasil overload edersin ve deep copy
+ile shallow copy arasindaki fark nedir? ...
+
+Copy constructor'a goz attiginda, bazi onemli kriterlerden bahsedecegiz. ( Bahsedilen
+konular, bir tutam yol gosterici bilgilerdir, tamamiyle her seyi kapsamayacaktir. Bu
+nedenle, sadece bu konulari bilerek orta seviyeye gelemezsin, onun yerine calisabildigin
+kadar cok calis. Bu konulari bildigin zaman, muhtemelen iyi bir C++ programci olmus 
+olacaksindir. )
+
+Memory Leak
+===========
+Isletim sistemleri, bir programin calismasini bitirdikten sonra, hafizalari temizlesine
+ragmen ( web server gibi ), cogu program anlamsiz bir sekilde calisir. Bu bir problemdir
+cunku sonlanmamis bir program, sistem hata verene kadar durmadan buyuyecek.
+
+Memory leak olayina en basit cevap, "Her new operatorunun, bir delete operatorune sahip
+olduguna emin ol." ama bu olay biraz daha karisiktir.
+
+Copy constructor'i dusun. Bir referansi, baska bir referansa kopyaladigini farzedelim ve 
+ilk referansi sildin. Eger ikinci referans, ilk referans icerisindeki nesneye bir pointer 
+tutuyorsa, ilk referansi silmek programin kararliligi icin buyuk bir tehlike olabilir.

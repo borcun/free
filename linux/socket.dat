@@ -1,0 +1,62 @@
+socket
+======
+
+socket fonksiyonu bir endpoint yaratir ve ardindan bir tane dosya indeksi return eder. Domain parametresi bir protokol ailesi secer.
+IPv4 icin AF_INET parametresi kullanilir. Socketin tipi parametresi ise acilan socketin hangi tip bir protokol kullanacagini soyler.
+SOCK_STREAM degeri sirali, guvenli, cift yonlu ve baglanti yonelimli bir TCP socketi olustururken, SOCK_DGRAM degeri UDP tipinde 
+veri boyutu sabit ve guvensiz baglantili olan baglanti yonelimsiz bir socket tipi olusturur.
+
+socket fonksiyonu sys/socket.h header dosyasi icerisinde bulunur.
+
+-------------------------------------------------
+int socket( int domain, int type, int protocol );
+-------------------------------------------------
+
+POSIX standartlarina uygun bir sekilde socket olusturma islemini belirten bir fonksiyondur. Eger fonksiyon basarili bir sekilde socket
+yaratirsa pozitif bir dosya indeksi return eder. Socket acma isleminin basarisiz olmasi durumunda fonksiyon -1 sayisini return eder ve 
+errno degiskenini set eder.
+
+bind
+====
+
+bind fonksiyonu, socket iletisim endpointi bir mantiksal network baglantisi ile iliskilendirir. Internet domain protokolleri bir port
+numarasi araciligi ile mantiksal bir baglanti saglar. bind fonksiyonunun ilk parametresi socket fonksiyonunun sagladigi dosya indeksidir.
+*address structure parametresi bir adres adi ve ozel protokol-ozel bilgiler icerir. address_len parametresi ise *address structure'nin
+boyutunu icerir.
+
+bind fonksiyonu sys/socket.h header dosyasi icerisinde bulunur.
+
+------------------------------------------------------------------------------
+int bind( int socket, const struct sockaddr *address, socklen_t address_len );
+------------------------------------------------------------------------------
+
+Eger bind fonksiyonu basarili ise 0, basarisiz ise -1 sayisini return eder ve errno degiskenini set eder.
+
+Internet domain struct sockaddr icin struct sockaddr_in yapisini kullanir. Socket kullanimi icin, POSIX standartlari geregi, struct
+sockaddr_in degiskeni struct sockaddr degisken tipini cast edilmelidir. struct sockaddr_in tipi netinet/in.h header dosyasi icerisinde
+bulunmaktadir. Struct icerisinde;
+
+----------------------------------------------
+sa_family_t     sin_family; /* AF_NET */
+in_port_t       sin_port;   /* port number */
+struct in_addr  sin_addr;   /* IP address */
+----------------------------------------------
+
+data fieldlari bulunmaktadir. Internet baglantisi icin sa_family AF_INET, sin_port ise port numarasidir. struct in_addr icerisinde
+s_addr adinda internet adresini saklayabilen numerik bir deger tutar. Bir serverin adresi bu alana atanabilir.
+
+-------------------------------------------------------------------
+struct sockaddr_in server;
+int sock;
+
+server.sin_family = AF_INET;
+server.sin_addr.s_addr = htonl( INADDR_ANY );
+server.sin_port = htons( ( short ) 8652 );
+
+if( bind( sock, ( struct sockaddr  * ) &server, sizeof( server ) ) == -1 )
+   perror( "Failed to bind the socket to port" );
+--------------------------------------------------------------------
+
+Yukaridaki kod orneginde bir server 8652 numarali port degerine gelecek baglantilari kabul etmek uzere bir struct sockaddr_in degiskeni
+olusturmustur. INADDR_ANY, server tarafindan set edilen bir degiskendir. htonl ve htons, INADDR_ANY ve port numarasini network byte duzenine
+ceviren fonksiyonlardir ( little-endian ve big-endian duzeni icin ).

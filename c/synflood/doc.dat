@@ -76,6 +76,28 @@ SOCK_RAW parametresi socketin 'raw' socket oldugunu belirtir. IPPROTO_TCP ile ba
 tpinin TCP oldugunu soyler. Bu sekilde olusturulan bir socket, SynFlood algoritmasi icin
 uygun bir socket olacaktir.
 
-Socket olusturulduktan sonra SYN paketi icin gercek bir client IP adresi, ACK paketi icin
-sahte bir IP adresi gerekmektedir. Bu IP adresleri icin Unix isletim sistemi icerisinde
-tanimlanmis iphdr ve tcphdr adli struct tiplerine ihtiyac duyulmaktadir.
+Socket olusturulduktan sonra SYN paketi icin client IP adresi gerekmektedir. Bu islem icin de 
+iki adet IP struct degiskenleri lazim olur. Bu IP adresleri icin Unix isletim sistemi icerisinde
+tanimlanmis iphdr ve tcphdr adli struct tiplerine ihtiyac duyulmaktadir. Bu iki struct tipi
+SYN paketi olarak server bilgisayara gonderilir. Server bilgisayar gonderilmeyecek SYN-ACK paketinden
+dolayi ACK paketine karsilik alamaz. SYN-ACK paketi server bilgisayara ulasmayacagindan dolayi, server
+cevap gelene kadar bekler. Eger server bilgisayar SynFlood saldirilarina karsi koruma yontemlerine 
+sahipse, belli bir sure sonra timeout ile SYN-ACK paketini beklemeyip, islemi sonlandirabilir. 
+Bu nedenle bu saldiri teknigi, savunmasiz server bilgisayarlari icin uygundur.
+
+Ilk olarak client IP adresini, kod icerisinde source IP adresi olarak belirlenmistir. Bu
+degiskene, server ile iletisime gecebilmek icin gercek bir IP adresi yazilir. Ardindan
+struct sockaddr_in struct degiskeni gerekli verilerle doldurulur. sin_family icin AF_INET,
+sin_port icin 80 ve sin_addr.s_addr icin de server IP adresi girilir. Port numarasinin 80
+olmasinin nedeni saldiri yapacagimiz server bilgisayarin 80. port ( HTTP ) numarasindan
+yayin yapmasidir.
+
+Kaynak kod icerisinde iphdr ve tcphdr icin bir adet datagram adinda array tanimlanmistir.
+Bunun nedeni iphdr ve tcphdr struct degiskenlerini ayni anda server bilgisayara gondermek
+icindir. iphdr degiskeninin data alanlari gerekli bilgilerle doldurulur. Kaynak kod icerisinde
+gereken aciklamalar yapilmistir. Bu islemden sonra tcphdr degiskeni de gerekli bilgiler ile
+doldurulur. Pseudo paket olarak kod icerisine eklenmis struct degiskeni de doldurulduktan 
+sonra, tcphdr degiskeni bu degiskenin tcphdr kismina kopyalanir.
+
+setsockopt fonksiyonu saldiri icin acilmis olan socket degiskeninin bir takim ozelliklerini
+duzenlemeye yarar.

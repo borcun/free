@@ -100,4 +100,9 @@ doldurulur. Pseudo paket olarak kod icerisine eklenmis struct degiskeni de doldu
 sonra, tcphdr degiskeni bu degiskenin tcphdr kismina kopyalanir.
 
 setsockopt fonksiyonu saldiri icin acilmis olan socket degiskeninin bir takim ozelliklerini
-duzenlemeye yarar.
+duzenlemeye yarar. IP_HDRINCL parametresi paketin IP header icerigini bildirir, eger bu parametre
+ayarlanmamissa IPv4 katmani kendisi ekler. Karsi bilgisayardan, paket alabilmek icin paket
+IP header bilgisi icermek zorundadir.
+
+while dongusunde, devamli olarak olusturulan sahte paket server bilgisayara sendto fonksiyonu
+araciligiyla gonderilir. Asil saldirinin gerceklestirildigi bolum bu while blogudur.

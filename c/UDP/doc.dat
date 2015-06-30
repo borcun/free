@@ -1,0 +1,3 @@
+Bu kod bir UDP socket olusturarak server bilgisayara araliksiz paket gonderme
+islemini gerceklestirir. Bir adet server adres ve bir adet server port adresi
+ile program calistirilir.

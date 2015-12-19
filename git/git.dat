@@ -1,0 +1,137 @@
+Merhabalar,
+
+Bu yazida sizlere kisaca git uygulamasindan ve temel kullanimindan bahsedecegim. Oncelikle git nedir, ona deginelim.
+git bir versiyon kontrol programidir. Versiyon kontrol programi, genelde yazilim uygulamalari gelistirilirken kullanilan
+mevcut yazilimi versiyonlamaya ve adim adim kontrol etmeye yarayan programlarin geneline verilen isimdir. git uygulamasi
+en cok kullanilan versiyon kontrol programlarindan birisidir. git'in yani sira SVN (subversion), Mercurial, Bazaar gibi
+bir cok program uygulama gelistirilirken yardim alinan versiyon kontrol programlarindan bazilaridir. git uygulamasinin
+populer olmasinin nedenlerinin basinda ucretsiz olmasi, cross-platform olmasi, Linus Torvalds tarafindan gelistirilmis
+olmasi, hem konsol hem gui araciligi ile kullaniliyor olmasi ve git uzerine bir cok halihazirda web sayfasinin bulunmasi
+gibi faktorleri sayabiliriz.
+
+Versiyon kontrol programlari agirlikli olarak birden fazla kisinin ayni proje ustunde calistigi durumlarda oldukca kolaylik
+saglar. Bu programlar araciligi ile hangi programcinin hangi dosya uzerinde ve ne zaman degisiklik yaptigini, hangi degisiklikleri
+yaptigini kolaylikla takip edebilirsiniz. Bu sayede birlikte calisabilme verimliligini kazanip ve uygulamanin duzenli bir sekilde
+gelisimini saglayabilirsiniz.
+
+Oncelikle git uygulamasini bilgisayarimiza kurup, git'i destekleyen herhangi bir siteden kendimize bir hesap acabiliriz.
+En cok bilinen ve kullanilan git sitesi;
+
+[B]www.github.com[/B]
+
+sitesidir. Yazinin gidisati sadece git uzerine kuracagimdan dolayi gorsel icerik iceren kisimlari simdilik atlayacagim ama
+forumda bu konuda yazilmis bir adet yazi var, arama kismindan 'github' anahtar kelimesi ile arama yaptiginiz zaman bulabilirsiniz.
+Bu yazida, github sitesinde projemiz icin bir sayfa (repo) olusturduktan sonra sitenin bize verecegi baglanti yollarindan
+git protokolu ile calisani kullanacagiz. Burada onemli bir noktayi es gecmemek lazim. Bu projeye katki saglayacak kisilerin
+(collaborator) ssh key'lerinin proje sayfasina eklenmesi ve boylelikle programciya degisiklikler icin izin verilmesi gerekmektedir.
+
+Bu islemi kisaca ;
+
+$ ssh-keygen
+
+komutu ile yapabiliriz. Bu komut, kullanici dizinimizde .ssh klasoru icerisine id_rsa.pub adinda bir dosya cikaracatir. Dosya
+icerisindeki uzun string bizim bilgisayarimizin ssh key numarasidir. Bunu proje sayfasindaki 'Deploy Keys' sekmesi altina
+ekleyerek kullaniciya proje uzerinde degisiklik yapabilme hakki taniyabiliriz.
+
+Gelelim proje kodlarinin bilgisayarimiza alinmasina.
+
+Bunun icin git'in clone programini kullanacagiz. Proje linkimizin git@github.com:x_user/x_project.git oldugunu varsayalim.
+
+[B]$ git clone git@github.com:x_user/x_project.git[/B]
+
+komutu uzak git server'indaki kodlari, bu komutu calistirdigimiz dizine cekecektir. Artik projenin bir adet kopyasi bilgisayarimizda
+mevcut. Bundan sonra yapacagimiz islemler server'a yukleme veya baskasinin yaptigi degisiklikleri server'dan bilgisayarimiza
+yukleme islemleri olacaktir. Bu islemlerden once baska bir kac git komutundan bahsetmek istiyorum. Bunlardan birincisi;
+
+[B]$ git status[/B]
+
+komutudur. Bu komut yerel bilgisayarimiz ile server bilgisayari arasindaki kod farkliliklarindan bizi haberdar eder. git status
+komutunu calistirdiktan sonra 'new, modified, deleted, merge' gibi etiketler ile dosya isimleri siralanir. Etiket isimlerinden de
+dosyalarin ne tur dosyalar oldugu aciktir. Yeni dosya, degistirilmis dosya, silinmis dosya veya birlestirilecek dosya. Degistirilmis
+dosyalarda aradaki farklari anlamak icin;
+
+[B]$ git diff[/B]
+
+komutu bize yardimci olacaktir. Bu komutun ciktisini yorumlamak biraz zor olabilir. Standart 'diff' komutu ile ayni ciktiyi verir.
+Her ne kadar diff programini iyi biliyor olsaniz da genelde okumasi uzun suren ve yorucu bir islemdir. Biz bunun icin ;
+
+[B]$ git difftool[/B]
+
+komutunu kullanacak ve bu sayede iki dosya arasindaki degisimi gorsel arayuze sahip bir programda rahatlikla okuyabilecegiz.
+Ben bu islem icin 'meld' isimli programi tercih ediyorum. 'meld' benzeri islem yapan cok fazla uygulama mevcut, siz hangisini
+begenirseniz onu kullanabilirsiniz.
+
+Peki. Simdi degisikliklerin nasil gorundugunu ve izlendigini ogrendik. Degisiklik yapmis oldugumuz x_file.cpp dosyasini ve silmis
+oldugumuz y_file.cpp dosyasini server'a ekleyelim / bildirelim.
+
+[B]$ git add x_file.cpp
+$ git add -A y_file.cpp
+$ git add x_file.h[/B]
+
+komutlari yerel bilgisayarimizdaki git uygulamasi index'ine x_file.cpp, y_file.cpp ve x_file.h dosyalarini ekledi. y_file.cpp dosyasini
+silmis oldugumuz icin -A parametresi ile ekleme islemi yapiyoruz. x_file.h dosyasini ise yanlislikla ekledik. Bunun icin;
+
+[B]$ git rm x_file.h[/B]
+
+komutunu calistirip bu dosyayi index'ten cikarabiliriz. Eger ekledigimiz tum dosyalar yanlis ise;
+
+$ git reset
+
+komutu toptan bir temizlige gidecektir :) Dosyalari ekledikten sonra yapmamiz gereken sey ekleme islemine onay vermek ve bu ekleme
+islemi icin bir mesaj yazmak olacaktir.
+
+[B]$ git commit -m 'x_file.cpp is added, y_file.cpp is removed'[/B]
+
+komutu onay islemini ve mesajini gerceklestirir. Artik son adima geldik. Bu adimda bu dosya islemlerini server bilgisayara bildirmemiz
+gerekmektedir.
+
+[B]$ git push[/B]
+
+komutu yapmis oldugumuz tum degisiklikleri server bilgisayarina gonderir. Daha fazla ileri gitmeden bu noktada soylemek istedigim
+bir sey var. Bu islemleri ilk kez gerceklestirirken git uygulamasi bizden global olacak bir takim bilgiler ister. Bunlar, kullanici
+adi, kullanici mail adresi ve push islemini nasil gerceklestirmek istedigimizdir. Bu global bilgilerin yani sira bazi baska global
+bilgileri de saglamamiz mumkun fakat temelde bu 3 bilgi bizden istenilen bilgilerdir. Bunlari nasil gireceginizi git'in uyari
+mesajlari size soyleyecektir, o yuzden konuya ekleme yapmiyorum.
+
+Biz bu islemleri yaptiktan sonra baska bir programci da z_file.cpp dosyasini guncellemis olsun. Bu kullanicinin yaptigi degisikligi
+kendi bilgisayarimiza almadan once loglari kontrol etmek isteyebiliriz.
+
+[B]$ git log[/B]
+
+komutu bize yapilan degisikleri bir kac ek bilgi ile sunmaktadir. Bu ek bilgiler, kullanici adi, zaman bilgisi ve log kodunu icerir.
+Bu sayede kimin, ne zaman, hangi dosya uzerinde degisiklik yaptigini gorebiliriz. Ne tur degisiklik yapildigini ogrenmek icinse;
+
+[B]$ git show <log no>[/B]
+
+komutunu kullanabiliriz. Loglari goruntulemek, degisiklikleri anlamak temel kullanicilar icin zorluk iceren islemlerdir. Tum bu
+komutlari calistirmak yerine direk olarak 'git difftool' bize her seyi guzelce sunacaktir. Ayrica daha detayli bilgi gosteren
+git-gui, giggle gibi cok guzel uygulamalar da internette var, bunlari da deneyebilirsiniz.
+
+Son olarak, yapacaginiz degisiklikler cok buyuk degisimler iceriyorsa, ana kod (master branch) uzerinde calismak istemeyebilirsiniz.
+Bunun icin git bize;
+
+[B]$ git branch <branch name>[/B]
+
+komutunu sunmakta. Bu komut bizi master branch'tan ayirip baska bir branch icerisine yerlestirir. Boylece master branch'a paralel olan
+bir calisma sahasi elde etmis oluruz. Sadece 'git branch' komutu ise bize mevcut branch listesini sunar. Branch'ler arasi gecisleri;
+
+[B]$ git checkout <branch name>[/B]
+
+komutu ile, bir branch'i silmek istediginizde ise;
+
+[B]$ git branch -d <branch name>[/B]
+
+komutu ile calisabilirsiniz. Ek olarak 'tamam bu oldu' dediginiz ara veya ana versiyon kodlarinizi;
+
+[B]$ git tag -a <tag name> -m <tag msg>[/B]
+
+komutu ile olusturabilirsiniz. Sadece 'git tag' mevcut tag'leri listeleyecektir.
+
+[B]$ git tag <tag name>[/B]
+
+komutu ile versiyonlariniz arasinda gecis yapabilirsiniz. tag ve branch calismalarinizi push ve merge etmek normalden biraz farklidir.
+Detayli bilgi icin git'in manual'ini okuyabiliriz, oldukca kapsamli yazilmistir veya git-scm ve github sitesinden yardim alabilirsiniz.
+
+Yaziyi gec saatte yazdigim icin imla hatalari veya iceriginde hatalar olabilir. Lutfen gormus oldugunuz hatalari konu altinda yaziniz.
+
+

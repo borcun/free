@@ -1,4 +1,4 @@
-[ Dec 25, 2015 Meeting Notes ]
+[ Dec 25, 2015 ]
 
 I decided to develop a tetris game with love2d in last days of the year.
 The base target is learning the love2d framework along this development process.
@@ -20,5 +20,4 @@ Non-Functional Requirements =
  - if the c or cpp integration ability is obtained, they may be used in source code.
  - the version control system is git.
  - the editor is emacs. Perhaps, ZeroBrane Studio may be used.
-
-[ ]
+ - the design tool is DIA.

@@ -1,0 +1,2 @@
+System yazilimlari, dusuk seviyede yasarlar, direk olarak kernel ve core sistem kutuphanleri ile calisirlar.
+Shellin, editorun, compilerin, debuggerin, core islemlerin, sistem daemonlarin sistem yazilimlaridir.

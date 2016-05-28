@@ -1,0 +1,6 @@
+(defun histogram-of-list (lst)
+  (dolist (elem lst)
+    (do ((i 0 (+ i 1)))
+	((eql i elem) 'done)
+      (format t "*"))
+    (format t "~%")))

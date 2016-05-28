@@ -1,0 +1,6 @@
+(defun consist (lst x)
+  (if (null lst)
+      (format t "The ~A is not in list~%" x) 
+      (if (eql (car lst) x)
+	  (format t "~A is found in list~%" x)
+	  (consist (cdr lst) x))))

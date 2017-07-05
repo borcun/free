@@ -1,0 +1,8 @@
+(defun occurrences (lst)
+  (let ((alst nil))
+    (dolist (obj lst)
+      (if (assoc obj alst)
+	  (setf (cdr (assoc obj alst)) (+ (cdr (assoc obj alst)) 1))
+	  (push (cons obj 1) alst))
+      )
+    alst))

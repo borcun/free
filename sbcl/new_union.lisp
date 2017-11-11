@@ -1,5 +1,0 @@
-(defun new-union(lst1 lst2)
-  (dolist (obj lst2)
-    (if (not (member obj lst1))
-	(push obj lst1)))
-  lst1)

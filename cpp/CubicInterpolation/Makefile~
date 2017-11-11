@@ -1,5 +1,0 @@
-Compile and Link:
-	g++ -c Solver.cpp SolverTest.cpp
-	g++ -c Interpolation.cpp InterpolationTest.cpp
-	g++ Solver.o SolverTest.o -o SolverTest
-	g++ Interpolation.o InterpolationTest.o -o InterpolationTest -ltbb -lpthread

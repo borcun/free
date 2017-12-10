@@ -1,14 +1,20 @@
-#include "FinishPoint.h"
-#include "Gold.h"
-#include "Player.h"
-#include "Enemy.h"
+#include "RPG.h"
 
 int main( int argc, char **argv ) {
-  GameMap *gMap = GameMap::getMap();
+  RPG *rpg = RPG::instance();
   
   std::cout << "RPG is started" << std::endl;
 
-  delete gMap;
+  if( !rpg->loadMap( "map.txt" ) ) {
+    std::cout << "RPG map is not loaded" << std::endl;
+    delete rpg;
+
+    return -1;
+  }
+
+  rpg->printMap();
+  
+  delete rpg;
   
   return 0;
 }

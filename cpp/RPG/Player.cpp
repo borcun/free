@@ -1,25 +1,5 @@
 #include "Player.h"
 
-void Player::setXCoordinate( const int x ) {
-  if( x < 0 ) {
-    std::cout << "Player x coordinate can not be negative" << std::endl;
-    return;
-  }
-
-  xCoordinate = x;
-  return;
-}
-
-void Player::setYCoordinate( const int y ) {
-  if( y < 0 ) {
-    std::cout << "Player y coordinate can not be negative" << std::endl;
-    return;
-  }
-
-  yCoordinate = y;
-  return;
-}
-
 void Player::setGoldCount( const int pGoldCount ) {
   if( pGoldCount < 0 ) {
     std::cout << "Player gold count can not be negative" << std::endl;
@@ -58,14 +38,6 @@ void Player::setToLevelUp( const int pToLevelUp ) {
 
   toLevelUp = pToLevelUp;
   return;
-}
-
-int Player::getXCoordinate( void ) const {
-  return xCoordinate;
-}
-
-int Player::getYCoordinate( void ) const {
-  return yCoordinate;
 }
 
 int Player::getGoldCount( void ) const {

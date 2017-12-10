@@ -1,0 +1,37 @@
+#ifndef RPG_H
+#define RPG_H
+
+#include "FinishPoint.h"
+#include "Gold.h"
+#include "Player.h"
+#include "Enemy.h"
+#include "cstdio"
+#include "cstring"
+#include <list>
+
+#define MAP_SIZE ( 10 )
+#define MAX_GAME_OBJECT_COUNT ( 10 )
+#define FINISH_POINT_SIGN ( 'F' )
+#define GOLD_SIGN ( 'G' )
+#define ENEMY_SIGN ( 'E' )
+#define PLAYER_SIGN ( 'P' )
+
+class RPG {
+ public:
+  virtual ~RPG();
+  
+  static RPG *instance( void );
+  
+  bool loadMap( const char *mapPath );
+
+  void printMap( void );
+    
+ private:
+  static RPG *rpg;
+  GameObject *gameObject[ MAX_GAME_OBJECT_COUNT ];
+
+  RPG( void );
+  
+};
+
+#endif

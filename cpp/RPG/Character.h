@@ -2,7 +2,6 @@
 #define CHARACTER_H
 
 #include "GameObject.h"
-#include <iostream>
 
 class Character : public GameObject {
  public:

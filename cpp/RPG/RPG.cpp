@@ -393,7 +393,7 @@ bool RPG::fight( Enemy *enemy ) {
 
 	if( AT_NORMAL == attackType ) {
 	  // critical attack
-	  if( 0 == randNum( 1, 2 ) ) {
+	  if( PLAYER_CRITICAL_HIT_CHANCE > randNum( 0, 1000 ) ) {
 	    enemy->takeDamage( player->attack() * 2 );
 	    cout << endl << "Player attacked critically" << endl;
 	  }

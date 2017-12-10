@@ -1,14 +1,9 @@
 #ifndef GAME_OBJECT_H
 #define GAME_OBJECT_H
 
-#include <iostream>
+#include "GameObjectUtil.h"
 
-#define INV_X_COORDINATE ( -1 )
-#define INV_Y_COORDINATE ( -1 )
-#define INV_SIGN 'X'
-
-using namespace std;
-
+// GameObject class
 class GameObject {
  public:
   GameObject( void );

@@ -23,6 +23,7 @@ int Gold::getGoldAmount( void ) const {
 }
 
 void Gold::information( void ) {
+  cout << "Gold Object" << endl;
   cout << "Gold Amount: " << goldAmount << endl;
   return;
 }

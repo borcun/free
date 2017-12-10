@@ -1,6 +1,8 @@
 #include "RPG.h"
 
 int main( int argc, char **argv ) {
+  srand( time( NULL ) );
+  
   RPG *rpg = RPG::instance();
   
   cout << "RPG is started..." << endl;

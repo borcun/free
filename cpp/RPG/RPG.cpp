@@ -3,8 +3,6 @@
 RPG *RPG::rpg = NULL;
 
 RPG::RPG( void ) {
-  srand( time( NULL ) );
-  
   for( int i=0 ; i < MAX_GAME_OBJECT_COUNT ; ++i ) {
     gameObject[i] = NULL;
   }
@@ -85,7 +83,7 @@ bool RPG::loadMap( const char *mapPath ) {
 	  gold->setSign( GOLD_SIGN );
 	  gold->setXCoordinate( x );
 	  gold->setYCoordinate( y );
-	  gold->setGoldAmount( MIN_GOLD_AMOUNT + ( rand() % ( MAX_GOLD_AMOUNT - MIN_GOLD_AMOUNT + 1 ) ) );
+	  gold->setGoldAmount( randNum( MIN_GOLD_AMOUNT, MAX_GOLD_AMOUNT ) );
 
 	  gameObject[ goCount ] = gold;
 	  
@@ -395,19 +393,31 @@ bool RPG::fight( Enemy *enemy ) {
 
 	if( AT_NORMAL == attackType ) {
 	  // critical attack
-	  if( 0 == ( rand() % 2 ) ) {
+	  if( 0 == randNum( 1, 2 ) ) {
 	    enemy->takeDamage( player->attack() * 2 );
+	    cout << endl << "Player attacked critically" << endl;
 	  }
 	  else {
 	    enemy->takeDamage( player->attack() );
+	    cout << endl << "Player attacked" << endl;
 	  }
-
-	  cout << endl << "Player attacked" << endl;
 	  
 	  if( !enemy->alive() ) {
 	    cout << "Enemy died" << endl;
 
+	    int prevXP = player->getExperience() / player->getToLevelUp();
+	    int curXP = ( player->getExperience() + enemy->getExperienceAmount() ) / player->getToLevelUp();
+
+	    // player level up
+	    if( curXP > prevXP ) {
+	      player->levelUp();
+	    }
+
+	    // increase experience after fight
+	    player->addExperience( enemy->getExperienceAmount() );
+	    
 	    sleepScreen();
+
 	    fightOpt = 'n';
 	    
 	    break;
@@ -416,19 +426,23 @@ bool RPG::fight( Enemy *enemy ) {
 	  sleepScreen();
 
 	  // enemy may drink potion
-	  if( enemy->getHealth() < CHARACTER_POTION_VALUE &&  0 == ( rand() % 2 ) && 0 != enemy->getPotionCount() ) {
+	  if( enemy->getHealth() < CHARACTER_POTION_VALUE && 0 == randNum( 1, 2 ) && 0 != enemy->getPotionCount() ) {
 	    enemy->drinkPotion();
 	  }
 	  else {
+	    int enemyCritChance = randNum( 0, 1000 );
+	    
 	    // critical attack
-	    if( 0 == ( rand() % 2 ) ) {
-	      player->takeDamage( enemy->attack() * 2 );
-	    }
+	    if( ENEMY_MIN_CRITICAL_HIT_CHANCE <= enemyCritChance &&
+		enemyCritChance <= ENEMY_MAX_CRITICAL_HIT_CHANCE )
+	      {
+		player->takeDamage( enemy->attack() * 2 );
+		cout << endl << "Enemy attacked critically" << endl;
+	      }
 	    else {
 	      player->takeDamage( enemy->attack() );
+	      cout << "Enemy attacked" << endl;
 	    }
-
-	    cout << "Enemy attacked" << endl;
 	  }
 	  
 	  if( !player->alive() ) {
@@ -450,12 +464,12 @@ bool RPG::fight( Enemy *enemy ) {
 	  sleepScreen();
 
 	  // enemy may drink potion
-	  if( enemy->getHealth() < CHARACTER_POTION_VALUE &&  0 == ( rand() % 2 ) && 0 != enemy->getPotionCount() ) {
+	  if( enemy->getHealth() < CHARACTER_POTION_VALUE &&  0 == randNum( 1, 2 ) && 0 != enemy->getPotionCount() ) {
 	    enemy->drinkPotion();
 	  }
 	  else {
 	    // critical attack
-	    if( 0 == ( rand() % 2 ) ) {
+	    if( ENEMY_CRITICAL_HIT_CHANCE > randNum( 0, 1000 ) ) {
 	      player->takeDamage( enemy->attack() * 2 );
 	    }
 	    else {

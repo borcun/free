@@ -4,13 +4,7 @@
 #include "GameObject.h"
 #include <stdlib.h>
 
-#define CHARACTER_ATTACK_VALUE ( 100.0 )
-
-#define CHARACTER_ARMOR_VALUE ( 1000 )
-
 #define CHARACTER_POTION_VALUE ( 500 )
-
-#define CHARACTER_MAX_HEALTH_VALUE ( 1000 )
 
 // Character class
 class Character : public GameObject {

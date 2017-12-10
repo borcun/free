@@ -1,8 +1,14 @@
 #include "Enemy.h"
 
 Enemy::Enemy( void ) : Character() {
-  setExperienceAmount( ENEMY_MIN_EXPERIENCE + ( rand() % ( ENEMY_MAX_EXPERIENCE - ENEMY_MIN_EXPERIENCE + 1 ) ) );
+  setExperienceAmount( randNum( ENEMY_STARTUP_MIN_XP, ENEMY_STARTUP_MAX_XP ) );
   setPotionCount( ENEMY_POTION_CHANCE );
+  setHealth( randNum( ENEMY_STARTUP_MIN_HEALTH, ENEMY_STARTUP_MAX_HEALTH ) );
+  setMaxHealth( getHealth() );
+  setArmor( ENEMY_STARTUP_ARMOR );
+  setExperienceAmount( randNum( ENEMY_STARTUP_MIN_XP, ENEMY_STARTUP_MAX_XP ) );
+  setDamage( ENEMY_STARTUP_DAMAGE );
+  setPotionCount( randNum( ENEMY_STARTUP_MIN_POTION_COUNT, ENEMY_STARTUP_MAX_POTION_COUNT ) );
 }
 
 Enemy::~Enemy() {

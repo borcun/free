@@ -1,10 +1,15 @@
 #include "Player.h"
 
 Player::Player( void ) : Character() {
-  setGoldCount( 0 );
-  setExperience( PLAYER_MIN_EXPERIENCE + ( rand() % ( PLAYER_MAX_EXPERIENCE - PLAYER_MIN_EXPERIENCE + 1 ) ) );
+  setGoldCount( PLAYER_STARTUP_GOLD_COUNT );
   setPotionCount( PLAYER_POTION_CHANCE );
   setLevel( PLAYER_STARTUP_LEVEL );
+  setToLevelUp( PLAYER_LEVEL_UP_XP );
+  setExperience( PLAYER_STARTUP_XP );
+  setHealth( PLAYER_STARTUP_HEALTH );
+  setMaxHealth( PLAYER_STARTUP_HEALTH );
+  setDamage( PLAYER_STARTUP_DAMAGE );
+  setArmor( PLAYER_STARTUP_ARMOR );
 }
 
 Player::~Player() {
@@ -106,12 +111,36 @@ void Player::drinkPotion( void ) {
 }
 
 void Player::addExperience( const int pExperience ) {
+  if( pExperience < 0 ) {
+    cerr << "Invalid experience to add " << pExperience << endl;
+    return;
+  }
+
+  experience += pExperience;
   cout << "Experience " << pExperience << " is added to player" << endl;
+
   return;
 }
 
 void Player::levelUp( void ) {
-  cout << "Player level up" << endl;
+  const int health = getHealth() + PLAYER_HEALTH_INC_AFTER_FIGHT;
+
+  // level up properties
+  setHealth( ( health < getMaxHealth() ) ? health : getMaxHealth() );
+  setMaxHealth( getMaxHealth() + PLAYER_HEALTH_INC_AFTER_FIGHT );
+  setArmor( getArmor() + PLAYER_ARMOR_INC_AFTER_FIGHT );
+  setCriticalChance( getCriticalChance() + PLAYER_CRIT_CHANCE_INC_AFTER_FIGHT );
+  setDamage( getDamage() + PLAYER_DAMAGE_INC_AFTER_FIGHT );
+
+  if( PLAYER_POTION_COUNT_INC_RATIO > randNum( 0, 100 ) ) {
+    setPotionCount( getPotionCount() + 1 );
+  }
+  
+  toLevelUp += PLAYER_LEVEL_UP_INC_AFTER_FIGHT;
+  ++level;
+
+  cout << "Player level up, level is changed to " << level << endl;
+ 
   return;
 }
   

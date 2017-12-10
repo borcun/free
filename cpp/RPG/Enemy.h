@@ -3,15 +3,44 @@
 
 #include "Character.h"
 
-#define ENEMY_POTION_CHANCE ( 1 )
+// enemy minimum startup health
+#define ENEMY_STARTUP_MIN_HEALTH ( 500 )
 
+// enemy maximum startup health
+#define ENEMY_STARTUP_MAX_HEALTH ( 1000 )
+
+// enemy startup armor
+#define ENEMY_STARTUP_ARMOR ( 20 )
+
+// enemy startup damage
+#define ENEMY_STARTUP_DAMAGE ( 50 )
+
+// enemy startup minimum potion count
+#define ENEMY_STARTUP_MIN_POTION_COUNT ( 1 )
+
+// enemy startup maximum potion count
+#define ENEMY_STARTUP_MAX_POTION_COUNT ( 2 )
+
+// enemy potion value
 #define ENEMY_POTION_VALUE ( 500 )
 
-#define ENEMY_MAX_HEALTH_VALUE ( 1000 )
+// enemy start up minimum xp
+#define ENEMY_STARTUP_MIN_XP ( 300 )
 
-#define ENEMY_MIN_EXPERIENCE ( 10 )
+// enemy start up maximum xp
+#define ENEMY_STARTUP_MAX_XP ( 500 )
 
-#define ENEMY_MAX_EXPERIENCE ( 50 )
+// enemy minimum critical hit chance ( %4.0 )
+#define ENEMY_MIN_CRITICAL_HIT_CHANCE ( 40 )
+
+// enemy maximum critical hit chance ( %7.5 )
+#define ENEMY_MAX_CRITICAL_HIT_CHANCE ( 75 )
+
+// enemy potion chance ratio by health ( %20 )
+#define ENEMY_POTION_CHANCE_BY_HEALT ( 20 )
+
+// enemy potion chance to drink ratio ( %80 )
+#define ENEMY_POTION_CHANCE_TO_DRINK_RATIO ( 80 )
 
 // Enemy class
 class Enemy : public Character {

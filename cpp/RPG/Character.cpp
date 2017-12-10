@@ -1,10 +1,10 @@
 #include "Character.h"
 
 Character::Character( void ) {
-  health = CHARACTER_MAX_HEALTH_VALUE;
-  maxHealth = CHARACTER_MAX_HEALTH_VALUE;
-  armor = CHARACTER_ARMOR_VALUE;
-  damage = 0.0;
+  health = 0;
+  maxHealth = 0;
+  armor = 0;
+  damage = 0;
   critChance = 0.0;
   potionCount = 0;
   isAlive = true;
@@ -111,7 +111,7 @@ void Character::takeDamage( const double damageAmount ) {
     if( health > 0 ) {
       health -= damageAmount;
 
-      if( health < 0 ) {
+      if( health <= 0 ) {
 	isAlive = false;
       }
     }
@@ -126,7 +126,7 @@ void Character::takeDamage( const double damageAmount ) {
       health += armor;
       armor = 0;
 
-      if( health < 0 ) {
+      if( health <= 0 ) {
 	isAlive = false;
       }
     }

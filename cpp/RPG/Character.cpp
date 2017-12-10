@@ -16,7 +16,7 @@ Character::~Character() {
 
 void Character::setHealth( const double cHealth ) {
   if( cHealth < 0 ) {
-    std::cout << "The health can not be negative" << std::endl;
+    cout << "The health can not be negative" << endl;
     return;
   }
 
@@ -26,7 +26,7 @@ void Character::setHealth( const double cHealth ) {
 
 void Character::setMaxHealth( const double cMaxHealth ) {
   if( cMaxHealth < 0 ) {
-    std::cout << "The maximum health can not be negative" << std::endl;
+    cout << "The maximum health can not be negative" << endl;
     return;
   }
 
@@ -36,7 +36,7 @@ void Character::setMaxHealth( const double cMaxHealth ) {
 
 void Character::setArmor( const double cArmor ) {
   if( cArmor < 0 ) {
-    std::cout << "The armor can not be negative" << std::endl;
+    cout << "The armor can not be negative" << endl;
     return;
   }
 
@@ -46,7 +46,7 @@ void Character::setArmor( const double cArmor ) {
 
 void Character::setDamage( const double cDamage ) {
   if( cDamage < 0 ) {
-    std::cout << "The damage can not be negative" << std::endl;
+    cout << "The damage can not be negative" << endl;
     return;
   }
 
@@ -56,7 +56,7 @@ void Character::setDamage( const double cDamage ) {
 
 void Character::setCritChance( const double cCritChance ) {
   if( cCritChance < 0 ) {
-    std::cout << "The critical chance can not be negative" << std::endl;
+    cout << "The critical chance can not be negative" << endl;
     return;
   }
 
@@ -66,7 +66,7 @@ void Character::setCritChance( const double cCritChance ) {
 
 void Character::setPotionCount( const int cPotionCount ) {
   if( cPotionCount < 0 ) {
-    std::cout << "The potion count can not be negative" << std::endl;
+    cout << "The potion count can not be negative" << endl;
     return;
   }
 
@@ -110,6 +110,10 @@ void Character::takeDamage( const double damageAmount ) {
   if( armor <= 0 ) {
     if( health > 0 ) {
       health -= damageAmount;
+
+      if( health < 0 ) {
+	isAlive = false;
+      }
     }
     else {
       isAlive = false;

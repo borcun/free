@@ -54,15 +54,15 @@ class RPG {
  public:
   virtual ~RPG();
   
-  static RPG *instance( void ); 
+  static RPG *instance( void );
   bool loadMap( const char *mapPath );
   void run( void );
   
  private:
   static RPG *rpg;
   GameObject *gameObject[ MAX_GAME_OBJECT_COUNT ];
-  bool isThereEnemy;
-  bool isFinishPoint;
+  int choice;
+  bool isFinished;
   
   RPG( void );
 
@@ -80,7 +80,9 @@ class RPG {
 
   // function that sleep
   void sleepScreen( void );
-  
+
+  // function that checks if target is enemy
+  bool isThereEnemy( const int x, const int y );
 };
 
 #endif

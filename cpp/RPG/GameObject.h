@@ -7,6 +7,8 @@
 #define INV_Y_COORDINATE ( -1 )
 #define INV_SIGN 'X'
 
+using namespace std;
+
 class GameObject {
  public:
   GameObject( void );

@@ -10,7 +10,7 @@ Gold::~Gold() {
 
 void Gold::setGoldAmount( const int gold ) {
   if( gold < 0 ) {
-    std::cout << "Gold amount can not be negative" << std::endl;
+    cout << "Gold amount can not be negative" << endl;
     return;
   }
   
@@ -23,6 +23,6 @@ int Gold::getGoldAmount( void ) const {
 }
 
 void Gold::information( void ) {
-  std::cout << "Gold Amount: " << goldAmount << std::endl;
+  cout << "Gold Amount: " << goldAmount << endl;
   return;
 }

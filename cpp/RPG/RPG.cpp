@@ -28,18 +28,18 @@ RPG *RPG::instance( void ) {
 
 bool RPG::loadMap( const char *mapPath ) {
   if( NULL == mapPath ) {
-    std::cout << "RPG map path is NULL" << std::endl;
+    cout << "RPG map path is NULL" << endl;
     return false;
   }
   else if( 0 == strlen( mapPath ) ) {
-    std::cout << "RPG map path is invalid" << std::endl;
+    cout << "RPG map path is invalid" << endl;
     return false;
   }
   
   FILE *fPtr = NULL;
 
   if( NULL == ( fPtr = fopen( mapPath, "r" ) ) ) {
-    std::cout << "RPG map file is not opened" << std::endl;
+    cout << "RPG map file is not opened" << endl;
     return false;
   }
 
@@ -62,7 +62,7 @@ bool RPG::loadMap( const char *mapPath ) {
       sscanf( entry, "%c%d%d", &sign, &x, &y );
       
       if( x >= MAP_SIZE || y >= MAP_SIZE || x < 0 || y < 0 || ( x == 0 && y == 0 ) ) {
-	std::cout << "Invalid Entry : " << sign << " " << x << " " << y << std::endl;
+	cout << "Invalid Entry : " << sign << " " << x << " " << y << endl;
       }
       else {
 	switch( sign ) {
@@ -107,7 +107,7 @@ bool RPG::loadMap( const char *mapPath ) {
 	  break;
 	}
 	default: {
-	  std::cout << "Invalid Entry : " << sign << " " << x << " " << y << std::endl;
+	  cout << "Invalid Entry : " << sign << " " << x << " " << y << endl;
 	  break;
 	}
 	} // end of switch
@@ -124,27 +124,28 @@ bool RPG::loadMap( const char *mapPath ) {
 }
 
 void RPG::run( void ) {
-  int choice = 0;
-  bool isClearScreen = true;
+  bool noMap = false;
     
-  isThereEnemy = false;
-  isFinishPoint = false;
-  
-  clearScreen();
-  printMap();
+  isFinished = false;
+  choice = 0;
       
-  while( choice != EXIT_GAME ) {
-    if( isClearScreen ) {
+  while( choice != EXIT_GAME || isFinished ) {
+    if( !noMap ) {
       clearScreen();
       printMap();
     }
     
     choice = printMenu();
+
+    int x = gameObject[ PLAYER_OBJECT_INDEX ]->getXCoordinate();
+    int y = gameObject[ PLAYER_OBJECT_INDEX ]->getYCoordinate();
     
     switch( choice ) {
     case MOVE_UP: {
-      if( !isThereEnemy ) {
-	int y = gameObject[ PLAYER_OBJECT_INDEX ]->getYCoordinate() - 1;
+      noMap = false;
+      
+      if( !isThereEnemy( x, y - 1 ) ) {
+	--y;
 
 	if( y < 0 ) {
 	  y = MAP_SIZE - 1;
@@ -153,16 +154,19 @@ void RPG::run( void ) {
 	gameObject[ PLAYER_OBJECT_INDEX ]->setYCoordinate( y % MAP_SIZE );
 	clearScreen();
 	printMap();
-      }
-      else {
-	isClearScreen = true;
+
+	if( isFinished ) {
+	  return;
+	}
       }
       
       break;
     }
     case MOVE_DOWN: {
-      if( !isThereEnemy ) {      
-	int y = gameObject[ PLAYER_OBJECT_INDEX ]->getYCoordinate() + 1;
+      noMap = false;
+      
+      if( !isThereEnemy( x, y + 1 ) ) {
+	++y;
 
 	if( y >= MAP_SIZE ) {
 	  y = 0;
@@ -171,16 +175,19 @@ void RPG::run( void ) {
 	gameObject[ PLAYER_OBJECT_INDEX ]->setYCoordinate( y % MAP_SIZE );
 	clearScreen();
 	printMap();
-      }
-      else {
-	isClearScreen = true;
+
+	if( isFinished ) {
+	  return;
+	}
       }
       
       break;
     }
     case MOVE_RIGHT: {
-      if( !isThereEnemy ) {
-	int x = gameObject[ PLAYER_OBJECT_INDEX ]->getXCoordinate() + 1;
+      noMap = false;
+      
+      if( !isThereEnemy( x + 1, y ) ) {
+	++x;
 	
 	if( x >= MAP_SIZE ) {
 	  x = 0;
@@ -189,16 +196,19 @@ void RPG::run( void ) {
 	gameObject[ PLAYER_OBJECT_INDEX ]->setXCoordinate( x % MAP_SIZE );
 	clearScreen();
 	printMap();
-      }
-      else {
-	isClearScreen = true;
+
+	if( isFinished ) {
+	  return;
+	}
       }
 
       break;
     }
     case MOVE_LEFT: {
-      if( !isThereEnemy ) {
-	int x = gameObject[ PLAYER_OBJECT_INDEX ]->getXCoordinate() - 1;
+      noMap = false;
+      
+      if( !isThereEnemy( x - 1, y ) ) {
+	--x;
 
 	if( x < 0 ) {
 	  x = MAP_SIZE - 1;
@@ -207,22 +217,17 @@ void RPG::run( void ) {
 	gameObject[ PLAYER_OBJECT_INDEX ]->setXCoordinate( x % MAP_SIZE );
 	clearScreen();
 	printMap();
-      }
-      else {
-	isClearScreen = true;
+
+      	if( isFinished ) {
+	  return;
+	}
       }
 
       break;
     }
     case PLAYER_INFO: {
-      if( isThereEnemy ) {
-	clearScreen();
-	printMap();
-      }
-
       gameObject[ PLAYER_OBJECT_INDEX ]->information();
-
-      isClearScreen = false;
+      noMap = true;
       
       break;
     }
@@ -230,7 +235,7 @@ void RPG::run( void ) {
       break;
     }
     default: {
-      std::cerr << std::endl << "  ! Invalid choice is entered" << std::endl;
+      cerr << endl << "  ! Invalid choice is entered" << endl;
 
       sleepScreen();
       clearScreen();
@@ -239,7 +244,7 @@ void RPG::run( void ) {
     }
     } // end of switch
   } // end of while
-
+  
   return;
 }
 
@@ -276,10 +281,7 @@ void RPG::printMap( void ) {
       int x = gameObject[i]->getXCoordinate() % MAP_SIZE;
       int y = gameObject[i]->getYCoordinate() % MAP_SIZE;
 	
-      if( pXCoor == x && pYCoor == y ) {
-	isThereEnemy = !fight( ( Enemy * ) gameObject[i] );
-      }
-      else if( sqrt( pow( pXCoor - x, 2 ) + pow( pYCoor - y, 2 ) ) < MAX_DIST_TO_PLAYER ) {
+      if( sqrt( pow( pXCoor - x, 2 ) + pow( pYCoor - y, 2 ) ) < MAX_DIST_TO_PLAYER ) {
 	goMap[ y % MAP_SIZE ][ x % MAP_SIZE ] = sign;
       }
       
@@ -290,7 +292,8 @@ void RPG::printMap( void ) {
       int y = gameObject[i]->getYCoordinate() % MAP_SIZE;
 
       if( pXCoor == x && pYCoor == y ) {
-	isFinishPoint = true;
+	goMap[ y % MAP_SIZE ][ x % MAP_SIZE ] = 'O';
+	isFinished = true;
       }
       else if( sqrt( pow( pXCoor - x, 2 ) + pow( pYCoor - y, 2 ) ) < MAX_DIST_TO_PLAYER ) {
 	goMap[ y % MAP_SIZE ][ x % MAP_SIZE ] = sign;
@@ -322,19 +325,19 @@ void RPG::printMap( void ) {
     } // end of switch
   } // end of for
 
-  std::cout << std::endl;
+  cout << endl;
   
   for( int i=0 ; i < MAP_SIZE ; ++i ) {
-    std::cout << " ";
+    cout << " ";
       
     for( int j=0 ; j < MAP_SIZE ; ++j ) {
-      std::cout << goMap[i][j] << " ";
+      cout << goMap[i][j] << " ";
     }
 
-    std::cout << std::endl;
+    cout << endl;
   }
 
-  std::cout << std::endl;
+  cout << endl;
   
   return;
 }
@@ -343,14 +346,14 @@ void RPG::printMap( void ) {
 int RPG::printMenu() {
   int choice = 0;
   
-  std::cout << " [1] Move up" << std::endl;
-  std::cout << " [2] Move down" << std::endl;
-  std::cout << " [3] Move right" << std::endl;
-  std::cout << " [4] Move left" << std::endl;
-  std::cout << " [5] Player Info" << std::endl;
-  std::cout << " [6] Exit" << std::endl;
-  std::cout << "  -> ";
-  std::cin >> choice;
+  cout << " [1] Move up" << endl;
+  cout << " [2] Move down" << endl;
+  cout << " [3] Move right" << endl;
+  cout << " [4] Move left" << endl;
+  cout << " [5] Player Info" << endl;
+  cout << " [6] Exit" << endl;
+  cout << "  -> ";
+  cin >> choice;
 
   return choice;
 }
@@ -359,9 +362,10 @@ bool RPG::fight( Enemy *enemy ) {
   char fightOpt = 'n';
 
   do {
-    std::cout << "Do you fight your enemy?" << std::endl;
-    std::cout << " -> ";
-    std::cin >> fightOpt;
+    cout << endl;
+    cout << " Do you fight your enemy?" << endl;
+    cout << "  -> ";
+    cin >> fightOpt;
 
     if( 'y' == fightOpt || 'Y' == fightOpt ) {
       Player *player = ( Player * ) gameObject[ PLAYER_OBJECT_INDEX ];
@@ -370,14 +374,24 @@ bool RPG::fight( Enemy *enemy ) {
       do {  
 	clearScreen();
 	
-	std::cout << std::endl;
-	std::cout << "Player [H:" << player->getHealth() << "][A:" << player->getArmor() << "][P:" << player->getPotionCount() << "]" << std::endl;
-	std::cout << "Enemy  [H:" << enemy->getHealth()  << "][A:" << enemy->getArmor()  << "][P:" << enemy->getPotionCount()  << "]" << std::endl;
+	cout << endl;
 
-	std::cout << "[1] Attack" << std::endl;
-	std::cout << "[2] Drink Potion" << std::endl;
-	std::cout << "  -> ";
-	std::cin >> attackType;
+	printf( "Player [H:%04d][A:%04d][P:%02d][E:%03d]\n",
+		( int ) player->getHealth(),
+		( int ) player->getArmor(),
+		player->getPotionCount(),
+		player->getExperience() );
+	
+	printf( "Enemy  [H:%04d][A:%04d][P:%02d][E:%03d]\n",
+		( int ) enemy->getHealth(),
+		( int ) enemy->getArmor(),
+		enemy->getPotionCount(),
+		enemy->getExperienceAmount() );
+
+	cout << "[1] Attack" << endl;
+	cout << "[2] Drink Potion" << endl;
+	cout << "  -> ";
+	cin >> attackType;
 
 	if( AT_NORMAL == attackType ) {
 	  // critical attack
@@ -388,11 +402,13 @@ bool RPG::fight( Enemy *enemy ) {
 	    enemy->takeDamage( player->attack() );
 	  }
 
+	  cout << endl << "Player attacked" << endl;
+	  
 	  if( !enemy->alive() ) {
-	    std::cout << std::endl;
-	    std::cout << "Enemy died" << std::endl;
+	    cout << "Enemy died" << endl;
 
 	    sleepScreen();
+	    fightOpt = 'n';
 	    
 	    break;
 	  }
@@ -400,7 +416,7 @@ bool RPG::fight( Enemy *enemy ) {
 	  sleepScreen();
 
 	  // enemy may drink potion
-	  if( enemy->getHealth() < CHARACTER_POTION_VALUE &&  0 == ( rand() % 2 ) ) {
+	  if( enemy->getHealth() < CHARACTER_POTION_VALUE &&  0 == ( rand() % 2 ) && 0 != enemy->getPotionCount() ) {
 	    enemy->drinkPotion();
 	  }
 	  else {
@@ -410,36 +426,31 @@ bool RPG::fight( Enemy *enemy ) {
 	    }
 	    else {
 	      player->takeDamage( enemy->attack() );
-	    }	  
+	    }
+
+	    cout << "Enemy attacked" << endl;
 	  }
 	  
 	  if( !player->alive() ) {
-	    std::cout << std::endl;
-	    std::cout << "Player died" << std::endl;
+	    cout << "Player died" << endl;
 
 	    sleepScreen();
+	    fightOpt = 'n';
+	    isFinished = true;
 	    
 	    break;
 	  }
+
+	  sleepScreen();
 	}
 	else if( AT_DRINK_POTION == attackType ) {
-	  clearScreen();
-	
-	  std::cout << std::endl;
-	  std::cout << "Player [H:" << player->getHealth() << "][A:" << player->getArmor() << "][P:" << player->getPotionCount() << "]" << std::endl;
-	  std::cout << "Enemy  [H:" << enemy->getHealth()  << "][A:" << enemy->getArmor()  << "][P:" << enemy->getPotionCount()  << "]" << std::endl;
-
-	  std::cout << "[1] Attack" << std::endl;
-	  std::cout << "[2] Drink Potion" << std::endl;
-	  std::cout << "  -> ";
-	  std::cin >> attackType;
-
+	  cout << endl;
 	  player->drinkPotion();
 
 	  sleepScreen();
 
 	  // enemy may drink potion
-	  if( enemy->getHealth() < CHARACTER_POTION_VALUE &&  0 == ( rand() % 2 ) ) {
+	  if( enemy->getHealth() < CHARACTER_POTION_VALUE &&  0 == ( rand() % 2 ) && 0 != enemy->getPotionCount() ) {
 	    enemy->drinkPotion();
 	  }
 	  else {
@@ -449,20 +460,25 @@ bool RPG::fight( Enemy *enemy ) {
 	    }
 	    else {
 	      player->takeDamage( enemy->attack() );
-	    }	  
+	    }
+
+	    cout << "Enemy attacked" << endl;
 	  }
 	  
 	  if( !player->alive() ) {
-	    std::cout << std::endl;
-	    std::cout << "Player died" << std::endl;
+	    cout << "Player died" << endl;
 
 	    sleepScreen();
+	    fightOpt = 'n';
+	    isFinished = true;
 	    
 	    break;
 	  }
+
+	  sleepScreen();
 	}
 	else {
-	  std::cout << "Invalid Attack Type, please press 1 or 2" << std::endl;
+	  cout << "Invalid Attack Type, please press 1 or 2" << endl;
 	}
       }
       while( true );
@@ -471,7 +487,7 @@ bool RPG::fight( Enemy *enemy ) {
       return false;
     }
     else {
-      std::cout << "Invalid Fight Option, please press Y/N" << std::endl;
+      cout << "Invalid Fight Option, please press Y/N" << endl;
     }
   } while( 'n' != fightOpt );
     
@@ -498,4 +514,25 @@ void RPG::sleepScreen( void ) {
 #endif
     
     return;
+}
+
+bool RPG::isThereEnemy( const int x, const int y ) {
+  for( int i = 0 ; i < MAX_GAME_OBJECT_COUNT ; ++i ) {
+    if( NULL != gameObject[i] &&
+        gameObject[i]->getXCoordinate() == x &&
+	gameObject[i]->getYCoordinate() == y &&
+	gameObject[i]->getSign() == ENEMY_SIGN )
+      {
+	if( fight( ( Enemy * ) gameObject[i] ) ) {
+	  delete gameObject[i];
+	  gameObject[i] = NULL;
+	  
+	  return false;
+	}
+
+	return true;
+      }
+  }
+  
+  return false;
 }

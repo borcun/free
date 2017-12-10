@@ -31,10 +31,14 @@ class Character : public GameObject {
   double getDamage( void ) const;
   double getCritChance( void ) const;
   int getPotionCount( void ) const;
-  
+
+  // function that returns alive status of character
   bool alive( void ) const;
 
+  // function that is used to attack target
   double attack( void );
+
+  // function that is used when character takes damage
   void takeDamage( const double damageAmount );
 
   virtual void drinkPotion( void ) = 0;

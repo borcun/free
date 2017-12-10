@@ -3,8 +3,19 @@
 
 #include "Character.h"
 
+// potion chance for player
 #define PLAYER_POTION_CHANCE ( 5 )
 
+// player minimum experience
+#define PLAYER_MIN_EXPERIENCE ( 20 )
+
+// player maximum experience
+#define PLAYER_MAX_EXPERIENCE ( 80 )
+
+// player startup level
+#define PLAYER_STARTUP_LEVEL ( 1 )
+
+// Player class
 class Player : public Character {
  public:
   Player( void );

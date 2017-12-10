@@ -3,10 +3,10 @@
 int main( int argc, char **argv ) {
   RPG *rpg = RPG::instance();
   
-  std::cout << "RPG is started..." << std::endl;
+  cout << "RPG is started..." << endl;
 
   if( !rpg->loadMap( "map.txt" ) ) {
-    std::cout << "RPG map is not loaded" << std::endl;
+    cout << "RPG map is not loaded" << endl;
     delete rpg;
 
     return -1;
@@ -15,6 +15,8 @@ int main( int argc, char **argv ) {
   rpg->run();
   
   delete rpg;
+
+  cout << endl << " Game Over" << endl;
   
   return 0;
 }

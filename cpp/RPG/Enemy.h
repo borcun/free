@@ -9,6 +9,10 @@
 
 #define ENEMY_MAX_HEALTH_VALUE ( 1000 )
 
+#define ENEMY_MIN_EXPERIENCE ( 10 )
+
+#define ENEMY_MAX_EXPERIENCE ( 50 )
+
 // Enemy class
 class Enemy : public Character {
  public:
@@ -16,10 +20,7 @@ class Enemy : public Character {
   virtual ~Enemy();
   
   void setExperienceAmount( const int eExperienceAmount );
-  void setPotionChance( const double ePotionChance );
-
   int getExperienceAmount( void ) const;
-  double getPotionChance( void ) const;
 
   void information( void );
   void drinkPotion( void );
@@ -27,7 +28,6 @@ class Enemy : public Character {
   
  private:
   int experienceAmount;
-  double potionChance;
 
 };
 

@@ -9,6 +9,6 @@ FinishPoint::~FinishPoint() {
 }
 
 void FinishPoint::information( void ) {
-  std::cout << "Finish Point Object" << std::endl;
+  cout << "Finish Point Object" << endl;
   return;
 }

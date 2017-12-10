@@ -3,6 +3,8 @@
 RPG *RPG::rpg = NULL;
 
 RPG::RPG( void ) {
+  srand( time( NULL ) );
+  
   for( int i=0 ; i < MAX_GAME_OBJECT_COUNT ; ++i ) {
     gameObject[i] = NULL;
   }
@@ -44,10 +46,10 @@ bool RPG::loadMap( const char *mapPath ) {
   Player *player = new Player();
 
   player->setSign( PLAYER_SIGN );
-  player->setXCoordinate( MAP_SIZE - 1 );
-  player->setYCoordinate( 0 );
+  player->setXCoordinate( 0 );
+  player->setYCoordinate( MAP_SIZE - 1 );
 
-  gameObject[0] = player;
+  gameObject[ PLAYER_OBJECT_INDEX ] = player;
 
   int goCount = 1;
 
@@ -83,6 +85,7 @@ bool RPG::loadMap( const char *mapPath ) {
 	  gold->setSign( GOLD_SIGN );
 	  gold->setXCoordinate( x );
 	  gold->setYCoordinate( y );
+	  gold->setGoldAmount( MIN_GOLD_AMOUNT + ( rand() % ( MAX_GOLD_AMOUNT - MIN_GOLD_AMOUNT + 1 ) ) );
 
 	  gameObject[ goCount ] = gold;
 	  
@@ -110,20 +113,137 @@ bool RPG::loadMap( const char *mapPath ) {
 	} // end of switch
       }
     }
-  }
+
+    sleepScreen();
+    
+  } // end of while
   
   fclose( fPtr );
 
   return true;
 }
 
-void RPG::printMap( void ) {
-#ifdef __win__
-  system( "cls" );
-#elif __win__
-  system( "clear" );
-#endif
+void RPG::run( void ) {
+  int choice = 0;
+  bool isClearScreen = true;
+    
+  isThereEnemy = false;
+  isFinishPoint = false;
+  
+  clearScreen();
+  printMap();
+      
+  while( choice != EXIT_GAME ) {
+    if( isClearScreen ) {
+      clearScreen();
+      printMap();
+    }
+    
+    choice = printMenu();
+    
+    switch( choice ) {
+    case MOVE_UP: {
+      if( !isThereEnemy ) {
+	int y = gameObject[ PLAYER_OBJECT_INDEX ]->getYCoordinate() - 1;
 
+	if( y < 0 ) {
+	  y = MAP_SIZE - 1;
+	}
+      
+	gameObject[ PLAYER_OBJECT_INDEX ]->setYCoordinate( y % MAP_SIZE );
+	clearScreen();
+	printMap();
+      }
+      else {
+	isClearScreen = true;
+      }
+      
+      break;
+    }
+    case MOVE_DOWN: {
+      if( !isThereEnemy ) {      
+	int y = gameObject[ PLAYER_OBJECT_INDEX ]->getYCoordinate() + 1;
+
+	if( y >= MAP_SIZE ) {
+	  y = 0;
+	}
+      
+	gameObject[ PLAYER_OBJECT_INDEX ]->setYCoordinate( y % MAP_SIZE );
+	clearScreen();
+	printMap();
+      }
+      else {
+	isClearScreen = true;
+      }
+      
+      break;
+    }
+    case MOVE_RIGHT: {
+      if( !isThereEnemy ) {
+	int x = gameObject[ PLAYER_OBJECT_INDEX ]->getXCoordinate() + 1;
+	
+	if( x >= MAP_SIZE ) {
+	  x = 0;
+	}
+	
+	gameObject[ PLAYER_OBJECT_INDEX ]->setXCoordinate( x % MAP_SIZE );
+	clearScreen();
+	printMap();
+      }
+      else {
+	isClearScreen = true;
+      }
+
+      break;
+    }
+    case MOVE_LEFT: {
+      if( !isThereEnemy ) {
+	int x = gameObject[ PLAYER_OBJECT_INDEX ]->getXCoordinate() - 1;
+
+	if( x < 0 ) {
+	  x = MAP_SIZE - 1;
+	}
+	
+	gameObject[ PLAYER_OBJECT_INDEX ]->setXCoordinate( x % MAP_SIZE );
+	clearScreen();
+	printMap();
+      }
+      else {
+	isClearScreen = true;
+      }
+
+      break;
+    }
+    case PLAYER_INFO: {
+      if( isThereEnemy ) {
+	clearScreen();
+	printMap();
+      }
+
+      gameObject[ PLAYER_OBJECT_INDEX ]->information();
+
+      isClearScreen = false;
+      
+      break;
+    }
+    case EXIT_GAME: {
+      break;
+    }
+    default: {
+      std::cerr << std::endl << "  ! Invalid choice is entered" << std::endl;
+
+      sleepScreen();
+      clearScreen();
+    
+      break;
+    }
+    } // end of switch
+  } // end of while
+
+  return;
+}
+
+void RPG::printMap( void ) {
   char goMap[ MAP_SIZE ][ MAP_SIZE ] = { { '#' } };
 
   for( int i=0 ; i < MAP_SIZE ; ++i ) {      
@@ -131,30 +251,72 @@ void RPG::printMap( void ) {
       goMap[i][j] = '#';
     }
   }
+
+  int pXCoor = gameObject[ PLAYER_OBJECT_INDEX ]->getXCoordinate();
+  int pYCoor = gameObject[ PLAYER_OBJECT_INDEX ]->getYCoordinate();
   
   for( int i = 0 ; i < MAX_GAME_OBJECT_COUNT && NULL != gameObject[i] ; ++i ) {
-    int x = gameObject[i]->getXCoordinate();
-    int y = gameObject[i]->getYCoordinate();
     char sign = gameObject[i]->getSign();
     
     switch( sign ) {
     case PLAYER_SIGN: {
-      for( int j=x-1 ; j <= x+1 ; ++j ) {
-	for( int l=y-1 ; l <= y+1 ; ++l ) {
-	  if( !( j < 0 || j == MAP_SIZE || l < 0 || l == MAP_SIZE ) ) {
-	    goMap[ j % MAP_SIZE ][ l % MAP_SIZE ] = '-';
+      for( int j = pYCoor - 1 ; j <= pYCoor + 1 ; ++j ) {
+	for( int k = pXCoor - 1 ; k <= pXCoor + 1 ; ++k ) {
+	  if( !( j < 0 || j == MAP_SIZE || k < 0 || k == MAP_SIZE ) ) {
+	    goMap[ j % MAP_SIZE ][ k % MAP_SIZE ] = '-';
 	  }
 	}
       }
       
-      goMap[ x % MAP_SIZE ][ y % MAP_SIZE ] = sign;      
+      goMap[ pYCoor % MAP_SIZE ][ pXCoor % MAP_SIZE ] = sign;      
 
       break;
     }
-    case ENEMY_SIGN:
-    case FINISH_POINT_SIGN:
+    case ENEMY_SIGN: {
+      int x = gameObject[i]->getXCoordinate() % MAP_SIZE;
+      int y = gameObject[i]->getYCoordinate() % MAP_SIZE;
+	
+      if( pXCoor == x && pYCoor == y ) {
+	isThereEnemy = !fight( ( Enemy * ) gameObject[i] );
+      }
+      else if( sqrt( pow( pXCoor - x, 2 ) + pow( pYCoor - y, 2 ) ) < MAX_DIST_TO_PLAYER ) {
+	goMap[ y % MAP_SIZE ][ x % MAP_SIZE ] = sign;
+      }
+      
+      break;
+    }
+    case FINISH_POINT_SIGN: {
+      int x = gameObject[i]->getXCoordinate() % MAP_SIZE;
+      int y = gameObject[i]->getYCoordinate() % MAP_SIZE;
+
+      if( pXCoor == x && pYCoor == y ) {
+	isFinishPoint = true;
+      }
+      else if( sqrt( pow( pXCoor - x, 2 ) + pow( pYCoor - y, 2 ) ) < MAX_DIST_TO_PLAYER ) {
+	goMap[ y % MAP_SIZE ][ x % MAP_SIZE ] = sign;
+      }
+      
+      break;
+    }
     case GOLD_SIGN: {
-      goMap[ x % MAP_SIZE ][ y % MAP_SIZE ] = sign;
+      int x = gameObject[i]->getXCoordinate() % MAP_SIZE;
+      int y = gameObject[i]->getYCoordinate() % MAP_SIZE;
+
+      if( pXCoor == x && pYCoor == y ) {
+	int goldAmount = ( ( Gold * ) gameObject[i] )->getGoldAmount();
+	int playerGoldCount = ( ( Player * ) gameObject[ PLAYER_OBJECT_INDEX ] )->getGoldCount();
+	
+	( ( Player * ) gameObject[ PLAYER_OBJECT_INDEX ] )->setGoldCount( goldAmount + playerGoldCount );
+
+	delete gameObject[i];
+	gameObject[i] = NULL;
+      }
+      else if( sqrt( pow( pXCoor - x, 2 ) + pow( pYCoor - y, 2 ) ) < MAX_DIST_TO_PLAYER ) {
+	goMap[ y % MAP_SIZE ][ x % MAP_SIZE ] = sign;
+
+	gameObject[i]->information();
+      }
+      
       break;
     }
     } // end of switch
@@ -177,16 +339,163 @@ void RPG::printMap( void ) {
   return;
 }
 
-void RPG::printMenu( void ) {
-  int choice = 0;
-  bool validOp = false;
-  
 
+int RPG::printMenu() {
+  int choice = 0;
+  
   std::cout << " [1] Move up" << std::endl;
   std::cout << " [2] Move down" << std::endl;
   std::cout << " [3] Move right" << std::endl;
   std::cout << " [4] Move left" << std::endl;
   std::cout << " [5] Player Info" << std::endl;
   std::cout << " [6] Exit" << std::endl;
-  std::cout << " -> " << std::endl;
+  std::cout << "  -> ";
+  std::cin >> choice;
+
+  return choice;
+}
+
+bool RPG::fight( Enemy *enemy ) {
+  char fightOpt = 'n';
+
+  do {
+    std::cout << "Do you fight your enemy?" << std::endl;
+    std::cout << " -> ";
+    std::cin >> fightOpt;
+
+    if( 'y' == fightOpt || 'Y' == fightOpt ) {
+      Player *player = ( Player * ) gameObject[ PLAYER_OBJECT_INDEX ];
+      int attackType = AT_INVALID;
+
+      do {  
+	clearScreen();
+	
+	std::cout << std::endl;
+	std::cout << "Player [H:" << player->getHealth() << "][A:" << player->getArmor() << "][P:" << player->getPotionCount() << "]" << std::endl;
+	std::cout << "Enemy  [H:" << enemy->getHealth()  << "][A:" << enemy->getArmor()  << "][P:" << enemy->getPotionCount()  << "]" << std::endl;
+
+	std::cout << "[1] Attack" << std::endl;
+	std::cout << "[2] Drink Potion" << std::endl;
+	std::cout << "  -> ";
+	std::cin >> attackType;
+
+	if( AT_NORMAL == attackType ) {
+	  // critical attack
+	  if( 0 == ( rand() % 2 ) ) {
+	    enemy->takeDamage( player->attack() * 2 );
+	  }
+	  else {
+	    enemy->takeDamage( player->attack() );
+	  }
+
+	  if( !enemy->alive() ) {
+	    std::cout << std::endl;
+	    std::cout << "Enemy died" << std::endl;
+
+	    sleepScreen();
+	    
+	    break;
+	  }
+	  
+	  sleepScreen();
+
+	  // enemy may drink potion
+	  if( enemy->getHealth() < CHARACTER_POTION_VALUE &&  0 == ( rand() % 2 ) ) {
+	    enemy->drinkPotion();
+	  }
+	  else {
+	    // critical attack
+	    if( 0 == ( rand() % 2 ) ) {
+	      player->takeDamage( enemy->attack() * 2 );
+	    }
+	    else {
+	      player->takeDamage( enemy->attack() );
+	    }	  
+	  }
+	  
+	  if( !player->alive() ) {
+	    std::cout << std::endl;
+	    std::cout << "Player died" << std::endl;
+
+	    sleepScreen();
+	    
+	    break;
+	  }
+	}
+	else if( AT_DRINK_POTION == attackType ) {
+	  clearScreen();
+	
+	  std::cout << std::endl;
+	  std::cout << "Player [H:" << player->getHealth() << "][A:" << player->getArmor() << "][P:" << player->getPotionCount() << "]" << std::endl;
+	  std::cout << "Enemy  [H:" << enemy->getHealth()  << "][A:" << enemy->getArmor()  << "][P:" << enemy->getPotionCount()  << "]" << std::endl;
+
+	  std::cout << "[1] Attack" << std::endl;
+	  std::cout << "[2] Drink Potion" << std::endl;
+	  std::cout << "  -> ";
+	  std::cin >> attackType;
+
+	  player->drinkPotion();
+
+	  sleepScreen();
+
+	  // enemy may drink potion
+	  if( enemy->getHealth() < CHARACTER_POTION_VALUE &&  0 == ( rand() % 2 ) ) {
+	    enemy->drinkPotion();
+	  }
+	  else {
+	    // critical attack
+	    if( 0 == ( rand() % 2 ) ) {
+	      player->takeDamage( enemy->attack() * 2 );
+	    }
+	    else {
+	      player->takeDamage( enemy->attack() );
+	    }	  
+	  }
+	  
+	  if( !player->alive() ) {
+	    std::cout << std::endl;
+	    std::cout << "Player died" << std::endl;
+
+	    sleepScreen();
+	    
+	    break;
+	  }
+	}
+	else {
+	  std::cout << "Invalid Attack Type, please press 1 or 2" << std::endl;
+	}
+      }
+      while( true );
+    }
+    else if( 'n' == fightOpt || 'N' == fightOpt ) {
+      return false;
+    }
+    else {
+      std::cout << "Invalid Fight Option, please press Y/N" << std::endl;
+    }
+  } while( 'n' != fightOpt );
+    
+  return true;
+}
+
+void RPG::clearScreen( void ) {
+
+#ifdef _WIN32
+    system( "cls" );
+#else
+    system( "clear" );
+#endif
+
+    return;
+}
+
+void RPG::sleepScreen( void ) {
+
+#ifdef _WIN32
+    Sleep( 1 );
+#else
+    sleep( 1 );
+#endif
+    
+    return;
 }

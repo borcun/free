@@ -1,5 +1,13 @@
 #include "Gold.h"
 
+Gold::Gold() : GameObject() {
+  goldAmount = INV_GOLD_AMOUNT;
+}
+
+Gold::~Gold() {
+
+}
+
 void Gold::setGoldAmount( const int gold ) {
   if( gold < 0 ) {
     std::cout << "Gold amount can not be negative" << std::endl;
@@ -15,6 +23,6 @@ int Gold::getGoldAmount( void ) const {
 }
 
 void Gold::information( void ) {
-  std::cout << "Gold Amount Object" << std::endl;
+  std::cout << "Gold Amount: " << goldAmount << std::endl;
   return;
 }

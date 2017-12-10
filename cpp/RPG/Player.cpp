@@ -1,5 +1,18 @@
 #include "Player.h"
 
+Player::Player( void ) : Character() {
+  goldCount = 0;
+  level = 0;
+  experience = 0;
+  toLevelUp = 0;
+
+  setPotionCount( PLAYER_POTION_CHANCE );
+}
+
+Player::~Player() {
+
+}
+
 void Player::setGoldCount( const int pGoldCount ) {
   if( pGoldCount < 0 ) {
     std::cout << "Player gold count can not be negative" << std::endl;
@@ -56,21 +69,38 @@ int Player::getToLevelUp( void ) const {
   return toLevelUp;
 }
 
-double Player::attack( void ) {
-  double att = 1.0;
-
-  std::cout << "Player attacked" << std::endl;
-
-  return att;
-}
-
 void Player::information( void ) {
-  std::cout << "Player Object" << std::endl;;
+  std::cout << std::endl;
+  
+  std::cout << "  Level: " << getLevel() << std::endl;
+  std::cout << "  Current Health: " << getHealth() << std::endl;
+  std::cout << "  Max Health: " <<  getMaxHealth() << std::endl;
+  std::cout << "  Normal Damage: " << getDamage() << std::endl;
+  std::cout << "  Armor: " << getArmor() << std::endl;
+  std::cout << "  Crit Chance: " << getCritChance() << std::endl;
+  std::cout << "  Gold Count: " << getGoldCount() << std::endl;
+  std::cout << "  Experience: " << getExperience() << std::endl;  
+  std::cout << "  Needed Experience To Level Up: " << getToLevelUp()  << std::endl;
+  
+  std::cout << std::endl;
+
   return;
 }
 
-void Player::drinkPotion( void ) {
-  std::cout << "Player drunk potion" << std::endl;
+void Player::drinkPotion( void ) {  
+  if( 0 == getPotionCount() ) {
+    std::cout << "There is no potion chance for player" << std::endl;
+  }
+  else {
+    std::cout << "Player drunk potion" << std::endl;
+    setPotionCount( getPotionCount() - 1 );
+
+    int health = ( int ) getHealth() + CHARACTER_POTION_VALUE;
+
+    health = health % ( CHARACTER_MAX_HEALTH_VALUE + 1 );
+    setHealth( ( double ) health );
+  }
+
   return;
 }
 

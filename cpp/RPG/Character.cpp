@@ -1,5 +1,19 @@
 #include "Character.h"
 
+Character::Character( void ) {
+  health = CHARACTER_MAX_HEALTH_VALUE;
+  maxHealth = CHARACTER_MAX_HEALTH_VALUE;
+  armor = CHARACTER_ARMOR_VALUE;
+  damage = 0.0;
+  critChance = 0.0;
+  potionCount = 0;
+  isAlive = true;
+}
+
+Character::~Character() {
+
+}
+
 void Character::setHealth( const double cHealth ) {
   if( cHealth < 0 ) {
     std::cout << "The health can not be negative" << std::endl;
@@ -88,7 +102,31 @@ bool Character::alive( void ) const {
   return isAlive;
 }
 
+double Character::attack( void ) {
+  return CHARACTER_ATTACK_VALUE;
+}
+
 void Character::takeDamage( const double damageAmount ) {
-  std::cout << "I took damage: " << damageAmount << std::endl;
+  if( armor <= 0 ) {
+    if( health > 0 ) {
+      health -= damageAmount;
+    }
+    else {
+      isAlive = false;
+    }
+  }
+  else {
+    armor -= damageAmount;
+
+    if( armor < 0 ) {
+      health += armor;
+      armor = 0;
+
+      if( health < 0 ) {
+	isAlive = false;
+      }
+    }
+  }
+    
   return;
 }

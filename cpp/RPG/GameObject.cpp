@@ -1,5 +1,11 @@
 #include "GameObject.h"
 
+GameObject::GameObject() {
+  xCoordinate = INV_X_COORDINATE;
+  yCoordinate = INV_Y_COORDINATE;
+  sign = INV_SIGN;
+}
+
 GameObject::~GameObject() {
 
 }

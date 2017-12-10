@@ -3,8 +3,13 @@
 
 #include <iostream>
 
+#define INV_X_COORDINATE ( -1 )
+#define INV_Y_COORDINATE ( -1 )
+#define INV_SIGN 'X'
+
 class GameObject {
  public:
+  GameObject( void );
   virtual ~GameObject();
   
   void setSign( const char cSign );

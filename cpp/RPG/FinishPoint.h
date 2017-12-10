@@ -5,6 +5,9 @@
 
 class FinishPoint : public GameObject {
  public:
+  FinishPoint( void );
+  virtual ~FinishPoint();
+
   void information( void );
 };
 

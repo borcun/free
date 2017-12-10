@@ -360,7 +360,7 @@ bool RPG::fight( Enemy *enemy ) {
 
   do {
     cout << endl;
-    cout << " Do you fight your enemy?" << endl;
+    cout << " Do you fight your enemy? (y/n)" << endl;
     cout << "  -> ";
     cin >> fightOpt;
 
@@ -440,7 +440,7 @@ bool RPG::fight( Enemy *enemy ) {
 		enemyCritChance <= ENEMY_MAX_CRITICAL_HIT_CHANCE )
 	    {
 	      player->takeDamage( enemy->attack() * 2 );
-	      cout << endl << "Enemy attacked critically" << endl;
+	      cout << "Enemy attacked critically" << endl;
 	    }
 	    else {
 	      player->takeDamage( enemy->attack() );

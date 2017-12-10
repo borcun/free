@@ -103,15 +103,15 @@ bool Character::alive( void ) const {
 }
 
 double Character::attack( void ) {
-  return CHARACTER_ATTACK_VALUE;
+  return damage;
 }
 
 void Character::takeDamage( const double damageAmount ) {
-  if( armor <= 0 ) {
-    if( health > 0 ) {
+  if( armor <= 0.0 ) {
+    if( health > 0.0 ) {
       health -= damageAmount;
 
-      if( health <= 0 ) {
+      if( health <= 0.0 ) {
 	isAlive = false;
       }
     }
@@ -120,13 +120,13 @@ void Character::takeDamage( const double damageAmount ) {
     }
   }
   else {
-    armor -= damageAmount;
+    armor -= ( damageAmount / 50.0 );
 
-    if( armor < 0 ) {
+    if( armor <= 0.0 ) {
       health += armor;
-      armor = 0;
+      armor = 0.0;
 
-      if( health <= 0 ) {
+      if( health <= 0.0 ) {
 	isAlive = false;
       }
     }

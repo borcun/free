@@ -4,7 +4,11 @@
 #include "GameObject.h"
 #include <iostream>
 
-#define INV_GOLD_AMOUNT ( -1 )
+// minimum gold count
+#define MIN_GOLD_COUNT ( 300 )
+
+// maximum gold count
+#define MAX_GOLD_COUNT ( 500 )
 
 class Gold : public GameObject {
  public:

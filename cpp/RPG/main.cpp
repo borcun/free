@@ -18,7 +18,7 @@ int main( int argc, char **argv ) {
   
   delete rpg;
 
-  cout << endl << " Game Over" << endl;
+  cout << " Game Over" << endl;
   
   return 0;
 }

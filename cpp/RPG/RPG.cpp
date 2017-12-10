@@ -83,7 +83,6 @@ bool RPG::loadMap( const char *mapPath ) {
 	  gold->setSign( GOLD_SIGN );
 	  gold->setXCoordinate( x );
 	  gold->setYCoordinate( y );
-	  gold->setGoldAmount( randNum( MIN_GOLD_AMOUNT, MAX_GOLD_AMOUNT ) );
 
 	  gameObject[ goCount ] = gold;
 	  
@@ -374,13 +373,14 @@ bool RPG::fight( Enemy *enemy ) {
 	
 	cout << endl;
 
-	printf( "Player [H:%04d][A:%04d][P:%02d][E:%03d]\n",
+	printf( "Player [H:%04d][A:%04d][P:%02d][XP:%03d][L:%03d]\n",
 		( int ) player->getHealth(),
 		( int ) player->getArmor(),
 		player->getPotionCount(),
-		player->getExperience() );
+		player->getExperience(),
+		player->getLevel() );
 	
-	printf( "Enemy  [H:%04d][A:%04d][P:%02d][E:%03d]\n",
+	printf( "Enemy  [H:%04d][A:%04d][P:%02d][XP:%03d]\n",
 		( int ) enemy->getHealth(),
 		( int ) enemy->getArmor(),
 		enemy->getPotionCount(),
@@ -426,7 +426,10 @@ bool RPG::fight( Enemy *enemy ) {
 	  sleepScreen();
 
 	  // enemy may drink potion
-	  if( enemy->getHealth() < CHARACTER_POTION_VALUE && 0 == randNum( 1, 2 ) && 0 != enemy->getPotionCount() ) {
+	  if( 0 != enemy->getPotionCount() &&
+	      enemy->getMaxHealth() / enemy->getHealth() > ENEMY_POTION_CHANCE_BY_HEALTH &&
+	      ENEMY_POTION_CHANCE_TO_DRINK_RATIO > randNum( 0, 100 ) )
+	  {
 	    enemy->drinkPotion();
 	  }
 	  else {
@@ -435,10 +438,10 @@ bool RPG::fight( Enemy *enemy ) {
 	    // critical attack
 	    if( ENEMY_MIN_CRITICAL_HIT_CHANCE <= enemyCritChance &&
 		enemyCritChance <= ENEMY_MAX_CRITICAL_HIT_CHANCE )
-	      {
-		player->takeDamage( enemy->attack() * 2 );
-		cout << endl << "Enemy attacked critically" << endl;
-	      }
+	    {
+	      player->takeDamage( enemy->attack() * 2 );
+	      cout << endl << "Enemy attacked critically" << endl;
+	    }
 	    else {
 	      player->takeDamage( enemy->attack() );
 	      cout << "Enemy attacked" << endl;
@@ -464,32 +467,12 @@ bool RPG::fight( Enemy *enemy ) {
 	  sleepScreen();
 
 	  // enemy may drink potion
-	  if( enemy->getHealth() < CHARACTER_POTION_VALUE &&  0 == randNum( 1, 2 ) && 0 != enemy->getPotionCount() ) {
+	  if( 0 != enemy->getPotionCount() &&
+	      enemy->getMaxHealth() / enemy->getHealth() > ENEMY_POTION_CHANCE_BY_HEALTH &&
+	      ENEMY_POTION_CHANCE_TO_DRINK_RATIO > randNum( 0, 100 ) )
+	  {	    
 	    enemy->drinkPotion();
 	  }
-	  else {
-	    // critical attack
-	    if( ENEMY_CRITICAL_HIT_CHANCE > randNum( 0, 1000 ) ) {
-	      player->takeDamage( enemy->attack() * 2 );
-	    }
-	    else {
-	      player->takeDamage( enemy->attack() );
-	    }
-
-	    cout << "Enemy attacked" << endl;
-	  }
-	  
-	  if( !player->alive() ) {
-	    cout << "Player died" << endl;
-
-	    sleepScreen();
-	    fightOpt = 'n';
-	    isFinished = true;
-	    
-	    break;
-	  }
-
-	  sleepScreen();
 	}
 	else {
 	  cout << "Invalid Attack Type, please press 1 or 2" << endl;

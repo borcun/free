@@ -1,14 +1,13 @@
 #include "Enemy.h"
 
 Enemy::Enemy( void ) : Character() {
-  setExperienceAmount( randNum( ENEMY_STARTUP_MIN_XP, ENEMY_STARTUP_MAX_XP ) );
-  setPotionCount( ENEMY_POTION_CHANCE );
   setHealth( randNum( ENEMY_STARTUP_MIN_HEALTH, ENEMY_STARTUP_MAX_HEALTH ) );
   setMaxHealth( getHealth() );
   setArmor( ENEMY_STARTUP_ARMOR );
-  setExperienceAmount( randNum( ENEMY_STARTUP_MIN_XP, ENEMY_STARTUP_MAX_XP ) );
   setDamage( ENEMY_STARTUP_DAMAGE );
+  setExperienceAmount( randNum( ENEMY_STARTUP_MIN_XP, ENEMY_STARTUP_MAX_XP ) );
   setPotionCount( randNum( ENEMY_STARTUP_MIN_POTION_COUNT, ENEMY_STARTUP_MAX_POTION_COUNT ) );
+  setCritChance( randNum( ENEMY_MIN_CRITICAL_HIT_CHANCE, ENEMY_MAX_CRITICAL_HIT_CHANCE ) / 10.0 );
 }
 
 Enemy::~Enemy() {
@@ -46,8 +45,8 @@ void Enemy::drinkPotion( void ) {
 
     double health = getHealth() + ( double ) CHARACTER_POTION_VALUE;
 
-    if( health > CHARACTER_MAX_HEALTH_VALUE ) {
-      health = ( double ) CHARACTER_MAX_HEALTH_VALUE;
+    if( health > getMaxHealth() ) {
+      health = getMaxHealth();
     }
     
     setHealth( health );

@@ -21,9 +21,6 @@
 // enemy startup maximum potion count
 #define ENEMY_STARTUP_MAX_POTION_COUNT ( 2 )
 
-// enemy potion value
-#define ENEMY_POTION_VALUE ( 500 )
-
 // enemy start up minimum xp
 #define ENEMY_STARTUP_MIN_XP ( 300 )
 
@@ -37,7 +34,7 @@
 #define ENEMY_MAX_CRITICAL_HIT_CHANCE ( 75 )
 
 // enemy potion chance ratio by health ( %20 )
-#define ENEMY_POTION_CHANCE_BY_HEALT ( 20 )
+#define ENEMY_POTION_CHANCE_BY_HEALTH ( 20 )
 
 // enemy potion chance to drink ratio ( %80 )
 #define ENEMY_POTION_CHANCE_TO_DRINK_RATIO ( 80 )

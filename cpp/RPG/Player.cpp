@@ -2,7 +2,7 @@
 
 Player::Player( void ) : Character() {
   setGoldCount( PLAYER_STARTUP_GOLD_COUNT );
-  setPotionCount( PLAYER_POTION_CHANCE );
+  setPotionCount( PLAYER_POTION_COUNT );
   setLevel( PLAYER_STARTUP_LEVEL );
   setToLevelUp( PLAYER_LEVEL_UP_XP );
   setExperience( PLAYER_STARTUP_XP );
@@ -10,6 +10,7 @@ Player::Player( void ) : Character() {
   setMaxHealth( PLAYER_STARTUP_HEALTH );
   setDamage( PLAYER_STARTUP_DAMAGE );
   setArmor( PLAYER_STARTUP_ARMOR );
+  setCritChance( PLAYER_CRITICAL_HIT_CHANCE / 10.0 );
 }
 
 Player::~Player() {
@@ -80,7 +81,7 @@ void Player::information( void ) {
   cout << "  Max Health: " <<  getMaxHealth() << endl;
   cout << "  Normal Damage: " << getDamage() << endl;
   cout << "  Armor: " << getArmor() << endl;
-  cout << "  Crit Chance: " << getCritChance() << endl;
+  cout << "  Crit Hit Chance: %" << getCritChance() << endl;
   cout << "  Gold Count: " << getGoldCount() << endl;
   cout << "  Experience: " << getExperience() << endl;  
   cout << "  Needed Experience To Level Up: " << getToLevelUp()  << endl;
@@ -100,8 +101,8 @@ void Player::drinkPotion( void ) {
 
     double health = getHealth() + ( double ) CHARACTER_POTION_VALUE;
 
-    if( health > CHARACTER_MAX_HEALTH_VALUE ) {
-      health = ( double ) CHARACTER_MAX_HEALTH_VALUE;
+    if( health > getMaxHealth() ) {
+      health = getMaxHealth();
     }
     
     setHealth( health );
@@ -129,7 +130,7 @@ void Player::levelUp( void ) {
   setHealth( ( health < getMaxHealth() ) ? health : getMaxHealth() );
   setMaxHealth( getMaxHealth() + PLAYER_HEALTH_INC_AFTER_FIGHT );
   setArmor( getArmor() + PLAYER_ARMOR_INC_AFTER_FIGHT );
-  setCriticalChance( getCriticalChance() + PLAYER_CRIT_CHANCE_INC_AFTER_FIGHT );
+  setCritChance( getCritChance() + PLAYER_CRIT_CHANCE_INC_AFTER_FIGHT );
   setDamage( getDamage() + PLAYER_DAMAGE_INC_AFTER_FIGHT );
 
   if( PLAYER_POTION_COUNT_INC_RATIO > randNum( 0, 100 ) ) {

@@ -1,7 +1,7 @@
 #include "Gold.h"
 
 Gold::Gold() : GameObject() {
-  goldAmount = INV_GOLD_AMOUNT;
+  goldAmount = randNum( MIN_GOLD_COUNT, MAX_GOLD_COUNT );
 }
 
 Gold::~Gold() {
@@ -23,7 +23,6 @@ int Gold::getGoldAmount( void ) const {
 }
 
 void Gold::information( void ) {
-  cout << "Gold Object" << endl;
-  cout << "Gold Amount: " << goldAmount << endl;
+  printf( "[%d][%d] Gold Amount: %d\n", getXCoordinate()+1, getYCoordinate()+1, goldAmount );
   return;
 }

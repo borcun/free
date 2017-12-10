@@ -21,6 +21,9 @@
 // player startup damage
 #define PLAYER_STARTUP_DAMAGE ( 100 )
 
+// player startup armor
+#define PLAYER_STARTUP_ARMOR ( 20 )
+
 // player critical hit chance ( %8.5 )
 #define PLAYER_CRITICAL_HIT_CHANCE ( 85 )
 

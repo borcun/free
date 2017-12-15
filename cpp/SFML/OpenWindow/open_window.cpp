@@ -10,7 +10,7 @@ using namespace sf;
 int main() {
   RenderWindow window;
 
-  window.create( VideoMode( 800, 600 ), "my window" );
+  window.create( VideoMode( 800, 600 ), "My Window" );
   window.setPosition( Vector2i( 100, 100 ) );
   
   while( window.isOpen() ) {

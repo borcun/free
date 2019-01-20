@@ -1,0 +1,1 @@
+cmd_/home/boo/Workspace/free/linux/module/hello_world.ko := ld -r -m elf_x86_64 -T /usr/src/linux-headers-4.9.0-6-common/scripts/module-common.lds --build-id  -o /home/boo/Workspace/free/linux/module/hello_world.ko /home/boo/Workspace/free/linux/module/hello_world.o /home/boo/Workspace/free/linux/module/hello_world.mod.o ;  true

@@ -42,6 +42,8 @@ class ConvexHull:
 
         f.close()
 
+        print( self.points )
+        
     def solve( self ):
         if 3 > len( self.points ):
             print( " Point counts are not enough to solve!\n" )

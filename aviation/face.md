@@ -38,3 +38,9 @@ Future Airborne Capability Environment
    certification pedigree. The General Purpose Profile is the least constrained profile and supports 
    OS APIs meeting real-time deterministic or non-real-time, non-deterministic requirements depending 
    on the system or subsystem implementation. 
+ - The FACE Data Architecture defines the FACE Data Model Language (including the language binding 
+   specification), Query and Template language, FACE Shared Data Model (SDM) and the rules of 
+   construction of the Unit of Portability (UoP) Supplied Model (USM). Each PCS Unit of Conformance 
+   (UoC), PSSS UoC, or TSS UoC providing using TS Interfaces is accompanied by a USM consistent with 
+   the FACE SDM and defines its interfaces in terms of the FACE Data Model Language. A Domain-Specific 
+   Data Model (DSDM) captures content relevant to a domain of interest and can be used as a basis for USMs.

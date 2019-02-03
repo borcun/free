@@ -54,3 +54,50 @@
    the FACE SDM and defines its interfaces in terms of the FACE Data Model Language. A Domain-Specific 
    Data Model (DSDM) captures content relevant to a domain of interest and can be used as a basis for 
    USMs.
+
+### Operating System Segment
+ The OSS is where foundational system services and vendor-supplied software reside. An OSS
+ UoC provides and controls access to the computing platform. An OSS UoC supports the
+ execution of all FACE UoCs and hosts various operating system, integration, and low-level
+ health monitoring interfaces. An OSS UoC can also optionally provide external networking
+ capabilities, Programming Language Run-Times, Component Framework, Life Cycle Management, 
+ and Configuration Services capabilities.
+
+### I/O Service Segment
+ The IOSS is where normalization of vendor-supplied interface hardware device drivers occurs.
+ IOSS UoCs provide the abstraction of the interface hardware and drivers from the PSSS UoCs.
+ This allows the PSSS UoCs to focus on the interface data and not the hardware and driver
+ specifics.
+
+### Platform-Specific Service Segment
+ The PSSS is comprised of sub-segments including Platform-Specific Device Services, Platform-
+ Specific Common Services, and Platform-Specific Graphics Services.
+
+#### Platform-Specific Device Services
+ Platform-Specific Device Services (PSDS) are where management of data and translation
+ between platform-unique Interface Control Documents (ICDs) and the FACE Data Model
+ occurs.
+
+#### Platform-Specific Common Services
+ Platform-Specific Common Services (PSCS) are comprised of higher-level services including
+ Logging Services, Device Protocol Mediation (DPM) Services, Streaming Media, Health
+ Monitoring and Fault Management (HMFM), and Configuration Services.
+
+#### Platform-Specific Graphics Services
+ Platform-Specific Graphics Services (PSGS) is where presentation management occurs. PSGS
+ abstracts the interface specifics of Graphics Processing Units (GPU) another graphics devices
+ from software components within the FACE Reference Architecture.
+
+### Transport Services Segment
+ The TSS is comprised of communication services. The TSS abstracts transport mechanisms and
+ data access from software components facilitating integration into disparate architectures and
+ platforms using different transports. TSS UoCs are responsible for data distribution between
+ PCS and/or PSSS UoCs. TSS capabilities include, but are not limited to, distribution and routing,
+ prioritization, addressability, association, abstraction, transformation, and component state
+ persistence of software component interface information.
+
+### Portable Components Segment
+ The PCS is comprised of software components providing capabilities and/or business logic. PCS
+ components are intended to remain agnostic from hardware and sensors. Additionally, these
+ components are not tied to any data transport or operating system implementations to meet
+ objectives of portability and interoperability.

@@ -24,7 +24,7 @@
    their integration on new systems.
    
  - The FACE Reference Architecture is composed of logical segments where variance occurs.
-   The structure created by connecting these sgments together is the foundation of FACE
+   The structure created by connecting these segments together is the foundation of FACE
    Reference Architecture. The five segment of the FACE Reference Architecture are;
 
     1. Operating System Segment (OSS)
@@ -52,4 +52,5 @@
    construction of the Unit of Portability (UoP) Supplied Model (USM). Each PCS Unit of Conformance 
    (UoC), PSSS UoC, or TSS UoC providing using TS Interfaces is accompanied by a USM consistent with 
    the FACE SDM and defines its interfaces in terms of the FACE Data Model Language. A Domain-Specific 
-   Data Model (DSDM) captures content relevant to a domain of interest and can be used as a basis for USMs.
+   Data Model (DSDM) captures content relevant to a domain of interest and can be used as a basis for 
+   USMs.

@@ -27,11 +27,11 @@
    The structure created by connecting these sgments together is the foundation of FACE
    Reference Architecture. The five segment of the FACE Reference Architecture are;
 
-    > Operating System Segment (OSS)
-	> I/O Services Segment (IOSS)
-	> Platform-Specific Services Segment (PSSS)
-	> Transport Service Segment (TSS)
-	> Portable Components Segment (PCS)
+    1. Operating System Segment (OSS)
+	2. I/O Services Segment (IOSS)
+	3. Platform-Specific Services Segment (PSSS)
+	4. Transport Service Segment (TSS)
+	5. Portable Components Segment (PCS)
   
    FACE Reference Architecture defines a set of standardized interfaces providing connections 
    between the FACE architectural segments.

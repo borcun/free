@@ -1,4 +1,4 @@
-Future Airborne Capability Environment
+## Future Airborne Capability Environment
 
  - FACE was formed in 2010 to define an open avionics environment for all military
    airborne platform types.
@@ -27,11 +27,11 @@ Future Airborne Capability Environment
    The structure created by connecting these sgments together is the foundation of FACE
    Reference Architecture. The five segment of the FACE Reference Architecture are;
 
-    # Operating System Segment (OSS)
-	# I/O Services Segment (IOSS)
-	# Platform-Specific Services Segment (PSSS)
-	# Transport Service Segment (TSS)
-	# Portable Components Segment (PCS)
+    > Operating System Segment (OSS)
+	> I/O Services Segment (IOSS)
+	> Platform-Specific Services Segment (PSSS)
+	> Transport Service Segment (TSS)
+	> Portable Components Segment (PCS)
   
    FACE Reference Architecture defines a set of standardized interfaces providing connections 
    between the FACE architectural segments.

@@ -11,12 +11,12 @@ config_version=3
 [application]
 
 config/name="HelloWorld"
-run/main_scene="res://main.tscn"
+run/main_scene="res://scene/main.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-Memory="*res://Memory.gd"
+Memory="*res://script/Memory.gd"
 
 [display]
 

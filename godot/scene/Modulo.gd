@@ -70,5 +70,5 @@ func _pressed():
 		
 		lbl.set_text( str( Memory.first_number ) )
 		
-	Memory.operator = "-"
+	Memory.operator = "%"
 	Memory.second_number = null

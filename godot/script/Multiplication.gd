@@ -21,9 +21,19 @@ func _pressed():
 	var lbl = get_node( "../../PanelContainer/Label" )
 	
 	if Memory.first_number == null:
-		Memory.first_number = lbl.get_text().to_int()
+		var num = lbl.get_text()
+		
+		if	-1 != num.find( "." ):
+			Memory.first_number = num.to_float()
+		else:
+			Memory.first_number = num.to_int()
 	else:
-		Memory.second_number = lbl.get_text().to_int()
+		var num = lbl.get_text()
+		
+		if	-1 != num.find( "." ):
+			Memory.second_number = num.to_float()
+		else:
+			Memory.second_number = num.to_int()
 		
 		if Memory.operator == "+":
 			Memory.first_number = Memory.first_number + Memory.second_number
@@ -44,7 +54,7 @@ func _pressed():
 				
 			Memory.first_number = Memory.first_number / Memory.second_number
 		elif Memory.operator == "%":
-			if Memory.second_number == 0:
+			if Memory.second_number == 0 or -1 != str(Memory.first_number).find(".") or -1 != str(Memory.second_number).find("."):
 				Memory.first_number = null
 				Memory.second_number = null
 				Memory.operator = null

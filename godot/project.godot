@@ -10,9 +10,9 @@ config_version=3
 
 [application]
 
-config/name="HelloWorld"
+config/name="Godot Calculator"
 run/main_scene="res://scene/main.tscn"
-config/icon="res://icon.png"
+config/icon="res://image/icon.png"
 
 [autoload]
 

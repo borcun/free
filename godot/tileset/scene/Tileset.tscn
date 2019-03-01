@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://asset/frames/tiles/platformPack_tile013.png" type="Texture" id=1]
+[ext_resource path="res://asset/frames/tiles/platformPack_tile016.png" type="Texture" id=2]
+[ext_resource path="res://asset/frames/tiles/platformPack_tile040.png" type="Texture" id=3]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Ground" type="Sprite" parent="." index="0"]
+
+position = Vector2( 40, 60 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 64, 64 )
+_sections_unfolded = [ "Region" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Ground" index="0"]
+
+scale = Vector2( 1.25, 1.25 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ground/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( 26, -26, 26, 26, -26, 26, -26, -26 )
+
+[node name="Background" type="Sprite" parent="." index="1"]
+
+position = Vector2( 130, 60 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 64, 64 )
+_sections_unfolded = [ "Region" ]
+
+[node name="Wall" type="Sprite" parent="." index="2"]
+
+position = Vector2( 220, 60 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 64, 64 )
+_sections_unfolded = [ "Region" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Wall" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+

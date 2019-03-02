@@ -1,29 +1,19 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://res/top.tres" type="StyleBox" id=1]
-[ext_resource path="res://res/font.tres" type="DynamicFont" id=2]
-[ext_resource path="res://script/AC.gd" type="Script" id=3]
-[ext_resource path="res://script/Sign.gd" type="Script" id=4]
-[ext_resource path="res://script/Modulo.gd" type="Script" id=5]
-[ext_resource path="res://res/operator.tres" type="StyleBox" id=6]
-[ext_resource path="res://script/Division.gd" type="Script" id=7]
-[ext_resource path="res://script/Number7.gd" type="Script" id=8]
-[ext_resource path="res://script/Number8.gd" type="Script" id=9]
-[ext_resource path="res://script/Number9.gd" type="Script" id=10]
-[ext_resource path="res://script/Multiplication.gd" type="Script" id=11]
-[ext_resource path="res://script/Number4.gd" type="Script" id=12]
-[ext_resource path="res://script/Number5.gd" type="Script" id=13]
-[ext_resource path="res://script/Number6.gd" type="Script" id=14]
-[ext_resource path="res://script/Subtraction.gd" type="Script" id=15]
-[ext_resource path="res://script/Number1.gd" type="Script" id=16]
-[ext_resource path="res://script/Number2.gd" type="Script" id=17]
-[ext_resource path="res://script/Number3.gd" type="Script" id=18]
-[ext_resource path="res://script/Addition.gd" type="Script" id=19]
-[ext_resource path="res://script/Backspace.gd" type="Script" id=20]
-[ext_resource path="res://script/Number0.gd" type="Script" id=21]
-[ext_resource path="res://script/Point.gd" type="Script" id=22]
-[ext_resource path="res://script/Equal.gd" type="Script" id=23]
-[ext_resource path="res://font/DejaVuSansMono.ttf" type="DynamicFontData" id=24]
+[ext_resource path="res://script/main.gd" type="Script" id=1]
+[ext_resource path="res://scene/GridContainer.gd" type="Script" id=2]
+[ext_resource path="res://res/top.tres" type="StyleBox" id=3]
+[ext_resource path="res://res/font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://script/AC.gd" type="Script" id=5]
+[ext_resource path="res://script/Sign.gd" type="Script" id=6]
+[ext_resource path="res://script/Operators.gd" type="Script" id=7]
+[ext_resource path="res://res/operator.tres" type="StyleBox" id=8]
+[ext_resource path="res://script/Numbers.gd" type="Script" id=9]
+[ext_resource path="res://script/Backspace.gd" type="Script" id=10]
+[ext_resource path="res://script/Number0.gd" type="Script" id=11]
+[ext_resource path="res://script/Point.gd" type="Script" id=12]
+[ext_resource path="res://script/Equal.gd" type="Script" id=13]
+[ext_resource path="res://font/DejaVuSansMono.ttf" type="DynamicFontData" id=14]
 
 [sub_resource type="ImageTexture" id=1]
 
@@ -38,36 +28,39 @@ size = Vector2( 0, 0 )
 size = 96
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 24 )
+font_data = ExtResource( 14 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="Panel" type="Panel" index="0"]
+[node name="CalculatorPanel" type="Panel" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 2.0
-margin_top = 3.0
+margin_top = 2.0
 margin_right = 1082.0
-margin_bottom = 1923.0
+margin_bottom = 1922.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-_sections_unfolded = [ "Rect" ]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 
-[node name="GridContainer" type="GridContainer" parent="." index="0"]
+[node name="NumberContainer" type="GridContainer" parent="." index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 22.0
+margin_left = 19.0
 margin_top = 280.0
-margin_right = 1062.0
+margin_right = 1059.0
 margin_bottom = 1900.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -76,9 +69,12 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 columns = 4
-_sections_unfolded = [ "Margin", "Rect" ]
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
 
-[node name="AC" type="Button" parent="GridContainer" index="0"]
+[node name="AC" type="Button" parent="NumberContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -93,9 +89,9 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/hover = ExtResource( 1 )
-custom_styles/normal = ExtResource( 1 )
-custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/normal = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -103,10 +99,10 @@ group = null
 text = "AC"
 flat = false
 align = 1
-script = ExtResource( 3 )
+script = ExtResource( 5 )
 _sections_unfolded = [ "custom_styles" ]
 
-[node name="Sign" type="Button" parent="GridContainer" index="1"]
+[node name="Sign" type="Button" parent="NumberContainer" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -122,20 +118,20 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/hover = ExtResource( 1 )
-custom_styles/normal = ExtResource( 1 )
-custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/normal = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "+/-"
+text = "±"
 flat = false
 align = 1
-script = ExtResource( 4 )
-_sections_unfolded = [ "custom_styles" ]
+script = ExtResource( 6 )
+_sections_unfolded = [ "Pause", "custom_styles" ]
 
-[node name="Modulo" type="Button" parent="GridContainer" index="2"]
+[node name="Modulo" type="Button" parent="NumberContainer" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -151,9 +147,9 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/hover = ExtResource( 1 )
-custom_styles/normal = ExtResource( 1 )
-custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/normal = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -161,10 +157,10 @@ group = null
 text = "%"
 flat = false
 align = 1
-script = ExtResource( 5 )
+script = ExtResource( 7 )
 _sections_unfolded = [ "custom_styles" ]
 
-[node name="Division" type="Button" parent="GridContainer" index="3"]
+[node name="Division" type="Button" parent="NumberContainer" index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -180,9 +176,9 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/hover = ExtResource( 6 )
-custom_styles/normal = ExtResource( 6 )
-custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = ExtResource( 8 )
+custom_styles/normal = ExtResource( 8 )
+custom_fonts/font = ExtResource( 4 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -193,7 +189,7 @@ align = 1
 script = ExtResource( 7 )
 _sections_unfolded = [ "custom_fonts", "custom_styles" ]
 
-[node name="Number7" type="Button" parent="GridContainer" index="4"]
+[node name="Number7" type="Button" parent="NumberContainer" index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -209,7 +205,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 4 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -217,10 +213,10 @@ group = null
 text = "7"
 flat = false
 align = 1
-script = ExtResource( 8 )
+script = ExtResource( 9 )
 _sections_unfolded = [ "Pause" ]
 
-[node name="Number8" type="Button" parent="GridContainer" index="5"]
+[node name="Number8" type="Button" parent="NumberContainer" index="5"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -237,7 +233,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 4 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -247,7 +243,7 @@ flat = false
 align = 1
 script = ExtResource( 9 )
 
-[node name="Number9" type="Button" parent="GridContainer" index="6"]
+[node name="Number9" type="Button" parent="NumberContainer" index="6"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -264,7 +260,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 4 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -272,9 +268,9 @@ group = null
 text = "9"
 flat = false
 align = 1
-script = ExtResource( 10 )
+script = ExtResource( 9 )
 
-[node name="Multiplication" type="Button" parent="GridContainer" index="7"]
+[node name="Multiplication" type="Button" parent="NumberContainer" index="7"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -291,20 +287,20 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/hover = ExtResource( 6 )
-custom_styles/normal = ExtResource( 6 )
-custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = ExtResource( 8 )
+custom_styles/normal = ExtResource( 8 )
+custom_fonts/font = ExtResource( 4 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "*"
+text = "x"
 flat = false
 align = 1
-script = ExtResource( 11 )
+script = ExtResource( 7 )
 _sections_unfolded = [ "custom_fonts" ]
 
-[node name="Number4" type="Button" parent="GridContainer" index="8"]
+[node name="Number4" type="Button" parent="NumberContainer" index="8"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -320,7 +316,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 4 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -328,9 +324,9 @@ group = null
 text = "4"
 flat = false
 align = 1
-script = ExtResource( 12 )
+script = ExtResource( 9 )
 
-[node name="Number5" type="Button" parent="GridContainer" index="9"]
+[node name="Number5" type="Button" parent="NumberContainer" index="9"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -347,7 +343,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 4 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -355,9 +351,9 @@ group = null
 text = "5"
 flat = false
 align = 1
-script = ExtResource( 13 )
+script = ExtResource( 9 )
 
-[node name="Number6" type="Button" parent="GridContainer" index="10"]
+[node name="Number6" type="Button" parent="NumberContainer" index="10"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -374,7 +370,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 4 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -382,9 +378,9 @@ group = null
 text = "6"
 flat = false
 align = 1
-script = ExtResource( 14 )
+script = ExtResource( 9 )
 
-[node name="Subtraction" type="Button" parent="GridContainer" index="11"]
+[node name="Subtraction" type="Button" parent="NumberContainer" index="11"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -401,9 +397,9 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/hover = ExtResource( 6 )
-custom_styles/normal = ExtResource( 6 )
-custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = ExtResource( 8 )
+custom_styles/normal = ExtResource( 8 )
+custom_fonts/font = ExtResource( 4 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -411,10 +407,10 @@ group = null
 text = "-"
 flat = false
 align = 1
-script = ExtResource( 15 )
+script = ExtResource( 7 )
 _sections_unfolded = [ "custom_fonts" ]
 
-[node name="Number1" type="Button" parent="GridContainer" index="12"]
+[node name="Number1" type="Button" parent="NumberContainer" index="12"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -430,7 +426,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 4 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -439,10 +435,10 @@ text = "1"
 icon = SubResource( 1 )
 flat = false
 align = 1
-script = ExtResource( 16 )
+script = ExtResource( 9 )
 _sections_unfolded = [ "custom_fonts" ]
 
-[node name="Number2" type="Button" parent="GridContainer" index="13"]
+[node name="Number2" type="Button" parent="NumberContainer" index="13"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -459,7 +455,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 4 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -467,9 +463,9 @@ group = null
 text = "2"
 flat = false
 align = 1
-script = ExtResource( 17 )
+script = ExtResource( 9 )
 
-[node name="Number3" type="Button" parent="GridContainer" index="14"]
+[node name="Number3" type="Button" parent="NumberContainer" index="14"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -486,7 +482,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 4 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -494,9 +490,9 @@ group = null
 text = "3"
 flat = false
 align = 1
-script = ExtResource( 18 )
+script = ExtResource( 9 )
 
-[node name="Addition" type="Button" parent="GridContainer" index="15"]
+[node name="Addition" type="Button" parent="NumberContainer" index="15"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -513,9 +509,9 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/hover = ExtResource( 6 )
-custom_styles/normal = ExtResource( 6 )
-custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = ExtResource( 8 )
+custom_styles/normal = ExtResource( 8 )
+custom_fonts/font = ExtResource( 4 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -523,10 +519,10 @@ group = null
 text = "+"
 flat = false
 align = 1
-script = ExtResource( 19 )
+script = ExtResource( 7 )
 _sections_unfolded = [ "Pause" ]
 
-[node name="Backspace" type="Button" parent="GridContainer" index="16"]
+[node name="Backspace" type="Button" parent="NumberContainer" index="16"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -542,8 +538,9 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/normal = ExtResource( 6 )
-custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = ExtResource( 8 )
+custom_styles/normal = ExtResource( 8 )
+custom_fonts/font = ExtResource( 4 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -551,10 +548,10 @@ group = null
 text = "<-"
 flat = false
 align = 1
-script = ExtResource( 20 )
+script = ExtResource( 10 )
 _sections_unfolded = [ "custom_styles" ]
 
-[node name="Number0" type="Button" parent="GridContainer" index="17"]
+[node name="Number0" type="Button" parent="NumberContainer" index="17"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -571,7 +568,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 4 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -579,9 +576,9 @@ group = null
 text = "0"
 flat = false
 align = 1
-script = ExtResource( 21 )
+script = ExtResource( 11 )
 
-[node name="Point" type="Button" parent="GridContainer" index="18"]
+[node name="Point" type="Button" parent="NumberContainer" index="18"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -598,7 +595,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 4 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -606,9 +603,9 @@ group = null
 text = "."
 flat = false
 align = 1
-script = ExtResource( 22 )
+script = ExtResource( 12 )
 
-[node name="Equal" type="Button" parent="GridContainer" index="19"]
+[node name="Equal" type="Button" parent="NumberContainer" index="19"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -625,9 +622,9 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/hover = ExtResource( 6 )
-custom_styles/normal = ExtResource( 6 )
-custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = ExtResource( 8 )
+custom_styles/normal = ExtResource( 8 )
+custom_fonts/font = ExtResource( 4 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -635,18 +632,20 @@ group = null
 text = "="
 flat = false
 align = 1
-script = ExtResource( 23 )
+script = ExtResource( 13 )
+_sections_unfolded = [ "custom_styles" ]
 
-[node name="PanelContainer" type="PanelContainer" parent="." index="1"]
+[node name="ResultContainer" type="PanelContainer" parent="." index="1"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 22.0
-margin_top = 10.0
-margin_right = 1062.0
-margin_bottom = 260.0
+margin_left = 19.0
+margin_top = 14.0
+margin_right = 1059.0
+margin_bottom = 264.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -654,8 +653,11 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 3
 _sections_unfolded = [ "Margin", "Rect" ]
+__meta__ = {
+"_edit_group_": true
+}
 
-[node name="Label" type="Label" parent="PanelContainer" index="0"]
+[node name="ResultLabel" type="Label" parent="ResultContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0

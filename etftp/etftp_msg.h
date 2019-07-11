@@ -2,6 +2,7 @@
 #define ETFTP_MSG_H
 
 #include <iostream>
+#include <cstring>
 
 //! maximum file name length
 #define MAX_FILENAME_LEN (255)
@@ -162,7 +163,7 @@ struct ETFTPData : ETFTPMessage {
     return bn;
   }
 
-  char *getData( const char *stream ) {
+  char *getData( char *stream ) {
     return &stream[4];
   }
   
@@ -175,8 +176,8 @@ struct ETFTPData : ETFTPMessage {
 
     stream[ len++ ] = 0x00;
     stream[ len++ ] = OC_DATA;
-    stream[ len++ ] = ( block_num & OxFFOO ) >> 8;
-    stream[ len++ ] = ( block_num & OxOOFF );
+    stream[ len++ ] = ( block_num & 0xFF00 ) >> 8;
+    stream[ len++ ] = ( block_num & 0x00FF );
 
     memcpy( &stream[ len ], data, data_len );
     len += data_len;
@@ -186,7 +187,7 @@ struct ETFTPData : ETFTPMessage {
 };
 
 /// @struct
-struct ETFTPAck : ETFPMessage {
+struct ETFTPAck : ETFTPMessage {
   ushort block_num;
   unsigned int len;
   
@@ -216,19 +217,29 @@ struct ETFTPAck : ETFPMessage {
 
     stream[ len++ ] = 0x00;
     stream[ len++ ] = OC_ACK;
-    stream[ len++ ] = ( block_num & OxFFOO ) >> 8;
-    stream[ len++ ] = ( block_num & OxOOFF );
+    stream[ len++ ] = ( block_num & 0xFF00 ) >> 8;
+    stream[ len++ ] = ( block_num & 0x00FF );
 
     return len;
   }
 };
 
 /// @struct
-struct ETFTPError : ETFPMessage {
+struct ETFTPError : ETFTPMessage {
   ushort err_code;
-  char err_msg[ MAX_ERROR_MSG_LEN ];
+  char err_msg[ MAX_ERR_MSG_LEN ];
   uchar err_msg_len;
   unsigned int len;
+
+  ETFTPError( void ) {
+    opcode = OC_ERROR;
+    err_code = EC_NOT_DEFINED;
+    memset( err_msg, 0x00, MAX_ERR_MSG_LEN );
+    err_msg_len = MAX_ERR_MSG_LEN;
+    
+    len = sizeof( opcode ) + sizeof( err_code ) +
+      err_msg_len + sizeof( err_msg_len );
+  }
 
   ushort getCode( const char *stream ) {
     ushort ec = 0x0000;
@@ -240,7 +251,7 @@ struct ETFTPError : ETFPMessage {
     return ec;
   }
 
-  char *getMessage( const char *stream ) {
+  char *getMessage( char *stream ) {
     return &stream[4];
   }
   
@@ -263,7 +274,7 @@ struct ETFTPError : ETFPMessage {
   }
 };
 
-struct ETFTPOAck : ETFPMessage {
+struct ETFTPOAck : ETFTPMessage {
   ushort block_num;
   unsigned int len;
   
@@ -293,12 +304,11 @@ struct ETFTPOAck : ETFPMessage {
 
     stream[ len++ ] = 0x00;
     stream[ len++ ] = OC_OACK;
-    stream[ len++ ] = ( block_num & OxFFOO ) >> 8;
-    stream[ len++ ] = ( block_num & OxOOFF );
+    stream[ len++ ] = ( block_num & 0xFF00 ) >> 8;
+    stream[ len++ ] = ( block_num & 0x00FF );
 
     return len;
   }
-}
-  };
+};
 
 #endif

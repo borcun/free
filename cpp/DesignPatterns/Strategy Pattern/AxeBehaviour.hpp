@@ -14,11 +14,11 @@ namespace Weapon
 {
     class AxeBehaviour : public WeaponBehaviour
     {
-    public:
-        void useWeapon() {
-            std::cout << "chopping with an axe";
-            return;
-        }
+        public:
+            void useWeapon(void) {
+                std::cout << "chopping with an axe" << std::endl;
+                return;
+            }
     };
 }
 

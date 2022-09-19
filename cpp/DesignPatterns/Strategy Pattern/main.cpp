@@ -14,26 +14,44 @@
 #include "KnifeBehaviour.hpp"
 #include "SwordBehaviour.hpp"
 
+#define WARRIOR_COUNT (4)
+#define WEAPON_COUNT  (WARRIOR_COUNT)
+
 using namespace Weapon;
 using namespace Character;
 
-int main(int argc, char** argv) 
+int main(int argc, char **argv) 
 {
-    Warrior *troll  = new Troll("Troll");
-    Warrior *king   = new King("King");
-    Warrior *queen  = new Queen("Queen");
-    Warrior *knight = new Knight("Knight");
+  Warrior *warriors[WARRIOR_COUNT] = {
+    new Troll("Troll"),
+    new King("King"),
+    new Queen("Queen"),
+    new Knight("Knight")
+  };
 
-    troll->setWeapon(new AxeBehaviour());
-    king->setWeapon(new BowAndArrowBehaviour());
-    queen->setWeapon(new KnifeBehaviour());
-    knight->setWeapon(new SwordBehaviour());
+  WeaponBehaviour *weapons[WEAPON_COUNT] = {
+    new AxeBehaviour(),
+    new BowAndArrowBehaviour(),
+    new KnifeBehaviour(),
+    new SwordBehaviour()
+  };
 
-    troll->fight();
-    king->fight();
-    queen->fight();
-    knight->fight();
+  for (int i = 0; i < WARRIOR_COUNT; ++i) {
+    warriors[i]->setWeapon(weapons[i]);
+  }
 
-    return 0;
+  for (int i = 0; i < WARRIOR_COUNT; ++i) {
+    warriors[i]->fight();
+  }
+
+  for (int i = 0; i < WEAPON_COUNT; ++i) {
+    delete weapons[i];
+  }
+
+  for (int i = 0; i < WARRIOR_COUNT; ++i) {
+    delete warriors[i];
+  }
+  
+  return 0;
 }
 

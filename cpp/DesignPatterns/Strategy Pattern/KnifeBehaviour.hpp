@@ -10,15 +10,13 @@
 
 #include "WeaponBehaviour.hpp"
 
-namespace Weapon
-{
-    class KnifeBehaviour : public WeaponBehaviour
-    {
-    public:
-        void useWeapon() {
-            std::cout << "cutting with a knife";
-            return;
-        }
+namespace Weapon {
+    class KnifeBehaviour : public WeaponBehaviour {
+        public:
+            void useWeapon(void) {
+                std::cout << "cutting with a knife" << std::endl;
+                return;
+            }
     };
 }
 

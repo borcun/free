@@ -8,21 +8,14 @@
 #ifndef WEAPONBEHAVIOUR_HPP
 #define	WEAPONBEHAVIOUR_HPP
 
-#include <iostream>
-
-/** \brief Weapon Namespace */
-namespace Weapon
-{
-    /** \brief Abstract WeaponBehaviour class*/
-    class WeaponBehaviour
-    {
-    public:
-        /// \brief function that decides to use weapon
-        /// @return -
-        virtual void useWeapon() = 0;
+namespace Weapon {
+    class WeaponBehaviour {
+        public:
+            /// @brief function that decides to use weapon
+            /// @return -
+            virtual void useWeapon(void) = 0;
     };
-    
 }
 
-#endif	/* WEAPONBEHAVIOUR_HPP */
+#endif
 

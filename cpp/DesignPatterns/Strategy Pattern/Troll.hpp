@@ -10,24 +10,22 @@
 
 #include "Warrior.hpp"
 
-namespace Character
-{
-    class Troll : public Warrior
-    {
-    public:
-        Troll(std::string name) {
-            m_name = name;
-        }
-        
-        void fight() {
-            std::cout << m_name << " "; 
-            m_weapon->useWeapon();
-            std::cout << std::endl;
-            return;
-        }
-        
-    private:
-        std::string m_name;
+namespace Character {
+    class Troll : public Warrior {
+        public:
+            Troll(const std::string &name) {
+                m_name = name;
+            }
+            
+            void fight(void) {
+                std::cout << m_name << " "; 
+                m_weapon->useWeapon();
+
+                return;
+            }
+            
+        private:
+            std::string m_name;
     };
 }
 

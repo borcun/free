@@ -8,24 +8,22 @@
 
 #include "Warrior.hpp"
 
-namespace Character
-{
-    class King : public Warrior
-    {
-    public:
-        King(std::string name) {
-            m_name = name;
-        }
+namespace Character {
+    class King : public Warrior {
+        public:
+            King(const std::string &name) {
+                m_name = name;
+            }
 
-        void fight() {
-            std::cout << m_name << " ";
-            m_weapon->useWeapon();
-            std::cout << std::endl;
-            return;
-        }
+            void fight(void) {
+                std::cout << m_name << " ";
+                m_weapon->useWeapon();
 
-    private:
-        std::string m_name;
+                return;
+            }
+
+        private:
+            std::string m_name;
     };
 }
 

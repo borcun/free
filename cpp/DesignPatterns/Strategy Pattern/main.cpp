@@ -1,27 +1,23 @@
 /**
-  * @file main
-  * @title strategy pattern
-  * @author boo
-  * @date November 2, 2013, 10:32 PM
-  */
+ * @file main.cpp
+ * @title strategy pattern
+ * @author boo
+ * @date November 2, 2013, 10:32 PM
+ */
 
-#include "Troll.hpp"
-#include "King.hpp"
-#include "Queen.hpp"
-#include "Knight.hpp"
-#include "AxeBehaviour.hpp"
-#include "BowAndArrowBehaviour.hpp"
-#include "KnifeBehaviour.hpp"
-#include "SwordBehaviour.hpp"
+#include "Troll.h"
+#include "King.h"
+#include "Queen.h"
+#include "Knight.h"
+#include "AxeBehaviour.h"
+#include "BowAndArrowBehaviour.h"
+#include "KnifeBehaviour.h"
+#include "SwordBehaviour.h"
 
 #define WARRIOR_COUNT (4)
 #define WEAPON_COUNT  (WARRIOR_COUNT)
 
-using namespace Weapon;
-using namespace Character;
-
-int main(int argc, char **argv) 
-{
+int main(int argc, char **argv) {
   Warrior *warriors[WARRIOR_COUNT] = {
     new Troll("Troll"),
     new King("King"),

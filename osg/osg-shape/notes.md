@@ -24,3 +24,9 @@ We would like to also call attention to the removal of immediate mode and displa
 and OpenGL 3.x, for the purpose of producing a more lightweight interface. Of course OpenGL 3.x and 
 further versions will keep these deprecated APIs for backward compatibility. However, they are not 
 recommended to be used in new code.
+
+**How OSG draw objects**
+Everything that can be rendered is implemented as a class derived from *Drawable*. The Drawable class
+contains no drawing primitives, since these are provided by subclasses such as *osg::Geometry*. Notice
+that a Drawable is not Node, and therefore it cannot be directly added to a scene graph. Instead, Drawable
+are attached to *Geodes*, which are scene graph nodes.

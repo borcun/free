@@ -3,7 +3,10 @@
 OpenGL uses *geometry primitives* to draw different objects. The geometry primitives are points, lines,
 triangles or polygonal faces determines how OpenGL sorts and renders its associated vertex data. The
 easist way to render a primitive is to specify a list of vertices between the glBegin() and glEnd()
-pair, which is called *immediate mode*, but it is inefficient in most cases.
+pair, which is called *immediate mode*, but it is inefficient in most cases. (OSG has an internal 
+osg::GLBeginEndAdapter class that is used to perform basic shape drawing operations. This class 
+enables the use of vertex arrays in the style of a glBegin() and glEnd() pair, which makes the 
+implementation of basic shapes easy to understand and extend.)
 
 The vertex data, including vertex coordinates, normals, colors and texture coordinates, can also be
 stored in various arrays. Primitives will be formed by dereferencing and indexing the array elements.

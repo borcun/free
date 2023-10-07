@@ -8,7 +8,7 @@
    https://en.cppreference.com/w/cpp/language/raii
    
 ## Smart Pointers
-   The boost smart pointer library provides 5 smart pointer class templates:
+   The boost smart pointer library provides 6 smart pointer class templates:
    - scoped_ptr
    - scoped_array
    - shared_ptr

@@ -21,7 +21,10 @@ int main(int argc, char **argv) {
 
   printf("%s: ", argv[1]);
   
-  // what if replace greater operator (>) with greater and equal operator (>=)
+  /*
+   * 1. what if replace greater operator (>) with greater and equal operator (>=)
+   * 2. what if use pre-decrement operator instead of post-decrement considering performance
+   */
   while (len-- > 0) {
     printf("%c", '*');
   }

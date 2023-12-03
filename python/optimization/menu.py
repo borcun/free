@@ -1,24 +1,11 @@
 #!/usr/bin/python3
 
-import sys
-
-def simplex():
-    print("\n * simplex method executed\n")
-
-def branch_and_border():
-    print("\n *branch/border algorithm executed\n")
-
-def newton_raphson():
-    print("\n *newton raphson method executed\n")
-
-def direct_search():
-    print("\n *direct search method executed\n")
-
-def discrete():
-    print("\n *discrete programming executed\n")
-    
-def linear_combination():
-    print("\n *linear combinations method executed\n")
+import simplex as simp
+import branch_border as bb
+import newton_raphson as nr
+import discrete as dsc
+import direct_search as dsrc
+import linear_combination as lincom
 
 def menu():
     while True:
@@ -36,17 +23,17 @@ def menu():
         opt = int(input())
 
         if 1 == opt:
-            simplex()
+            simp.execute()
         elif 2 == opt:
-            branch_and_border()
+            bb.execute()
         elif 3 == opt:
-            newton_raphson()
+            nr.execute()
         elif 4 == opt:
-            direct_search()
+            dsrc.execute()
         elif 5 == opt:
-            discrete()
+            dsc.execute()
         elif 6 == opt:
-            linear_combination()
+            lincom.execute()
         elif 7 == opt:
             exit()
         else:

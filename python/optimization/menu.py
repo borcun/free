@@ -11,8 +11,12 @@ from ds import direct_search as ds
 from lincom import linear_combination as lincom
 
 
-# function that gets problem parameters such as coefficients, types
-# @return problem type and coefficients
+"""
+The function that gets problem parameters such as coefficients, types
+
+Return:
+ problem type and coefficients
+"""
 def getInputParameters():
     ptype = None
     pcoef = None
@@ -46,8 +50,9 @@ def getInputParameters():
 
     return ptype, pcoef
     
-# function that shows menu
-# return -
+"""
+The function that shows menu
+"""
 def showMenu():
     showMenuFlag = True
     
@@ -109,9 +114,13 @@ def showMenu():
                     print("\n Error: invalid input, please enter again")
         except:
             pass
-        
+
+"""
+main function
+"""
 def main():    
     showMenu()
+
 
 if __name__ == "__main__":
     main()

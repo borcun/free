@@ -1,4 +1,4 @@
-**Optimization Algorithms<br>
+### Optimization Algorithms<br>
 This project is an example implementation project that includes some optimization algorithm implementations. It can be used to demonstrate how the algorithms work. There are six different optimization methods:
  - Simplex Method Algorithm
  - Branch & Bound Algorithm

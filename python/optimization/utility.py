@@ -17,7 +17,7 @@ class AlgUtil:
     Return:
     coefficients if succeed, otherwise None
     """
-    def parse(self, path):
+    def parseLinearParameters(self, path):
         try:
             df = pd.read_csv(path)
             self.coefficients.clear()
@@ -29,6 +29,12 @@ class AlgUtil:
         except:
             return None
 
+    """
+    """
+    def parseNonLinearParameters(self, path):
+        return '4*x1 + 6*x2 - 2*x1**2 - 2*x1*x2 - 2*x2**2'
+
+        
     """
     Function that prints coefficients if problem is linear
     Remark:

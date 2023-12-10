@@ -25,12 +25,12 @@ class Algorithms:
         self.pcoef = None
     
     """
-    The function that gets problem parameters such as coefficients, types
+    The function that gets simplex problem parameters such as coefficients, types
 
     Return:
-    problem type and coefficients
+      problem type and coefficients
     """
-    def getInputParameters(self):
+    def getSimplexParameters(self):
         self.ptype = None
         self.pcoef = None
     
@@ -54,7 +54,7 @@ class Algorithms:
             if 'q' == path.lower():
                 break
             
-            self.pcoef = self.algUtil.parse(path)
+            self.pcoef = self.algUtil.parseLinearParameters(path)
             
             if None == self.pcoef:
                 print("\n Error: invalid file path, please enter again\n")
@@ -88,11 +88,14 @@ class Algorithms:
                 elif 7 == opt:
                     showMenuFlag = False
                 else:
-                    self.getInputParameters()
-
                     if 1 == opt:
                         print("\nSIMPLEX ALGORITHM")
+                        
+                        self.getSimplexParameters()
                         self.algUtil.print()
+                        
+                        if None != self.ptype and None != self.pcoef:
+                            self.algorithms[0].execute(self.ptype, self.pcoef)
                     elif 2 == opt:
                         print("\nBRANCH and BOUND ALGORITHM")
                         self.algUtil.print()
@@ -105,9 +108,8 @@ class Algorithms:
                         print("\nDISCRETE ALGORITHM")
                     elif 6 == opt:
                         print("\nLINEAR COMBINATION ALGORITHM")
-
-                    if None != self.ptype and None != self.pcoef:
-                        self.algorithms[opt - 1].execute(self.ptype, self.pcoef)
+                        equation = self.algUtil.parseNonLinearParameters("")
+                        self.algorithms[5].execute(equation)
             except:
                 pass
 

@@ -13,22 +13,17 @@ handle the constrained case.
 """
 
 import sys
+from sympy import *
 
 class LinearCombinations:
     def __init__(self):
         pass
     
-    def execute(self, ptype, pcoef):
-        if None == ptype or None == pcoef:
-            print("Could not execute linear combination method due to invalid parameters")
-            return False
-        else:
-            if 'x' == ptype:
-                print("\n * linear combination method executed to get maximum solution")
-            elif 'n' == ptype:
-                print("\n * linear combination method executed to get minimum solution")
-            else:
-                print("invalid problem type")
+    def execute(self, equation):
+        x1, x2 = symbols('x1 x2')
+        expr = equation
 
-        print(coefficients)
+        print(diff(expr, x1))
+        print(diff(expr, x1).subs([(x1, 2), (x2, 3)]))
+        
         return True

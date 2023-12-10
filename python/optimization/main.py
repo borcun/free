@@ -59,6 +59,8 @@ class Algorithms:
                         print("\nBRANCH and BOUND ALGORITHM")
                     elif 3 == opt:
                         print("\nNEWTON-RAPHSON ALGORITHM")
+                        print(" Enter file path for Newton-Raphson algorithm: ", end = '')
+                        self.nr.execute(input())
                     elif 4 == opt:
                         print("\nDIRECT SEARCH ALGORITHM")
                     elif 5 == opt:

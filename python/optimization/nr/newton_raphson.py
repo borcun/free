@@ -1,20 +1,31 @@
 import sys
+from . import utility
 
 class NewtonRaphson:
     def __init__(self):
-        pass
-    
-    def execute(self, ptype, pcoef):
-        if None == ptype or None == pcoef:
-            print("Could not execute newton raphson method due to invalid parameters")
-            return False
-        else:
-            if 'x' == ptype:
-                print("\n * newton raphson method executed to get maximum solution")
-            elif 'n' == ptype:
-                print("\n * newton raphson method executed to get minimum solution")
-            else:
-                print("invalid problem type")
+        self.prob_type = 'x'
+        self.coefficients = []
+        self.util = utility.NewtonRaphsonUtility()
 
-        print(coefficients)
+    """
+    Function that gets input for Newton Raphson Method algorithm
+    Params:
+      path - input file path
+    Return:
+      True if the file is read, otherwise False
+    """
+    def getInput(self, path):
+        self.coefficients = self.util.parse(path)
+        return None != self.coefficients
+
+    """
+    Function that executes Newton Raphson Method algorithm
+    """
+    def execute(self, path):
+        if not self.getInput(path):
+            return False
+        
+        print("\n * newton-raphson method executed to get solution")
+        self.util.print()
+            
         return True

@@ -26,6 +26,6 @@ class Simplex:
             return False
         
         print("\n * simplex method executed to get solution")
-        print(self.coefficients)
+        self.util.print()
             
         return True

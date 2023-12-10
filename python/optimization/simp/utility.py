@@ -3,11 +3,9 @@
 import math
 import pandas as pd
 
-class AlgUtil:
-    coefficients = []
-
+class SimplexUtility:
     def __init__(self):
-        pass
+        self.coefficients = []
     
     """
     The function that parses csv file, then get input parameter inside
@@ -17,7 +15,7 @@ class AlgUtil:
     Return:
     coefficients if succeed, otherwise None
     """
-    def parseLinearParameters(self, path):
+    def parse(self, path):
         try:
             df = pd.read_csv(path)
             self.coefficients.clear()
@@ -28,11 +26,6 @@ class AlgUtil:
             return self.coefficients
         except:
             return None
-
-    """
-    """
-    def parseNonLinearParameters(self, path):
-        return '4*x1 + 6*x2 - 2*x1**2 - 2*x1*x2 - 2*x2**2'
 
         
     """

@@ -53,13 +53,8 @@ class Algorithms:
                 else:
                     if 1 == opt:
                         print("\nSIMPLEX ALGORITHM")
-                        print(" Enter 'q' to return the menu")
-                        print(" Enter file path for simplex algorithm: ", end = '')
-
-                        opt = input()
-                        
-                        if 'q' != opt and self.simp.getInput(opt):
-                            self.simp.execute()
+                        print(" Enter file path for simplex algorithm: ", end = '')                        
+                        self.simp.execute(input())
                     elif 2 == opt:
                         print("\nBRANCH and BOUND ALGORITHM")
                     elif 3 == opt:
@@ -70,13 +65,8 @@ class Algorithms:
                         print("\nDISCRETE ALGORITHM")
                     elif 6 == opt:
                         print("\nLINEAR COMBINATION ALGORITHM")
-                        print(" Enter 'q' to return the menu")
                         print(" Enter file path for linear combinations algorithm: ", end = '')
-
-                        opt = input()
-                        
-                        if 'q' != opt and self.lincom.getInput(opt):
-                            self.lincom.execute()
+                        self.lincom.execute(input())
             except:
                 pass
 

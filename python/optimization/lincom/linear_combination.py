@@ -17,7 +17,6 @@ from sympy import *
 
 class LinearCombinations:
     def __init__(self):
-        self.isInputAvailable = False
         self.equation = ""
 
     """
@@ -31,13 +30,13 @@ class LinearCombinations:
         try:
             pFile = open(path, "r")
             self.equation = pFile.readline()
-            pFile.close()            
-            self.isInputAvailable = True
+            pFile.close()
+            
+            return True
         except:
-            self.isInputAvailable = False
             print("Could not read", path)
         
-        return self.isInputAvailable
+        return False
 
     """
     Function that executes the algorithm
@@ -46,8 +45,8 @@ class LinearCombinations:
     Return
       True if execution is completed, otherwise False
     """
-    def execute(self):
-        if self.isInputAvailable:
+    def execute(self, path):
+        if self.getInput(path):
             x1, x2 = symbols('x1 x2')
             expr = self.equation
 

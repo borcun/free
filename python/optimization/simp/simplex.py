@@ -1,12 +1,11 @@
 import sys
-import utility
+from . import utility
 
 class Simplex:
     def __init__(self):
         self.prob_type = 'x'
         self.coefficients = []
-        self.isInputAvailable = False
-        self.util = utility.AlgUtil()
+        self.util = utility.SimplexUtility()
 
     """
     Function that gets input for Simplex Method algorithm
@@ -17,20 +16,16 @@ class Simplex:
     """
     def getInput(self, path):
         self.coefficients = self.util.parse(path)
-
-        if None == self.coefficients:
-            self.isInputAvailable = False
-        else:
-            self.isInputAvailable = True
-
-        return self.isInputAvailable
+        return None != self.coefficients
 
     """
     Function that executes Simplex Method algorithm
     """
-    def execute(self):
-        if self.isInputAvailable:
-            print("\n * simplex method executed to get solution")
-            print(self.coefficients)
+    def execute(self, path):
+        if not self.getInput(path):
+            return False
+        
+        print("\n * simplex method executed to get solution")
+        print(self.coefficients)
             
         return True

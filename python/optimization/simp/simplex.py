@@ -1,20 +1,36 @@
 import sys
+import utility
 
 class Simplex:
     def __init__(self):
-        pass
-    
-    def execute(self, ptype, pcoef):
-        if None == ptype or None == pcoef:
-            print("Could not execute simplex method due to invalid parameters")
-            return False
-        else:
-            if 'x' == ptype:
-                print("\n * simplex method executed to get maximum solution")
-            elif 'n' == ptype:
-                print("\n * simplex method executed to get minimum solution")
-            else:
-                print("invalid problem type")
+        self.prob_type = 'x'
+        self.coefficients = []
+        self.isInputAvailable = False
+        self.util = utility.AlgUtil()
 
-        print(coefficients)
+    """
+    Function that gets input for Simplex Method algorithm
+    Params:
+      path - input file path
+    Return:
+      True if the file is read, otherwise False
+    """
+    def getInput(self, path):
+        self.coefficients = self.util.parse(path)
+
+        if None == self.coefficients:
+            self.isInputAvailable = False
+        else:
+            self.isInputAvailable = True
+
+        return self.isInputAvailable
+
+    """
+    Function that executes Simplex Method algorithm
+    """
+    def execute(self):
+        if self.isInputAvailable:
+            print("\n * simplex method executed to get solution")
+            print(self.coefficients)
+            
         return True

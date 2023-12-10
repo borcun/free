@@ -17,13 +17,41 @@ from sympy import *
 
 class LinearCombinations:
     def __init__(self):
-        pass
-    
-    def execute(self, equation):
-        x1, x2 = symbols('x1 x2')
-        expr = equation
+        self.isInputAvailable = False
+        self.equation = ""
 
-        print(diff(expr, x1))
-        print(diff(expr, x1).subs([(x1, 2), (x2, 3)]))
+    """
+    Function that gets input for Linear Combinations Method algorithm
+    Params:
+      path - input file path
+    Return
+      True if the file is read, otherwise False
+    """
+    def getInput(self, path):
+        try:
+            pFile = open(path, "r")
+            self.equation = pFile.readline()
+            pFile.close()            
+            self.isInputAvailable = True
+        except:
+            self.isInputAvailable = False
+            print("Could not read", path)
+        
+        return self.isInputAvailable
+
+    """
+    Function that executes the algorithm
+    Pre:
+      getInput function must get input parameter successfully
+    Return
+      True if execution is completed, otherwise False
+    """
+    def execute(self):
+        if self.isInputAvailable:
+            x1, x2 = symbols('x1 x2')
+            expr = self.equation
+
+            print(diff(expr, x1))
+            print(diff(expr, x1).subs([(x1, 2), (x2, 3)]))
         
         return True

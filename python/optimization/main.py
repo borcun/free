@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 
 import sys
-import utility as util
-
 from simp import simplex as simp
 from bb import branch_border as bb
 from nr import newton_raphson as nr
@@ -19,49 +17,14 @@ class Algorithms:
     Default constructor
     """
     def __init__(self):
-        self.algorithms = [simp.Simplex(), bb.BranchBound(), nr.NewtonRaphson(), disc.Discrete(), ds.DirectSearch(), lincom.LinearCombinations()]
-        self.algUtil = util.AlgUtil()
-        self.ptype = None
-        self.pcoef = None
-    
-    """
-    The function that gets simplex problem parameters such as coefficients, types
+        self.simp = simp.Simplex()
+        self.bb = bb.BranchBound()
+        self.nr = nr.NewtonRaphson()
+        self.disc = disc.Discrete()
+        self.ds = ds.DirectSearch()
+        self.lincom = lincom.LinearCombinations()
 
-    Return:
-      problem type and coefficients
-    """
-    def getSimplexParameters(self):
-        self.ptype = None
-        self.pcoef = None
-    
-        while True:
-            print(" Enter 'q', then press return to terminate algorithm selection")
-            print(" Enter problem type, Ma[x]imization or Mi[n]imization : ", end = '')
-            
-            self.ptype = input()
-            
-            # exit from problem type
-            if 'q' == self.ptype.lower():
-                break
-            elif 'x' != self.ptype.lower() and 'n' != self.ptype.lower():
-                print("\n Error: invalid problem type, please enter again\n")
-                continue
-            
-            print(" Enter input file path: ", end = '')
-            path = input()
-            
-            # exit from path
-            if 'q' == path.lower():
-                break
-            
-            self.pcoef = self.algUtil.parseLinearParameters(path)
-            
-            if None == self.pcoef:
-                print("\n Error: invalid file path, please enter again\n")
-            else:
-                break
-
-            
+        
     """
     The function that shows menu
     """
@@ -90,26 +53,30 @@ class Algorithms:
                 else:
                     if 1 == opt:
                         print("\nSIMPLEX ALGORITHM")
+                        print(" Enter 'q' to return the menu")
+                        print(" Enter file path for simplex algorithm: ", end = '')
+
+                        opt = input()
                         
-                        self.getSimplexParameters()
-                        self.algUtil.print()
-                        
-                        if None != self.ptype and None != self.pcoef:
-                            self.algorithms[0].execute(self.ptype, self.pcoef)
+                        if 'q' != opt and self.simp.getInput(opt):
+                            self.simp.execute()
                     elif 2 == opt:
                         print("\nBRANCH and BOUND ALGORITHM")
-                        self.algUtil.print()
                     elif 3 == opt:
                         print("\nNEWTON-RAPHSON ALGORITHM")
-                        self.algUtil.print()
                     elif 4 == opt:
                         print("\nDIRECT SEARCH ALGORITHM")
                     elif 5 == opt:
                         print("\nDISCRETE ALGORITHM")
                     elif 6 == opt:
                         print("\nLINEAR COMBINATION ALGORITHM")
-                        equation = self.algUtil.parseNonLinearParameters("")
-                        self.algorithms[5].execute(equation)
+                        print(" Enter 'q' to return the menu")
+                        print(" Enter file path for linear combinations algorithm: ", end = '')
+
+                        opt = input()
+                        
+                        if 'q' != opt and self.lincom.getInput(opt):
+                            self.lincom.execute()
             except:
                 pass
 

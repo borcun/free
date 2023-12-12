@@ -9,18 +9,30 @@ a necessary condition for optimality.
 import sys
 from sympy import *
 
+"""
+Gradient Method class
+"""
 class Gradient:
+    """
+    Constructor
+    """
     def __init__(self):
+        # equation string that is set from file content
         self.equation = ""
+        # x and y is starting point supplied by user
+        self.x = 0
+        self.y = 0
+        # iteration count supplied by user
+        self.count = 0
 
     """
-    Function that gets input for Gradient Method algorithm
+    Function that gets equation for Gradient Method algorithm
     Params:
       path - input file path
-    Return
+    Return:
       True if the file is read, otherwise False
     """
-    def getInput(self, path):
+    def getEquation(self, path):
         try:
             pFile = open(path, "r")
             self.equation = pFile.readline()
@@ -33,22 +45,47 @@ class Gradient:
         return False
 
     """
+    Function that gets input parameters such as X, Y coordinate and iteration count
+    """
+    def getInputParameters(self):
+        while True:
+            try:
+                print(" Enter x of start point : ", end = '')
+                self.x = int(input())
+                print(" Enter y of start point : ", end = '')
+                self.y = int(input())
+                print(" Enter iteration count  : ", end = '')
+                self.count = int(input())
+
+                if self.count < 1:
+                    print("\n Please enter positive number for iteration count\n")
+                else:
+                    break
+                
+            except:
+                print("\n Could not convert entry to integer number\n")
+                pass       
+            
+
+    """
     Function that executes the algorithm
-    Pre:
-      getInput function must get input parameter successfully
-    Return
+    Params:
+      path - pat of the input file including equation
+    Return:
       True if execution is completed, otherwise False
     """
     def execute(self, path):
-        if not self.getInput(path):
+        if not self.getEquation(path):
             return False
+
+        self.getInputParameters()
         
         x1, x2, r = symbols('x1 x2 r')
         expr = sympify(self.equation)
         dfx1, dfx2 = diff(expr, x1), diff(expr, x2)
 
         # selected points
-        x, y = 1, 1
+        x, y = self.x, self.y
 
         print("-----------------------------------------------------")
         print("---------- The function and its derivation ----------")
@@ -58,7 +95,7 @@ class Gradient:
         
         # most likely, we will put a loop right here !!!
 
-        for i in range(10):
+        for i in range(self.count):
             print("--- Step {0} -----------------------------------------------\n".format(i + 1))
             print(" x{0} = ({1}, {2})".format(i, x, y))
 

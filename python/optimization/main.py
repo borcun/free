@@ -7,7 +7,7 @@ from nr import newton_raphson as nr
 from disc import discrete as disc
 from ds import direct_search as ds
 from lincom import linear_combination as lincom
-
+from grad import gradient as grad
 
 """
 Algorithms class
@@ -23,6 +23,7 @@ class Algorithms:
         self.disc = disc.Discrete()
         self.ds = ds.DirectSearch()
         self.lincom = lincom.LinearCombinations()
+        self.grad = grad.Gradient()
 
         
     """
@@ -40,15 +41,16 @@ class Algorithms:
             print(" [4] Discrete Programming")
             print(" [5] Direct Search Method")
             print(" [6] Linear Combinations Method")
-            print(" [7] Terminate Application")
+            print(" [7] Gradient Method")
+            print(" [8] Terminate Application")
             print("\n Please enter an option, then press return key : ", end = '')
 
             try:
                 opt = int(input())
 
-                if opt < 0 or opt > 7:
+                if opt < 0 or opt > 8:
                     print("\n Error: invalid input, please enter again")
-                elif 7 == opt:
+                elif 8 == opt:
                     showMenuFlag = False
                 else:
                     if 1 == opt:
@@ -69,6 +71,10 @@ class Algorithms:
                         print("\nLINEAR COMBINATION ALGORITHM")
                         print(" Enter file path for linear combinations algorithm: ", end = '')
                         self.lincom.execute(input())
+                    elif 7 == opt:
+                        print("\nGRADIENT ALGORITHM")
+                        print(" Enter file path for gradient algorithm: ", end = '')
+                        self.grad.execute(input())
             except:
                 pass
 

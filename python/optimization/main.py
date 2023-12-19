@@ -4,7 +4,7 @@ import sys
 from simp import simplex as simp
 from bb import branch_border as bb
 from nr import newton_raphson as nr
-from disc import discrete as disc
+from sep import separable as sep
 from ds import direct_search as ds
 from lincom import linear_combination as lincom
 from grad import gradient as grad
@@ -20,7 +20,7 @@ class Algorithms:
         self.simp = simp.Simplex()
         self.bb = bb.BranchBound()
         self.nr = nr.NewtonRaphson()
-        self.disc = disc.Discrete()
+        self.sep = sep.Separable()
         self.ds = ds.DirectSearch()
         self.lincom = lincom.LinearCombinations()
         self.grad = grad.Gradient()
@@ -38,8 +38,8 @@ class Algorithms:
             print(" [1] Simplex Algorithm")
             print(" [2] Branch/Border Algorithm")
             print(" [3] Newton-Raphson Method")
-            print(" [4] Discrete Programming")
-            print(" [5] Direct Search Method")
+            print(" [4] Direct Search Method")
+            print(" [5] Separable Programming")
             print(" [6] Linear Combinations Method")
             print(" [7] Gradient Method")
             print(" [8] Terminate Application")
@@ -66,7 +66,9 @@ class Algorithms:
                     elif 4 == opt:
                         print("\nDIRECT SEARCH ALGORITHM")
                     elif 5 == opt:
-                        print("\nDISCRETE ALGORITHM")
+                        print("\nSEPARABLE ALGORITHM")
+                        print(" Enter file path for separable programming algorithm: ", end = '')
+                        self.sep.execute(input())                        
                     elif 6 == opt:
                         print("\nLINEAR COMBINATION ALGORITHM")
                         print(" Enter file path for linear combinations algorithm: ", end = '')

@@ -43,7 +43,6 @@ class Separable:
                    ['w21', 'w22', 'w23', 'w24']]
         
         sym_list = [symbols(each) for each in sublist]
-
         
         expr = sympify(self.equations[0])
         self.fx.append(expr.subs(x2, 0))
@@ -78,8 +77,25 @@ class Separable:
                 else:
                     expressions.append(None)
 
+        is_x1_nonlin = False
+        is_x2_nonlin = False
+        
         for i in range(len(expressions)):
-            print(expressions[i])                
+            if None != expressions[i]:
+                if 0 == i % 2 and not is_x1_nonlin:
+                    is_x1_nonlin = True
                     
+                if 1 == i % 2 and not is_x2_nonlin:
+                    is_x2_nonlin = True
+
+        if is_x1_nonlin:
+            expressions.append(sym_list[0][0] + sym_list[0][1] + sym_list[0][2] + sym_list[0][3])
                             
+        if is_x2_nonlin:
+            expressions.append(sym_list[1][0] + sym_list[1][1] + sym_list[1][2] + sym_list[1][3])
+
+        for i in range(len(expressions)):
+            if None != expressions[i]:
+                print(expressions[i])
+                        
         return True

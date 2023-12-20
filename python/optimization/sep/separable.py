@@ -2,28 +2,45 @@ import sys
 from sympy import *
 
 class Separable:
+    """
+    constructor
+    """
     def __init__(self):
-        self.equations = []
-        self.fx = []
-        self.gx = []
-
+        self.objective = None
+        self.constraints = []
+        
     """
     function that gets equations from input file
+    Params:
+      path - input file path
+    Return:
+      True if file is read successfully, otherwise return False
     """
     def getEquations(self, path):
-        self.equations.clear()
+        self.objective = None
+        self.constraints.clear()
         
         try:
             pFile = open(path, "r")
             line = pFile.readline()
+
+            if line:
+                # the objective function is assumed being first entry
+                self.objective = sympify(line)
             
-            while line:
-                self.equations.append(line)
-                line = pFile.readline()
+                while line:
+                    line = pFile.readline()
+
+                    if line:
+                        self.constraints.append(sympify(line))
 
             pFile.close()
 
-            return 0 != len(self.equations)
+            if None == self.objective or 0 == len(self.constraints):
+                print("The objective and constraint functions are missing")
+                return False
+            
+            return True
         
         except:
             print("Could not read", path)
@@ -31,71 +48,87 @@ class Separable:
         return False
 
     """
+    function that executes seprable algorithm
+    Params:
+      path - input file path
+    Return:
+      True if the algorithm executes successfully, otherwise return False
     """
     def execute(self, path):
         if not self.getEquations(path):
             return False
 
         x1, x2 = symbols('x1 x2')
-        ind_vars = [x1, x2]
+        variables = [x1, x2]
+        weight_list = [['w11', 'w12', 'w13', 'w14'],
+                       ['w21', 'w22', 'w23', 'w24']]
+        weights = [symbols(each) for each in weight_list]
         expressions = []
-        sublist = [['w11', 'w12', 'w13', 'w14'],
-                   ['w21', 'w22', 'w23', 'w24']]
+        is_x1_linear = True
+        is_x2_linear = True
         
-        sym_list = [symbols(each) for each in sublist]
-        
-        expr = sympify(self.equations[0])
-        self.fx.append(expr.subs(x2, 0))
-        self.fx.append(expr.subs(x1, 0))
+        # separate objective function
+        f1x1 = self.objective.subs(x2, 0)
+        f1x2 = self.objective.subs(x1, 0)
 
-        for i in range(1, len(self.equations)):
-            expr = sympify(self.equations[i])
-            tmp = []
-            tmp.append(expr.subs(x2, 0))
-            tmp.append(expr.subs(x1, 0))
+        if degree(f1x1) > 1:
+            expressions.append(f1x1.subs(x1, 0) * weights[0][0] +
+                               f1x1.subs(x1, 1) * weights[0][1] +
+                               f1x1.subs(x1, 2) * weights[0][2] +
+                               f1x1.subs(x1, 3) * weights[0][3])
+            is_x1_linear = False
+        else:
+            expressions.append(f1x1)
             
-            self.gx.append(tmp)
-            
+        if degree(f1x2) > 1:
+            expressions.append(f1x2.subs(x2, 0) * weights[1][0] +
+                               f1x2.subs(x2, 1) * weights[1][1] +
+                               f1x2.subs(x2, 2) * weights[1][2] +
+                               f1x2.subs(x2, 3) * weights[1][3])
+            is_x2_linear = False
+        else:
+            expressions.append(f1x2)
 
-        for j in range(len(self.fx)):
-            if degree(self.fx[j]) > 1:
-                expressions.append(self.fx[j].subs(ind_vars[j], 0) * sym_list[j][0] +
-                                   self.fx[j].subs(ind_vars[j], 1) * sym_list[j][1] +
-                                   self.fx[j].subs(ind_vars[j], 2) * sym_list[j][2] +
-                                   self.fx[j].subs(ind_vars[j], 3) * sym_list[j][3])
+        # separate constraint functions
+        gx1 = []
+        gx2 = []
+
+        for i in range(len(self.constraints)):
+            gx1.append(self.constraints[i].subs(x2, 0).lhs)
+
+            if degree(gx1[i]) > 1:
+                expressions.append(gx1[i].subs(x1, 0) * weights[0][0] +
+                                   gx1[i].subs(x1, 1) * weights[0][1] +
+                                   gx1[i].subs(x1, 2) * weights[0][2] +
+                                   gx1[i].subs(x1, 3) * weights[0][3])
+                is_x1_linear = False
             else:
-                expressions.append(None)
+                expressions.append(gx1[i])
 
-        
-        for i in range(len(self.gx)):
-            for j in range(len(self.gx[i])):
-                if degree(self.gx[i][j]) > 1:
-                    expressions.append(self.gx[i][j].subs(ind_vars[j], 0) * sym_list[j][0] +
-                                       self.gx[i][j].subs(ind_vars[j], 1) * sym_list[j][1] +
-                                       self.gx[i][j].subs(ind_vars[j], 2) * sym_list[j][2] +
-                                       self.gx[i][j].subs(ind_vars[j], 3) * sym_list[j][3])
-                else:
-                    expressions.append(None)
+            gx2.append(self.constraints[i].subs(x1, 0).lhs)
 
-        is_x1_nonlin = False
-        is_x2_nonlin = False
-        
-        for i in range(len(expressions)):
-            if None != expressions[i]:
-                if 0 == i % 2 and not is_x1_nonlin:
-                    is_x1_nonlin = True
-                    
-                if 1 == i % 2 and not is_x2_nonlin:
-                    is_x2_nonlin = True
+            if degree(gx2[i]) > 1:
+                expressions.append(gx2[i].subs(x2, 0) * weights[1][0] +
+                                   gx2[i].subs(x2, 1) * weights[1][1] +
+                                   gx2[i].subs(x2, 2) * weights[1][2] +
+                                   gx2[i].subs(x2, 3) * weights[1][3])
+                is_x2_linear = False
+            else:
+                expressions.append(gx2[i])                
 
-        if is_x1_nonlin:
-            expressions.append(sym_list[0][0] + sym_list[0][1] + sym_list[0][2] + sym_list[0][3])
+        print("\nWeighted Functions")
+        print("==================")
+        print(" z =", self.objective.subs({f1x1: expressions[0], f1x2: expressions[1]}))
+
+        for i in range(2, len(expressions) - 1, 2):
+            print(" c" + str(i-1) + " =", self.constraints[i-2].subs({gx1[i-2]: expressions[i], gx2[i-2]: expressions[i+1]}))
+
+        if not is_x1_linear:
+            expressions.append(weights[0][0] + weights[0][1] + weights[0][2] + weights[0][3])
+            print("", expressions[-1], "= 1")
                             
-        if is_x2_nonlin:
-            expressions.append(sym_list[1][0] + sym_list[1][1] + sym_list[1][2] + sym_list[1][3])
-
-        for i in range(len(expressions)):
-            if None != expressions[i]:
-                print(expressions[i])
-                        
+        if not is_x2_linear:
+            expressions.append(weights[1][0] + weights[1][1] + weights[1][2] + weights[1][3])
+            print("", expressions[-1], "= 1")
+            
         return True

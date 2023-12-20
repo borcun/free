@@ -120,8 +120,11 @@ class Separable:
         print("==================")
         print(" z =", self.objective.subs({f1x1: expressions[0], f1x2: expressions[1]}))
 
-        for i in range(2, len(expressions) - 1, 2):
-            print(" c" + str(i-1) + " =", self.constraints[i-2].subs({gx1[i-2]: expressions[i], gx2[i-2]: expressions[i+1]}))
+        ci = 0
+        
+        for i in range(2, len(expressions), 2):
+            print("", self.constraints[ci].subs({gx1[ci]: expressions[i], gx2[ci]: expressions[i+1]}))
+            ci += 1
 
         if not is_x1_linear:
             expressions.append(weights[0][0] + weights[0][1] + weights[0][2] + weights[0][3])

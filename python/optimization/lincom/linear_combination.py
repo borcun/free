@@ -93,7 +93,8 @@ class LinearCombinations:
             delta_x1 = dfx1.subs({x1: x, x2: y})
             delta_x2 = dfx2.subs({x1: x, x2: y})
 
-            w = linprog([-delta_x1, -delta_x2], A_ub = [1, 2], b_ub = [2], bounds = [(0, None), (0, None)])
+            # linprog executes minimization problem, so delta parameters are set to negative
+            w = linprog(c = [-1 * delta_x1, -1 * delta_x2], A_ub = [[1, 2]], b_ub = [2], bounds = [(0, None), (0, None)], method = "highs")
             
             print(" f(x{0})' = ({1}, {2})".format(i, delta_x1, delta_x2))
             hr = expr.subs({x1: x + r * (w.x[0] - x), x2: y + r * (w.x[1] - y)})

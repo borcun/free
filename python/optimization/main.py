@@ -65,6 +65,8 @@ class Algorithms:
                         self.nr.execute(input())
                     elif 4 == opt:
                         print("\nDIRECT SEARCH ALGORITHM")
+                        print(" Enter file path for direct search algorithm: ", end = '')
+                        self.ds.execute(input())
                     elif 5 == opt:
                         print("\nSEPARABLE ALGORITHM")
                         print(" Enter file path for separable programming algorithm: ", end = '')

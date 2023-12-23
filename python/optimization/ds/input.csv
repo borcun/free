@@ -1,8 +1,1 @@
-coefficient,exponent_x1,exponent_x2
-4,5
-1,2,0
-1,1,1
-1,0,2
-1,1,0
-1,0,1
-1,0,0
+x**2 + 5

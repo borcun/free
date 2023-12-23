@@ -36,7 +36,7 @@ class DirectSearch:
             return True
         except:
             print("Could not read", path)
-        
+            
         return False
 
     """
@@ -73,31 +73,32 @@ class DirectSearch:
         iter = 1
 
         while not isIterationDone:
-          point1 = self.limit1 + 0.5 * abs(self.limit1 - self.limit2 - self.epsilon)
-          point2 = self.limit1 + 0.5 * abs(self.limit1 - self.limit2 + self.epsilon)
+            point1 = self.limit1 + 0.5 * abs(self.limit1 - self.limit2 - self.epsilon)
+            point2 = self.limit1 + 0.5 * abs(self.limit1 - self.limit2 + self.epsilon)
 
-          y1 = expr.subs(x, point1)
-          y2 = expr.subs(x, point2)
+            y1 = expr.subs(x, point1)
+            y2 = expr.subs(x, point2)
 
-          print("\n--- Step {0} -----------------------------------------------\n".format(iter))
-          print(" The limit values: ", self.limit1, ",", self.limit2)
-          print(" The points: ", point1, ", ", point2)
-          print(" f(x1) =", y1, ", f(x2) =", y2)
+            print("\n--- Step {0} -----------------------------------------------\n".format(iter))
+            print(" The limit values: ", self.limit1, ",", self.limit2)
+            print(" The points: ", point1, ", ", point2)
+            print(" f(x1) =", y1, ", f(x2) =", y2)
 
-          if y1 > y2:
-            self.limit2 = point2
-          elif y1 < y2:
-            self.limit1 = point1
-          else:
-            self.limit1 = point1
-            self.limit2 = point2
-          
-          iter += 1
+            if y1 > y2:
+                self.limit2 = point2
+            elif y1 < y2:
+                self.limit1 = point1
+            else:
+                self.limit1 = point1
+                self.limit2 = point2
+              
+            iter += 1
 
-          # flag to terminate iteration
-          if abs(self.limit1 - self.limit2) <= self.epsilon:
+        # flag to terminate iteration
+        if abs(self.limit1 - self.limit2) <= self.epsilon:
             isIterationDone = True
 
         print("\n The final limit values:", self.limit1, ", ", self.limit2)
         print(" f({0}) = {1}\n f({2}) = {3}".format(self.limit1, expr.subs(x, self.limit1), self.limit2, expr.subs(x, self.limit2)))
-    return True
+
+        return True

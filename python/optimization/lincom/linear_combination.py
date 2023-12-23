@@ -67,7 +67,7 @@ class LinearCombinations:
     Return:
       True if execution is completed, otherwise False
     """
-    def execute(self, path):
+    def execute(self):
         if not self.getEquation(path):
             return False
 
@@ -76,6 +76,7 @@ class LinearCombinations:
         x1, x2, r = symbols('x1 x2 r')
         expr = sympify(self.equation)
         dfx1, dfx2 = diff(expr, x1), diff(expr, x2)
+        delta_x1, delta_x2 = None, None
 
         # selected points
         x, y = self.x, self.y
@@ -87,23 +88,34 @@ class LinearCombinations:
         print("f(x1, x2)' = ({0}, {1})\n".format(dfx1, dfx2))
 
         for i in range(self.count):
+            if delta_x1 == dfx1.subs({x1: x, x2: y}) and delta_x2 == dfx2.subs({x1: x, x2: y}):
+              print(" The result is same with previous point, so no need more iteration!")
+              break
+              
             print("--- Step {0} -----------------------------------------------\n".format(i + 1))
             print(" x{0} = ({1}, {2})".format(i, x, y))
 
             delta_x1 = dfx1.subs({x1: x, x2: y})
             delta_x2 = dfx2.subs({x1: x, x2: y})
 
-            w = linprog([-delta_x1, -delta_x2], A_ub = [1, 2], b_ub = [2], bounds = [(0, None), (0, None)])
-            
+            # get 1 and 2 values within A_ub from file as constraint coefficients
+            w = linprog([-delta_x1, -delta_x2], A_ub = [[1, 2]], b_ub = [2], bounds = [(0, None), (0, None)])
+            hr = None
+
             print(" f(x{0})' = ({1}, {2})".format(i, delta_x1, delta_x2))
-            hr = expr.subs({x1: x + r * (w.x[0] - x), x2: y + r * (w.x[1] - y)})
+
+            if abs(w.fun) > delta_x1 * x + delta_x2 * y:
+              hr = expr.subs({x1: x + r * (w.x[0] - x), x2: y + r * (w.x[1] - y)})
+            else:
+              hr = expr.subs({x1: delta_x1 * r + x, x2: delta_x2 * r + x})
         
             print(" h(r) =", hr)
             r1 = solve(diff(hr, r))
 
             print(" r1 = {0}\n".format(r1))
-            x = x + delta_x1 * r1[0].evalf()
-            y = y + delta_x2 * r1[0].evalf()
+            x = x + (r1[0] * (w.x[0] - x))
+            y = y + (r1[0] * (w.x[1] - y))
+
 
         print("--- Result ------------------------------------------")
         print("The maximization point (x, y) is ({0}, {1})".format(x,  y))
@@ -111,3 +123,6 @@ class LinearCombinations:
         print("-----------------------------------------------------\n")
         
         return True
+
+lincom = LinearCombinations()
+lincom.execute()

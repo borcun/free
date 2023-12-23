@@ -92,8 +92,6 @@ class Gradient:
         print("-----------------------------------------------------")
         print("f(x1, x2) =", expr)
         print("f(x1, x2)' = ({0}, {1})\n".format(dfx1, dfx2))
-        
-        # most likely, we will put a loop right here !!!
 
         for i in range(self.count):
             print("--- Step {0} -----------------------------------------------\n".format(i + 1))

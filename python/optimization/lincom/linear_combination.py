@@ -56,7 +56,7 @@ class LinearCombinations:
                     break
                 
             except:
-                print("\n Could not convert entry to integer number\n")
+                print("\n Could not convert entries to numbers\n")
                 pass       
             
 

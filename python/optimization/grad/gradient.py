@@ -51,9 +51,9 @@ class Gradient:
         while True:
             try:
                 print(" Enter x of start point : ", end = '')
-                self.x = int(input())
+                self.x = float(input())
                 print(" Enter y of start point : ", end = '')
-                self.y = int(input())
+                self.y = float(input())
                 print(" Enter iteration count  : ", end = '')
                 self.count = int(input())
 

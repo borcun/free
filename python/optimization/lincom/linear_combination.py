@@ -63,11 +63,11 @@ class LinearCombinations:
     """
     Function that executes the algorithm
     Params:
-      path - pat of the input file including equation
+      path - path of the input file including equation
     Return:
       True if execution is completed, otherwise False
     """
-    def execute(self):
+    def execute(self, path):
         if not self.getEquation(path):
             return False
 
@@ -89,7 +89,7 @@ class LinearCombinations:
 
         for i in range(self.count):
             if delta_x1 == dfx1.subs({x1: x, x2: y}) and delta_x2 == dfx2.subs({x1: x, x2: y}):
-              print(" The result is same with previous point, so no need more iteration!")
+              print(" The result is same with previous one, so no need more iteration!")
               break
               
             print("--- Step {0} -----------------------------------------------\n".format(i + 1))
@@ -98,12 +98,13 @@ class LinearCombinations:
             delta_x1 = dfx1.subs({x1: x, x2: y})
             delta_x2 = dfx2.subs({x1: x, x2: y})
 
-            # get 1 and 2 values within A_ub from file as constraint coefficients
+            # @TODO get 1 and 2 values within A_ub from file as constraint coefficients
             w = linprog([-delta_x1, -delta_x2], A_ub = [[1, 2]], b_ub = [2], bounds = [(0, None), (0, None)])
             hr = None
 
             print(" f(x{0})' = ({1}, {2})".format(i, delta_x1, delta_x2))
 
+            # TODO I am not thoroughly sure for statement within the else case, will check !!!
             if abs(w.fun) > delta_x1 * x + delta_x2 * y:
               hr = expr.subs({x1: x + r * (w.x[0] - x), x2: y + r * (w.x[1] - y)})
             else:
@@ -116,13 +117,9 @@ class LinearCombinations:
             x = x + (r1[0] * (w.x[0] - x))
             y = y + (r1[0] * (w.x[1] - y))
 
-
         print("--- Result ------------------------------------------")
         print("The maximization point (x, y) is ({0}, {1})".format(x,  y))
         print("Maximization of f(x1, x2) = ", expr.subs({x1: x, x2: y}))
         print("-----------------------------------------------------\n")
         
         return True
-
-lincom = LinearCombinations()
-lincom.execute()

@@ -2,7 +2,7 @@
 
 import sys
 from simp import simplex as simp
-from bb import branch_border as bb
+from bb import branch_bound as bb
 from nr import newton_raphson as nr
 from sep import separable as sep
 from ds import direct_search as ds
@@ -36,7 +36,7 @@ class Algorithms:
             print("\nALGORITHMS")
             print(" [0] Show Menu")
             print(" [1] Simplex Algorithm")
-            print(" [2] Branch/Border Algorithm")
+            print(" [2] Branch Bound Algorithm")
             print(" [3] Newton-Raphson Method")
             print(" [4] Direct Search Method")
             print(" [5] Separable Programming")
@@ -55,25 +55,27 @@ class Algorithms:
                 else:
                     if 1 == opt:
                         print("\nSIMPLEX ALGORITHM")
-                        print(" Enter file path for simplex algorithm: ", end = '')                        
+                        print(" Enter file path for Simplex algorithm: ", end = '')                        
                         self.simp.execute(input())
                     elif 2 == opt:
-                        print("\nBRANCH and BOUND ALGORITHM")
+                        print("\nBRANCH BOUND ALGORITHM")
+                        print(" Enter file path for Branch Bound algorithm: ", end = '')                        
+                        self.bb.execute(input())
                     elif 3 == opt:
                         print("\nNEWTON-RAPHSON ALGORITHM")
                         print(" Enter file path for Newton-Raphson algorithm: ", end = '')
                         self.nr.execute(input())
                     elif 4 == opt:
                         print("\nDIRECT SEARCH ALGORITHM")
-                        print(" Enter file path for direct search algorithm: ", end = '')
+                        print(" Enter file path for Direct Search algorithm: ", end = '')
                         self.ds.execute(input())
                     elif 5 == opt:
                         print("\nSEPARABLE ALGORITHM")
-                        print(" Enter file path for separable programming algorithm: ", end = '')
+                        print(" Enter file path for Separable programming algorithm: ", end = '')
                         self.sep.execute(input())                        
                     elif 6 == opt:
                         print("\nLINEAR COMBINATION ALGORITHM")
-                        print(" Enter file path for linear combinations algorithm: ", end = '')
+                        print(" Enter file path for Linear Combinations algorithm: ", end = '')
                         self.lincom.execute(input())
                     elif 7 == opt:
                         print("\nGRADIENT ALGORITHM")

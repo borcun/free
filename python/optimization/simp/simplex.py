@@ -1,9 +1,21 @@
 import csv
 
 class Simplex:
+    """
+    Default constructor
+    """
     def __init__(self):
-        pass
+        self.max_iterations = 1000
+        self.tolerance = 1e-10
 
+    """
+    Function that gets equations from csv file
+
+    Params:
+      path - input file path
+    Return:
+      data read from file
+    """
     @staticmethod
     def getEquations(path):
         with open(path, 'r') as file:
@@ -12,10 +24,10 @@ class Simplex:
 
         return data
 
-    def execute(self, path, max_iterations=1000, tolerance=1e-10):
+    def execute(self, path):
         data = self.getEquations(path)
 
-        if data is None:
+        if 0 == len(data):
             return False
 
         A = [row[:-1] for row in data]
@@ -35,9 +47,10 @@ class Simplex:
         tableau[-1][:n] = [-val for val in c]
 
         iteration = 0
-        while any(val < -tolerance for val in tableau[-1][:-1]) and iteration < max_iterations:
+        
+        while any(val < -self.tolerance for val in tableau[-1][:-1]) and iteration < self.max_iterations:
             pivot_col = min(range(n), key=lambda i: tableau[-1][i])
-            ratios = [(tableau[i][-1] / tableau[i][pivot_col], i) for i in range(m) if tableau[i][pivot_col] > tolerance]
+            ratios = [(tableau[i][-1] / tableau[i][pivot_col], i) for i in range(m) if tableau[i][pivot_col] > self.tolerance]
 
             if not ratios:
                 raise ValueError("Linear programming problem is unbounded.")
@@ -56,8 +69,9 @@ class Simplex:
 
             iteration += 1
 
-        if iteration == max_iterations:
+        if iteration == self.max_iterations:
             raise ValueError("Maximum number of iterations reached. The algorithm may not have converged.")
 
-        print("objective_value:", -tableau[-1][-1], "variables:", tableau[-1][:n])
+        print(" Objective Value:", -tableau[-1][-1], "\n Variables:", tableau[-1][:n])
+        
         return True

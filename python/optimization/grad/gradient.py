@@ -105,9 +105,14 @@ class Gradient:
             print(" h(r) =", hr)
             r1 = solve(diff(hr, r))
 
-            print(" r1 = {0}\n".format(r1))
-            x = x + delta_x1 * r1[0].evalf()
-            y = y + delta_x2 * r1[0].evalf()
+            if 0 < len(r1):
+                print(" r1 = {0}\n".format(r1))
+                x = x + delta_x1 * r1[0].evalf()
+                y = y + delta_x2 * r1[0].evalf()
+            else:
+                print("\n Note that no root found for h(r) = ", expr.subs({x1: delta_x1 * r + x, x2: delta_x2 * r + y}), end=',')
+                print(" so iteration is over right here\n")
+                break
 
         print("--- Result ------------------------------------------")
         print(" The maximization point (x, y) is ({0}, {1})".format(x,  y))

@@ -18,16 +18,24 @@ class Simplex:
     """
     @staticmethod
     def getEquations(path):
-        with open(path, 'r') as file:
-            reader = csv.reader(file)
-            data = [list(map(float, row)) for row in reader]
+        try:
+            with open(path, 'r') as file:
+                reader = csv.reader(file)
+                data = [list(map(float, row)) for row in reader]
+
+            if 0 == len(data):
+                return False
+
+        except FileNotFoundError:
+            return False
 
         return data
 
     def execute(self, path):
         data = self.getEquations(path)
 
-        if 0 == len(data):
+        if not data:
+            print("Could not read", path)
             return False
 
         A = [row[:-1] for row in data]

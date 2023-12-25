@@ -1,4 +1,3 @@
-import sys
 from sympy import *
 
 class Separable:
@@ -21,22 +20,22 @@ class Separable:
         self.constraints.clear()
         
         try:
-            pFile = open(path, "r")
-            line = pFile.readline()
+            input_file = open(path, "r")
+            line = input_file.readline()
 
             if line:
                 # the objective function is assumed being first entry
                 self.objective = sympify(line)
             
                 while line:
-                    line = pFile.readline()
+                    line = input_file.readline()
 
                     if line:
                         self.constraints.append(sympify(line))
 
-            pFile.close()
+            input_file.close()
 
-            if None == self.objective or 0 == len(self.constraints):
+            if self.objective is None or 0 == len(self.constraints):
                 print("The objective and constraint functions are missing")
                 return False
             

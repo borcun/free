@@ -2,7 +2,7 @@
   The idea of direct search method is to identify the 'interval of uncertainty' known
 to include the optimum solution point. The procedure locates the optimum by iteratively
 narrowing the interval of uncertainty to a desired level of accuracy.
-  Direct search methods apply primarily to strictly unimodal single-variable functions.
+  Direct search methods apply primarily to strictly uni-modal single-variable functions.
 Two closely related search algorithms are presented: dichotomous and golden section. These
 two methods start with the initial interval of uncertainty I0 = (a, b)
 """
@@ -11,6 +11,9 @@ import sys
 from sympy import *
 
 class DirectSearch:
+    """
+    Default constructor
+    """
     def __init__(self):
         # equation string that is set from file content
         self.objective = ""
@@ -23,6 +26,7 @@ class DirectSearch:
 
     """
     Function that gets equation for Direct Search Method algorithm
+    
     Params:
       path - input file path
     Return:
@@ -30,9 +34,9 @@ class DirectSearch:
     """
     def getEquations(self, path):
         try:
-            pFile = open(path, "r")
-            self.objective = pFile.readline()
-            pFile.close()
+            input_file = open(path, "r")
+            self.objective = input_file.readline()
+            input_file.close()
             
             return True
         except:
@@ -107,8 +111,8 @@ class DirectSearch:
 
             # flag to terminate iteration
             if abs(y1 - y2) <= self.accuracy:
-                print("\n The final limit values:", self.point1, ", ", self.point22)
-                print(" f({0}) = {1}\n f({2}) = {3}".format(self.point1, expr.subs(x, self.point1), self.point2, expr.subs(x, self.point2)))
+                print("\n The final limit values:", point1, ", ", point2)
+                print(" f({0}) = {1}\n f({2}) = {3}".format(point1, expr.subs(x, point1), point2, expr.subs(x, point2)))
                 is_found = True
 
         return True

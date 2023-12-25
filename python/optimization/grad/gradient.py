@@ -6,7 +6,6 @@ gradient method occurs at the point where the gradient vector becomes null. This
 a necessary condition for optimality.
 """
 
-import sys
 from sympy import *
 
 """
@@ -14,7 +13,7 @@ Gradient Method class
 """
 class Gradient:
     """
-    Constructor
+    Default constructor
     """
     def __init__(self):
         # equation string that is set from file content
@@ -34,9 +33,9 @@ class Gradient:
     """
     def getEquation(self, path):
         try:
-            pFile = open(path, "r")
-            self.equation = pFile.readline()
-            pFile.close()
+            input_file = open(path, "r")
+            self.equation = input_file.readline()
+            input_file.close()
             
             return True
         except:

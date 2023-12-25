@@ -1,19 +1,22 @@
-import sys
 import numpy as np
 import pandas as pd
 from scipy.optimize import linprog
 
 class BranchBound:
+    """
+    Default constructor
+    """
     def __init__(self):
         self.c = None
         self.A_ub = None
         self.b_ub = None
         self.bounds = None
-        self.integers_vars = None
+        self.integer_vars = None
         self.iteration_count = 0
     
     """
-    Function that gets equation for Direct Search Method algorithm
+    Function that gets equation for Branch & Bound algorithm
+    
     Params:
       path - input file path
     Return:

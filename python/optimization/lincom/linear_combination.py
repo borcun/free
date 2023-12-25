@@ -64,19 +64,16 @@ class LinearCombinations:
 
         while not is_params_ok:
             try:
-                print(" Enter x of start point : ", end='')
-                self.x = float(input())
-                print(" Enter y of start point : ", end='')
-                self.y = float(input())
-                print(" Enter iteration count  : ", end='')
-                self.count = int(input())
+                self.x = float(input(" Enter x of start point : "))
+                self.y = float(input(" Enter y of start point : "))
+                self.count = int(input(" Enter iteration count : "))
 
                 if self.count < 1:
                     print("\n Please enter positive number for iteration count\n")
                 else:
                     is_params_ok = True
 
-            except:
+            except ValueError:
                 print("\n Could not convert entries to numbers, enter again please\n")
 
     """

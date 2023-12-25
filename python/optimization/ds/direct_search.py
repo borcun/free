@@ -48,23 +48,21 @@ class DirectSearch:
     Function that gets input parameters such as X, Y coordinate and iteration count
     """
     def getInputParameters(self):
-        while True:
+        is_params_ok = False
+
+        while not is_params_ok:
             try:
-                print(" Enter x of the first limit point  : ", end = '')
-                self.limit1 = float(input())
-                print(" Enter x of the second limit point : ", end = '')
-                self.limit2 = float(input())
-                print(" Enter accuracy level : ", end = '')
-                self.accuracy = float(input())
-                print(" Enter epsilon level  : ", end = '')
-                self.epsilon = float(input())
+                self.limit1 = float(input(" Enter x of the first limit point  : "))
+                self.limit2 = float(input(" Enter x of the second limit point : "))
+                self.accuracy = float(input(" Enter accuracy level : "))
+                self.epsilon = float(input(" Enter epsilon level  : "))
 
                 if self.accuracy < 0 or self.epsilon < 0:
                     print("\n Please enter positive number for accuracy and epsilon\n")
                 else:
-                    break
+                    is_params_ok = True
                 
-            except:
+            except ValueError:
                 print("\n Could not convert entries to float numbers\n")
 
 

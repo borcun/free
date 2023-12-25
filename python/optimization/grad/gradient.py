@@ -26,6 +26,7 @@ class Gradient:
 
     """
     Function that gets equation for Gradient Method algorithm
+    
     Params:
       path - input file path
     Return:
@@ -47,27 +48,26 @@ class Gradient:
     Function that gets input parameters such as X, Y coordinate and iteration count
     """
     def getInputParameters(self):
-        while True:
+        is_params_ok = False
+
+        while not is_params_ok:
             try:
-                print(" Enter x of start point : ", end = '')
-                self.x = float(input())
-                print(" Enter y of start point : ", end = '')
-                self.y = float(input())
-                print(" Enter iteration count  : ", end = '')
-                self.count = int(input())
+                self.x = float(input(" Enter x of start point : "))
+                self.y = float(input(" Enter y of start point : "))
+                self.count = int(input(" Enter iteration count : "))
 
                 if self.count < 1:
                     print("\n Please enter positive number for iteration count\n")
                 else:
-                    break
+                    is_params_ok = True
                 
-            except:
-                print("\n Could not convert entry to integer number\n")
-                pass       
-            
+            except ValueError:
+                print("\n Could not convert entries to numbers, enter again please\n")
+
 
     """
-    Function that executes the algorithm
+    Function that executes the Gradient Algorithm
+    
     Params:
       path - pat of the input file including equation
     Return:
@@ -89,8 +89,8 @@ class Gradient:
         print("-----------------------------------------------------")
         print("---------- The function and its derivation ----------")
         print("-----------------------------------------------------")
-        print("f(x1, x2) =", expr)
-        print("f(x1, x2)' = ({0}, {1})\n".format(dfx1, dfx2))
+        print(" f(x1, x2) =", expr)
+        print(" f(x1, x2)' = ({0}, {1})\n".format(dfx1, dfx2))
 
         for i in range(self.count):
             print("--- Step {0} -----------------------------------------------\n".format(i + 1))
@@ -110,8 +110,7 @@ class Gradient:
             y = y + delta_x2 * r1[0].evalf()
 
         print("--- Result ------------------------------------------")
-        print("The maximization point (x, y) is ({0}, {1})".format(x,  y))
-        print("Maximization of f(x1, x2) = ", expr.subs({x1: x, x2: y}))
-        print("-----------------------------------------------------\n")
-        
+        print(" The maximization point (x, y) is ({0}, {1})".format(x,  y))
+        print(" Maximization of f(x1, x2) = ", expr.subs({x1: x, x2: y}))
+
         return True

@@ -9,12 +9,12 @@ class Simplex:
         self.tolerance = 1e-10
 
     """
-    Function that gets equations from csv file
+    Function that gets equations for Simplex algorithm
 
     Params:
       path - input file path
     Return:
-      data read from file
+      True if the equations are read from the file successfully, otherwise False
     """
     @staticmethod
     def getEquations(path):
@@ -24,18 +24,27 @@ class Simplex:
                 data = [list(map(float, row)) for row in reader]
 
             if 0 == len(data):
+                print("Could not read", path)
                 return False
 
         except FileNotFoundError:
+            print("Could not read", path)
             return False
 
         return data
 
+    """
+    Function that executes Simplex algorithm
+    
+    Params:
+      path - input file path
+    Return:
+      True if the algorithm is executed successfully, otherwise False
+    """
     def execute(self, path):
         data = self.getEquations(path)
 
         if not data:
-            print("Could not read", path)
             return False
 
         A = [row[:-1] for row in data]

@@ -7,13 +7,15 @@ class Separable:
     def __init__(self):
         self.objective = None
         self.constraints = []
-        
+
+
     """
-    function that gets equations from input file
+    Function that gets equations for Separable algorithm
+    
     Params:
       path - input file path
     Return:
-      True if file is read successfully, otherwise return False
+      True if the equations are read from the file successfully, otherwise False
     """
     def getEquations(self, path):
         self.objective = None
@@ -47,11 +49,12 @@ class Separable:
         return False
 
     """
-    function that executes seprable algorithm
+    Function that executes the Separable algorithm
+
     Params:
-      path - input file path
+      path - path of the input file including equation
     Return:
-      True if the algorithm executes successfully, otherwise return False
+      algorithm result if the algorithm is executed successfully, otherwise False
     """
     def execute(self, path):
         if not self.getEquations(path):

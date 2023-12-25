@@ -24,13 +24,14 @@ class DirectSearch:
         self.accuracy = 0
         self.epsilon = 0
 
+
     """
-    Function that gets equation for Direct Search Method algorithm
-    
+    Function that gets equations for Direct Search algorithm
+
     Params:
       path - input file path
     Return:
-      True if the file is read, otherwise False
+      True if the equations are read from the file successfully, otherwise False
     """
     def getEquations(self, path):
         try:
@@ -43,6 +44,7 @@ class DirectSearch:
             print("Could not read", path)
             
         return False
+
 
     """
     Function that gets input parameters such as X, Y coordinate and iteration count
@@ -67,12 +69,12 @@ class DirectSearch:
 
 
     """
-    Function that executes Direct Search method
+    Function that executes Direct Search algorithm
 
     Params:
       path - input file path
     Return:
-      True if the algorithm is executed successfully, otherwise return False
+      True if the algorithm is executed successfully, otherwise False
     """
     def execute(self, path):
         if not self.getEquations(path):

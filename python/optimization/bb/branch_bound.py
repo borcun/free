@@ -15,12 +15,12 @@ class BranchBound:
         self.iteration_count = 0
     
     """
-    Function that gets equation for Branch & Bound algorithm
+    Function that gets equations for Branch & Bound algorithm
     
     Params:
       path - input file path
     Return:
-      True if the file is read, otherwise False
+      True if the equations are read from the file successfully, otherwise False
     """
     def getEquations(self, path):
         try:
@@ -39,6 +39,14 @@ class BranchBound:
             
         return False
 
+    """
+    Function that executes Branch & Bound algorithm
+    
+    Params:
+      path - input file path
+    Return:
+      algorithm result if the algorithm is executed successfully, otherwise False
+    """
     def execute(self, path):
         if not self.getEquations(path):
             return False

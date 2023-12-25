@@ -1,9 +1,6 @@
 from sympy import *
 from scipy.optimize import linprog
 
-"""
-LinearCombinations Method class
-"""
 class LinearCombinations:
     """
     Default constructor
@@ -17,13 +14,14 @@ class LinearCombinations:
         # iteration count supplied by user
         self.count = 0
 
+
     """
-    Function that gets equations from input file
+    Function that gets equations for linear combinations algorithm
     
     Params:
       path - input file path
     Return:
-      True if file is read successfully, otherwise return False
+      True if the equations are read from the file successfully, otherwise False
     """
     def getEquations(self, path):
         self.objective = None
@@ -56,6 +54,7 @@ class LinearCombinations:
 
         return False
 
+
     """
     Function that gets input parameters such as X, Y coordinate and iteration count
     """
@@ -76,13 +75,14 @@ class LinearCombinations:
             except ValueError:
                 print("\n Could not convert entries to numbers, enter again please\n")
 
+
     """
-    Function that executes the algorithm
+    Function that executes the linear combination algorithm
     
     Params:
       path - path of the input file including equation
     Return:
-      True if execution is completed, otherwise False
+      algorithm result if the algorithm is executed successfully, otherwise False
     """
     def execute(self, path):
         if not self.getEquations(path):

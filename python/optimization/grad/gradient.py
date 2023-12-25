@@ -24,13 +24,14 @@ class Gradient:
         # iteration count supplied by user
         self.count = 0
 
+
     """
-    Function that gets equation for Gradient Method algorithm
+    Function that gets equations for Gradient Method algorithm
     
     Params:
       path - input file path
     Return:
-      True if the file is read, otherwise False
+      True if the equations are read from the file successfully, otherwise False
     """
     def getEquation(self, path):
         try:
@@ -43,6 +44,7 @@ class Gradient:
             print("Could not read", path)
         
         return False
+
 
     """
     Function that gets input parameters such as X, Y coordinate and iteration count
@@ -66,12 +68,12 @@ class Gradient:
 
 
     """
-    Function that executes the Gradient Algorithm
+    Function that executes the Gradient algorithm
     
     Params:
       path - pat of the input file including equation
     Return:
-      True if execution is completed, otherwise False
+      True if the algorithm is executed successfully, otherwise False
     """
     def execute(self, path):
         if not self.getEquation(path):

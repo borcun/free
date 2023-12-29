@@ -1,12 +1,15 @@
 import numpy as np
 import pandas as pd
 from scipy.optimize import linprog
+import algorithm as alg
 
-class BranchBound:
+class BranchBound(alg.Algorithm):
     """
     Default constructor
     """
     def __init__(self):
+        super().__init__()
+
         self.c = None
         self.A_ub = None
         self.b_ub = None
@@ -22,7 +25,7 @@ class BranchBound:
     Return:
       True if the equations are read from the file successfully, otherwise False
     """
-    def getEquations(self, path):
+    def read(self, path):
         try:
             data = pd.read_csv(path)
 
@@ -47,10 +50,7 @@ class BranchBound:
     Return:
       algorithm result if the algorithm is executed successfully, otherwise False
     """
-    def execute(self, path):
-        if not self.getEquations(path):
-            return False
-
+    def solve(self):
         self.iteration_count = 0
         optimal_solution = self.branch_bound(self.c, self.A_ub, self.b_ub, self.bounds, self.integer_vars)
 

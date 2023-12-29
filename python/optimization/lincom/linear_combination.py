@@ -1,11 +1,11 @@
 from sympy import *
 from scipy.optimize import linprog
+import algorithm as alg
 
-class LinearCombinations:
-    """
-    Default constructor
-    """
+class LinearCombinations(alg.Algorithm):
     def __init__(self):
+        super().__init__()
+
         self.objective = None
         self.constraints = []
         # x and y is starting point supplied by user
@@ -15,15 +15,7 @@ class LinearCombinations:
         self.count = 0
 
 
-    """
-    Function that gets equations for linear combinations algorithm
-    
-    Params:
-      path - input file path
-    Return:
-      True if the equations are read from the file successfully, otherwise False
-    """
-    def getEquations(self, path):
+    def read(self, path):
         self.objective = None
         self.constraints.clear()
 
@@ -54,11 +46,7 @@ class LinearCombinations:
 
         return False
 
-
-    """
-    Function that gets input parameters such as X, Y coordinate and iteration count
-    """
-    def getInputParameters(self):
+    def interact(self):
         is_params_ok = False
 
         while not is_params_ok:
@@ -75,21 +63,7 @@ class LinearCombinations:
             except ValueError:
                 print("\n Could not convert entries to numbers, enter again please\n")
 
-
-    """
-    Function that executes the linear combination algorithm
-    
-    Params:
-      path - path of the input file including equation
-    Return:
-      algorithm result if the algorithm is executed successfully, otherwise False
-    """
-    def execute(self, path):
-        if not self.getEquations(path):
-            return False
-
-        self.getInputParameters()
-
+    def solve(self):
         x1, x2, r = symbols('x1 x2 r')
         expr = sympify(self.objective)
         delta_x1 = None

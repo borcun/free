@@ -1,55 +1,35 @@
 import csv
+import algorithm as alg
 
-class Simplex:
-    """
-    Default constructor
-    """
+class Simplex(alg.Algorithm):
     def __init__(self):
+        super().__init__()
+
+        self.data = []
         self.max_iterations = 1000
         self.tolerance = 1e-10
 
-    """
-    Function that gets equations for Simplex algorithm
-
-    Params:
-      path - input file path
-    Return:
-      True if the equations are read from the file successfully, otherwise False
-    """
-    @staticmethod
-    def getEquations(path):
+    def read(self, path):
         try:
             with open(path, 'r') as file:
                 reader = csv.reader(file)
-                data = [list(map(float, row)) for row in reader]
+                self.data.clear()
+                self.data = [list(map(float, row)) for row in reader]
 
-            if 0 == len(data):
+            if 0 == len(self.data):
                 print("Could not read", path)
                 return False
+
+            return True
 
         except FileNotFoundError:
             print("Could not read", path)
             return False
 
-        return data
-
-    """
-    Function that executes Simplex algorithm
-    
-    Params:
-      path - input file path
-    Return:
-      True if the algorithm is executed successfully, otherwise False
-    """
-    def execute(self, path):
-        data = self.getEquations(path)
-
-        if not data:
-            return False
-
-        A = [row[:-1] for row in data]
-        b = [row[-1] for row in data]
-        c = data[-1][:-1]
+    def solve(self):
+        A = [row[:-1] for row in self.data]
+        b = [row[-1] for row in self.data]
+        c = self.data[-1][:-1]
 
         m = len(b)
         n = len(c)

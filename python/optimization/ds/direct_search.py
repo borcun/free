@@ -7,14 +7,16 @@ Two closely related search algorithms are presented: dichotomous and golden sect
 two methods start with the initial interval of uncertainty I0 = (a, b)
 """
 
-import sys
 from sympy import *
+import algorithm as alg
 
-class DirectSearch:
+class DirectSearch(alg.Algorithm):
     """
     Default constructor
     """
     def __init__(self):
+        super().__init__()
+
         # equation string that is set from file content
         self.objective = ""
         # first and second points supplied by user
@@ -33,7 +35,7 @@ class DirectSearch:
     Return:
       True if the equations are read from the file successfully, otherwise False
     """
-    def getEquations(self, path):
+    def read(self, path):
         try:
             input_file = open(path, "r")
             self.objective = input_file.readline()
@@ -49,7 +51,7 @@ class DirectSearch:
     """
     Function that gets input parameters such as X, Y coordinate and iteration count
     """
-    def getInputParameters(self):
+    def interact(self):
         is_params_ok = False
 
         while not is_params_ok:
@@ -71,17 +73,10 @@ class DirectSearch:
     """
     Function that executes Direct Search algorithm
 
-    Params:
-      path - input file path
     Return:
       True if the algorithm is executed successfully, otherwise False
     """
-    def execute(self, path):
-        if not self.getEquations(path):
-            return False
-        
-        self.getInputParameters()
-
+    def solve(self):
         x = symbols('x')
         expr = sympify(self.objective)
         is_found = False

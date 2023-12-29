@@ -1,23 +1,14 @@
 from sympy import *
+import algorithm as alg
 
-class Separable:
-    """
-    constructor
-    """
+class Separable(alg.Algorithm):
     def __init__(self):
+        super().__init__()
+
         self.objective = None
         self.constraints = []
 
-
-    """
-    Function that gets equations for Separable algorithm
-    
-    Params:
-      path - input file path
-    Return:
-      True if the equations are read from the file successfully, otherwise False
-    """
-    def getEquations(self, path):
+    def read(self, path):
         self.objective = None
         self.constraints.clear()
         
@@ -48,18 +39,7 @@ class Separable:
 
         return False
 
-    """
-    Function that executes the Separable algorithm
-
-    Params:
-      path - path of the input file including equation
-    Return:
-      algorithm result if the algorithm is executed successfully, otherwise False
-    """
-    def execute(self, path):
-        if not self.getEquations(path):
-            return False
-
+    def solve(self):
         x1, x2 = symbols('x1 x2')
         variables = [x1, x2]
         weight_list = [['w11', 'w12', 'w13', 'w14'],

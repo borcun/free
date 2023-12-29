@@ -7,15 +7,15 @@ a necessary condition for optimality.
 """
 
 from sympy import *
+import algorithm as alg
 
 """
 Gradient Method class
 """
-class Gradient:
-    """
-    Default constructor
-    """
+class Gradient(alg.Algorithm):
     def __init__(self):
+        super().__init__()
+
         # equation string that is set from file content
         self.equation = ""
         # x and y is starting point supplied by user
@@ -25,15 +25,7 @@ class Gradient:
         self.count = 0
 
 
-    """
-    Function that gets equations for Gradient Method algorithm
-    
-    Params:
-      path - input file path
-    Return:
-      True if the equations are read from the file successfully, otherwise False
-    """
-    def getEquation(self, path):
+    def read(self, path):
         try:
             input_file = open(path, "r")
             self.equation = input_file.readline()
@@ -46,10 +38,7 @@ class Gradient:
         return False
 
 
-    """
-    Function that gets input parameters such as X, Y coordinate and iteration count
-    """
-    def getInputParameters(self):
+    def interact(self):
         is_params_ok = False
 
         while not is_params_ok:
@@ -67,20 +56,7 @@ class Gradient:
                 print("\n Could not convert entries to numbers, enter again please\n")
 
 
-    """
-    Function that executes the Gradient algorithm
-    
-    Params:
-      path - pat of the input file including equation
-    Return:
-      True if the algorithm is executed successfully, otherwise False
-    """
-    def execute(self, path):
-        if not self.getEquation(path):
-            return False
-
-        self.getInputParameters()
-        
+    def solve(self):
         x1, x2, r = symbols('x1 x2 r')
         expr = sympify(self.equation)
         dfx1, dfx2 = diff(expr, x1), diff(expr, x2)

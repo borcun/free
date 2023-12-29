@@ -1,15 +1,15 @@
 from sympy import *
 import csv
+import algorithm as alg
 
 init_printing(use_unicode=True)
 
-class NewtonRaphson:
+class NewtonRaphson(alg.Algorithm):
     def __init__(self):
+        super().__init__()
         self.data = []
 
-    """
-    """
-    def getEquations(self, path):
+    def read(self, path):
         try:
             with open(path, 'r', newline='') as file:
                 csv_data = csv.reader(file, delimiter=';')
@@ -26,12 +26,7 @@ class NewtonRaphson:
             print("An unexpected error occurred:", err)
             return False
 
-    """
-    """
-    def execute(self, path):
-        if not self.getEquations(path):
-            return False
-
+    def solve(self):
         func = self.data[0]
         x0 = float(self.data[1])
         e = float(self.data[2])

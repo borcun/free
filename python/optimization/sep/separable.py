@@ -4,8 +4,9 @@ and can be solved heuristically by a variant of the simplex algorithm for LP.
 """
 
 from sympy import *
+import algorithm
 
-class Separable():
+class Separable(alg.Algorithm):
     def __init__(self):
         self.objective = None
         self.constraints = []

@@ -1,10 +1,12 @@
+"""
+The linear equation existed after linear approximation are known as a linear approximation of the original NLP,
+and can be solved heuristically by a variant of the simplex algorithm for LP.
+"""
+
 from sympy import *
-import algorithm as alg
 
-class Separable(alg.Algorithm):
+class Separable():
     def __init__(self):
-        super().__init__()
-
         self.objective = None
         self.constraints = []
 
@@ -116,4 +118,76 @@ class Separable(alg.Algorithm):
             expressions.append(weights[1][0] + weights[1][1] + weights[1][2] + weights[1][3])
             print("", expressions[-1], "= 1")
             
+        print("")
+        self.printTable(expressions)
+
         return True
+
+    def printTable(self, expressions):
+      x1, x2 = symbols('x1 x2')
+      weight_list = [['w11', 'w12', 'w13', 'w14'],
+                      ['w21', 'w22', 'w23', 'w24']]
+                       
+      obj = self.objective.subs({self.objective.subs(x2, 0): expressions[0], self.objective.subs(x1, 0): expressions[1]})
+      obj_syms = list(obj.atoms(Symbol))
+      obj_coeffs = [-1 * obj.coeff(elem) for elem in obj_syms]
+
+      print("----------------------------------------------------------------")
+      print("Basic\t", end = '')
+
+      for i in range(len(obj_syms)):
+        print("{0}\t".format(obj_syms[i]), end = '')
+
+      for i in range(len(self.constraints)):
+        print("s{0}\t".format(i + 1), end = '')
+
+      for i in range(len(self.constraints)):
+        print("w2{0}\t".format(i + 1), end = '')
+
+      print("Solution")
+      print("----------------------------------------------------------------")
+      print("z\t", end = '')
+
+      for i in range(len(obj_coeffs)):
+        print("{0}\t".format(obj_coeffs[i]), end = '')
+
+      for i in range(len(self.constraints) + 1):
+          print("{0}\t".format(0), end = '')
+
+      print("0")
+      print("----------------------------------------------------------------")
+
+      for i in range(len(self.constraints)):
+        constraint = self.constraints[i].lhs.subs({self.constraints[i].lhs.subs(x2, 0): expressions[i + 2], self.constraints[i].lhs.subs(x1, 0): expressions[i + 3]})
+        constraint_syms = list(constraint.atoms(Symbol))
+        constraint_coeffs = [constraint.coeff(elem) for elem in constraint_syms]
+        
+        print("s{0}\t ".format(i + 1), end = '')
+
+        for j in range(len(constraint_syms)):
+          print("{0}\t".format(constraint_coeffs[j]), end = '')
+
+        for j in range(len(self.constraints) + 1):
+          if i == j:
+            print("{0}\t".format(1), end = '')
+          else:
+            print("{0}\t".format(0), end = '')
+
+        print(self.constraints[i].rhs)
+
+      bi = 0
+      basis_condition_count = len(expressions) - (2 + 2 * len(self.constraints))
+
+      if basis_condition_count > 0:
+        for i in range(2 + 2 * len(self.constraints), len(expressions), 1):
+          bc_syms = list(expressions[i].atoms(Symbol))
+          bc_coeffs = [expressions[i].coeff(elem) for elem in bc_syms]
+
+          print("w2{0}\t 0\t".format(bi + 1), end = '')
+
+          for j in range(len(bc_syms) - 1):
+            print("{0}\t".format(bc_coeffs[j]), end = '')
+
+          print("0\t1\t1")
+
+      print("----------------------------------------------------------------")

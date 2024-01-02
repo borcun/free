@@ -81,6 +81,7 @@ class Gradient(alg.Algorithm):
             hr = expr.subs({x1: delta_x1 * r + x, x2: delta_x2 * r + y})
         
             print(" h(r) =", hr)
+            # r is learning rate, hr is learning function
             r1 = solve(diff(hr, r))
 
             if 0 < len(r1):

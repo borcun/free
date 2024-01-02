@@ -44,7 +44,6 @@ class Separable(alg.Algorithm):
 
     def solve(self):
         x1, x2 = symbols('x1 x2')
-        variables = [x1, x2]
         weight_list = [['w11', 'w12', 'w13', 'w14'],
                        ['w21', 'w22', 'w23', 'w24']]
         weights = [symbols(each) for each in weight_list]

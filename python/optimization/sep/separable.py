@@ -8,6 +8,7 @@ import algorithm as alg
 
 class Separable(alg.Algorithm):
     def __init__(self):
+        super().__init__()
         self.objective = None
         self.constraints = []
 

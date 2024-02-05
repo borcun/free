@@ -1,0 +1,7 @@
+# directories
+INC=inc
+EXAMPLE_DIR=example
+TEST_DIR=test
+INSTALL_DIR=/usr/local
+INC_DIR=$(INSTALL_DIR)/include/pubsub/
+LIB_DIR=$(INSTALL_DIR)/lib/

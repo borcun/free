@@ -1,0 +1,4 @@
+- function definition
+- constant definition
+- boolean, (and, or operators)
+- equality (string=? and equal?)

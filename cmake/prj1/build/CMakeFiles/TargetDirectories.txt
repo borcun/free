@@ -1,0 +1,3 @@
+/Users/boo/Workspace/cmake/prj1/build/CMakeFiles/hello_world.dir
+/Users/boo/Workspace/cmake/prj1/build/CMakeFiles/edit_cache.dir
+/Users/boo/Workspace/cmake/prj1/build/CMakeFiles/rebuild_cache.dir

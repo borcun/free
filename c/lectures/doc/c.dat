@@ -1,0 +1,17 @@
+C programs typically go through six phases to be executed:
+  - Edit
+  - Preprocess: the compilation command invokes a preprocessor program before compiler's translation phases begins.
+   	        preprocessor directives performs text manipulations on a program's source code files.
+	        these manipulations consists of inserting the contents of other files and various text replacements.
+  - Compile
+  - Link: the object code produced by C compiter typically contains "holes" due to these missing parts.
+   	  the linker links a program's object code with the code for the missing functions to produce an executable file.
+  - Load: before execution, the operating system must load the program into memory.
+     	  the loader gets executable file from disk and transfers it to memory with shared libraries if any.
+  - Execute: The CPU executes the program one instruction at a time on the memory.
+
+
+# After C99 standard, restrict keyword is added.
+  - it's used for pointer declaration as a type qualifier.
+  - it does not add a functionality, only informs programmer about optimization.
+  - it tells compiler that a variable pointed by the pointer is not pointed by other pointers. (prevent pointer aliasing)

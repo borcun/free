@@ -1,0 +1,14 @@
+To make and then install the library, execute the following
+commands respectively into the project directory.
+
+- make
+- make install
+
+make builds the library, so no need any root permission.
+However, to install the library, you need root permission.
+if the /usr/local/lib directory is not set your
+LD_LIBRARY_PATH variable, please execute the following
+command before writing any application including the library
+or executing example project into the example directory.
+
+- export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/

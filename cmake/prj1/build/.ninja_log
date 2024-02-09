@@ -1,0 +1,5 @@
+# ninja log v5
+17	331	1691920307104586990	CMakeFiles/hello_world.dir/main.cpp.o	34b83e2176a50528
+332	378	1691920307153087936	hello_world	d4679aff21371bb
+17	339	1691921102610846816	CMakeFiles/hello_world.dir/main.cpp.o	34b83e2176a50528
+339	390	1691921102665380370	hello_world.app/Contents/MacOS/hello_world	8873d3876ea8b7a1

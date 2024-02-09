@@ -24,5 +24,11 @@ sumDigits nums
   | otherwise = sumDigitsUtil (head nums) + sumDigits (tail nums)
 
 -- validation function for the credit card
-validate :: Int -> Int
-validate num = (sumDigits (toDoubleEveryOther (toDigits num))) `mod` 10
+validate :: Int -> Bool
+validate num = 0 == (sumDigits (toDoubleEveryOther (toDigits num))) `mod` 10
+
+main = do
+  putStr ("4012888888881881 => ")
+  print (validate 4012888888881881)
+  putStr ("4012888888881882 => ")
+  print (validate 4012888888881882)

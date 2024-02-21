@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.2)
+project(face)
+include_directories(inc)
+add_subdirectory(src)
+add_library(lib${PROJECT_NAME})

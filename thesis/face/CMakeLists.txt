@@ -1,8 +1,10 @@
 cmake_minimum_required(VERSION 3.2)
-project(face VERSION 0.0.0 DESCRIPTION "face lib")
+project(face VERSION 0.0.0 DESCRIPTION "face reference library")
 include_directories(inc)
 add_subdirectory(src/ioss)
 add_subdirectory(src/psss)
 add_subdirectory(src/tss)
 add_subdirectory(src/pcs)
-add_library({PROJECT_NAME} SHARED src/ioss/ios.cpp src/psss/psd.cpp src/psss/psc.cpp src/tss/tss.cpp src/pcs/pcs.cpp)
+
+add_library(${PROJECT_NAME} SHARED src/ioss/ios.cpp src/psss/psd.cpp src/psss/psc.cpp src/tss/tss.cpp src/pcs/pcs.cpp)
+set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${PROJECT_VERSION})

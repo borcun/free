@@ -32,7 +32,8 @@
       <w>120</w>
       <h>70</h>
     </coordinates>
-    <panel_attributes>INITIALIZATION</panel_attributes>
+    <panel_attributes>INITIALIZATION
+bg=GREEN</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -43,7 +44,8 @@
       <w>120</w>
       <h>70</h>
     </coordinates>
-    <panel_attributes>ABORT</panel_attributes>
+    <panel_attributes>ABORT
+bg=RED</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -51,7 +53,7 @@
     <coordinates>
       <x>160</x>
       <y>120</y>
-      <w>100</w>
+      <w>90</w>
       <h>130</h>
     </coordinates>
     <panel_attributes>powerup()
@@ -87,7 +89,7 @@ lt=-&gt;</panel_attributes>
     <coordinates>
       <x>200</x>
       <y>290</y>
-      <w>100</w>
+      <w>90</w>
       <h>220</h>
     </coordinates>
     <panel_attributes>initialize()
@@ -102,7 +104,8 @@ lt=-&gt;</panel_attributes>
       <w>120</w>
       <h>70</h>
     </coordinates>
-    <panel_attributes>RUN</panel_attributes>
+    <panel_attributes>RUN
+bg=BLUE</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -137,7 +140,8 @@ lt=-&gt;</panel_attributes>
       <w>120</w>
       <h>70</h>
     </coordinates>
-    <panel_attributes>TERMINATE</panel_attributes>
+    <panel_attributes>TERMINATE
+bg=GRAY</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -157,7 +161,7 @@ lt=-&gt;</panel_attributes>
     <coordinates>
       <x>820</x>
       <y>390</y>
-      <w>100</w>
+      <w>90</w>
       <h>120</h>
     </coordinates>
     <panel_attributes>terminated
@@ -167,12 +171,13 @@ lt=-&gt;</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>610</x>
+      <x>620</x>
       <y>230</y>
       <w>120</w>
       <h>70</h>
     </coordinates>
-    <panel_attributes>MAINTENANCE</panel_attributes>
+    <panel_attributes>MAINTENANCE
+bg=YELLOW</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -180,19 +185,19 @@ lt=-&gt;</panel_attributes>
     <coordinates>
       <x>230</x>
       <y>260</y>
-      <w>400</w>
+      <w>410</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>maintenance()
 lt=-&gt;</panel_attributes>
-    <additional_attributes>10.0;20.0;380.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;390.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>660</x>
+      <x>670</x>
       <y>290</y>
-      <w>70</w>
+      <w>60</w>
       <h>100</h>
     </coordinates>
     <panel_attributes>failed
@@ -204,11 +209,11 @@ lt=-&gt;</panel_attributes>
     <coordinates>
       <x>230</x>
       <y>230</y>
-      <w>400</w>
+      <w>410</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>reset()
 lt=-&gt;</panel_attributes>
-    <additional_attributes>380.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>390.0;20.0;10.0;20.0</additional_attributes>
   </element>
 </diagram>

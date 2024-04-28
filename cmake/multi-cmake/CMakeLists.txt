@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.2)
+project(mylib-driver)
+set(SRC main.c)
+include_directories(./lib)
+add_subdirectory(lib)
+link_directories(./lib/build/)
+link_libraries(mylib)
+add_executable(${PROJECT_NAME} ${SRC})

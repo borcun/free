@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.2)
+project(psu-sim)
+set(CMAKE_CXX_STANDARD 11)
+include_directories(../nanogui/include ../nanogui/ext/eigen ../nanogui/ext/glfw/include ../nanogui/ext/nanovg/src)
+link_directories(../nanogui/build)
+link_libraries(nanogui)
+add_executable(${PROJECT_NAME} psu.cpp main.cpp)

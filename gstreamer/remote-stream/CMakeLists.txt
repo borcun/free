@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.2)
+project(hello-gstreamer)
+include_directories(/usr/lib/x86_64-linux-gnu/glib-2.0/include /usr/include/glib-2.0 /usr/include/gstreamer-1.0)
+link_directories(/usr/lib/x86_64-linux-gnu)
+link_libraries(glib-2.0 gstreamer-1.0)
+add_executable(${PROJECT_NAME} main.c)

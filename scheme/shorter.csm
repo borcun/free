@@ -1,0 +1,4 @@
+(define shorter (lambda (x y)
+		  (if (< (length x) (length y))
+		      x
+		      y)))

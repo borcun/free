@@ -1,0 +1,3 @@
+[submodule "cpp/gui/nanogui"]
+	path = cpp/gui/nanogui
+	url = https://github.com/wjakob/nanogui.git

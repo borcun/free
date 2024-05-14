@@ -1,2 +1,2 @@
-main :: IO()
-main = putStrLn "hello world"
+main = do
+  print "hello world"

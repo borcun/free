@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.2)
+project(triangle)
+link_directories(/usr/lib/x86_64-linux-gnu/)
+link_libraries(glfw GL)
+add_executable(${PROJECT_NAME} main.c)

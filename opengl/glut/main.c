@@ -1,17 +1,7 @@
 #include <stdio.h>
 #include <GL/glut.h>
 
-void display(void) {
-    glBegin(GL_TRIANGLES);
-    glColor3f(1.0f, 0.0f, 0.0f); // Red
-    glVertex2f(-0.5f, -0.5f);
-    glColor3f(0.0f, 1.0f, 0.0f); // Green
-    glVertex2f(0.5f, -0.5f);
-    glColor3f(0.0f, 0.0f, 1.0f); // Blue
-    glVertex2f(0.0f, 0.5f);
-    glEnd();
-    glFlush();
-}
+void display(void);
 
 int main(int argc, char **argv) {
     glutInit(&argc, argv);
@@ -22,9 +12,23 @@ int main(int argc, char **argv) {
 
     glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
+    glViewport(0, 0, 640, 480);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
     glutDisplayFunc(display);
-
     glutMainLoop();
     
     return 0;
+}
+
+void display(void) {
+    glBegin(GL_TRIANGLES);
+    glColor3f(1.0f, 0.0f, 0.0f); // Red
+    glVertex2f(-0.5f, -0.5f);
+    glColor3f(0.0f, 1.0f, 0.0f); // Green
+    glVertex2f(0.5f, -0.5f);
+    glColor3f(0.0f, 0.0f, 1.0f); // Blue
+    glVertex2f(0.0f, 0.5f);
+    glEnd();
+    glFlush();
 }

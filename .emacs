@@ -22,7 +22,7 @@
 
 (setq-default c-basic-offset 4)
 (global-set-key [C-tab] 'other-window)
-(global-set-key (kbd "C-x t" 'ff-find-other-file)
-(global-set-key (kbd "M-<up>" 'enlarge-window-horizontally)
-(global-set-key (kbd "M-<down>" 'shrink-window-horizontally)
+(global-set-key (kbd "C-x t") 'ff-find-other-file)
+(global-set-key (kbd "M-<up>") 'enlarge-window-horizontally)
+(global-set-key (kbd "M-<down>") 'shrink-window-horizontally)
 (setq org-todo-keywords '((sequence "TODO(t)" "PROGRESSING(p)" "BLOCKED(b)" "VERIFY(v)" "|" "DONE(d)" "CANCELED(c)")))

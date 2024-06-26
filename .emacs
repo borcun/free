@@ -8,10 +8,8 @@
  '(custom-safe-themes
    '("1711947b59ea934e396f616b81f8be8ab98e7d57ecab649a97632339db3a3d19" default))
  '(display-time-mode t)
- '(ede-project-directories '("/home/boo/Workspace/thesis"))
  '(global-display-line-numbers-mode t)
  '(inhibit-startup-screen t)
- '(package-selected-packages '(magit afternoon-theme projectile haskell-mode rust-mode))
  '(tool-bar-mode nil))
 (package-initialize)
 
@@ -23,9 +21,8 @@
  )
 
 (setq-default c-basic-offset 4)
-
-(add-to-list 'load-path "/home/boo/.emacs.d/neotree")
-(require 'neotree)
-(global-set-key [f8] 'neotree-toggle)
-
+(global-set-key [C-tab] 'other-window)
+(global-set-key (kbd "C-x t" 'ff-find-other-file)
+(global-set-key (kbd "M-<up>" 'enlarge-window-horizontally)
+(global-set-key (kbd "M-<down>" 'shrink-window-horizontally)
 (setq org-todo-keywords '((sequence "TODO(t)" "PROGRESSING(p)" "BLOCKED(b)" "VERIFY(v)" "|" "DONE(d)" "CANCELED(c)")))

@@ -21,3 +21,12 @@ Narrowing
 =========
 > C-x n n : narrow selected region onto buffer temporarily
 > C-x n w : widen all buffer after narrowed
+
+Text Scale
+==========
+> C-x C-+ : increase text height in current buffer
+> C-x C-- : decrease text height in current buffer
+
+Highlight Changes
+=================
+> M-x highlight-changes-mode : highlight changes in current buffer

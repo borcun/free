@@ -1,0 +1,3 @@
+/home/boo/Workspace/cpp/substr/build/CMakeFiles/substr.dir
+/home/boo/Workspace/cpp/substr/build/CMakeFiles/edit_cache.dir
+/home/boo/Workspace/cpp/substr/build/CMakeFiles/rebuild_cache.dir

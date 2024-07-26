@@ -1,0 +1,4 @@
+- GHC: Glasgow Haskell Compiler (also interactive command line, typing ghci)
+- 'ghc hello.hs' or 'ghc --make hello' command compilers hello.hs file
+- similar to C, C++ or JAVA, Haskell source code must have a main function as entry point
+- 'name <- getLine' function like cin function of cpp

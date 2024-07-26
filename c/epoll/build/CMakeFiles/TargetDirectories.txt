@@ -1,0 +1,3 @@
+/home/boo/Workspace/c/epoll/build/CMakeFiles/epoll-test.dir
+/home/boo/Workspace/c/epoll/build/CMakeFiles/edit_cache.dir
+/home/boo/Workspace/c/epoll/build/CMakeFiles/rebuild_cache.dir

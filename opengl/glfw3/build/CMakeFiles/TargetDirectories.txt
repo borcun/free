@@ -1,0 +1,3 @@
+/home/boo/Workspace/opengl/glfw3/build/CMakeFiles/glfw-windowing.dir
+/home/boo/Workspace/opengl/glfw3/build/CMakeFiles/edit_cache.dir
+/home/boo/Workspace/opengl/glfw3/build/CMakeFiles/rebuild_cache.dir

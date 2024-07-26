@@ -1,0 +1,7 @@
+# ninja log v5
+0	48	1714757680177474510	CMakeFiles/epoll-test.dir/main.c.o	5f16b5230bcb0bfd
+48	65	1714757680193474475	epoll-test	b72a855b3edc4420
+1	27	1714758746943164200	CMakeFiles/epoll-test.dir/main.c.o	5f16b5230bcb0bfd
+27	43	1714758746959164166	epoll-test	b72a855b3edc4420
+1	27	1714758882118871474	CMakeFiles/epoll-test.dir/main.c.o	5f16b5230bcb0bfd
+27	43	1714758882134871440	epoll-test	b72a855b3edc4420

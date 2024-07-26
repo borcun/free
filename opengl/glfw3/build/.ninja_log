@@ -1,0 +1,19 @@
+# ninja log v5
+50	73	1717935989319930722	Debug/glfw-windowing	5572b7e8b5008c51
+1	51	1717936300288112253	CMakeFiles/glfw-windowing.dir/Debug/main.c.o	2b8d46958a95fcbc
+0	26	1717936379876048990	CMakeFiles/impl-Debug.ninja	fabe2f1efc619a84
+0	26	1717936379876048990	build-Debug.ninja	fabe2f1efc619a84
+0	26	1717936379876048990	CMakeFiles/impl-Release.ninja	fabe2f1efc619a84
+0	26	1717936379876048990	build-Release.ninja	fabe2f1efc619a84
+0	26	1717936379876048990	CMakeFiles/impl-RelWithDebInfo.ninja	fabe2f1efc619a84
+0	26	1717936379876048990	build-RelWithDebInfo.ninja	fabe2f1efc619a84
+0	26	1717936379876048990	build.ninja	fabe2f1efc619a84
+0	30	1717936379908048960	Debug/glfw-windowing	66c78237d38e2815
+0	51	1717936396452032678	CMakeFiles/glfw-windowing.dir/Debug/main.c.o	2b8d46958a95fcbc
+51	79	1717936396480032649	Debug/glfw-windowing	66c78237d38e2815
+1	53	1717936809423434366	CMakeFiles/glfw-windowing.dir/Debug/main.c.o	2b8d46958a95fcbc
+54	83	1717936809451434319	Debug/glfw-windowing	66c78237d38e2815
+1	51	1717936889463295888	CMakeFiles/glfw-windowing.dir/Debug/main.c.o	2b8d46958a95fcbc
+51	79	1717936889491295838	Debug/glfw-windowing	66c78237d38e2815
+0	52	1717936942535202258	CMakeFiles/glfw-windowing.dir/Debug/main.c.o	2b8d46958a95fcbc
+52	81	1717936942563202208	Debug/glfw-windowing	66c78237d38e2815

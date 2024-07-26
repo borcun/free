@@ -1,0 +1,3 @@
+/home/boo/Workspace/cpp/nanogui/psu/build/CMakeFiles/psu-sim.dir
+/home/boo/Workspace/cpp/nanogui/psu/build/CMakeFiles/edit_cache.dir
+/home/boo/Workspace/cpp/nanogui/psu/build/CMakeFiles/rebuild_cache.dir

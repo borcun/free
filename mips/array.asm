@@ -35,7 +35,7 @@ main:
 			
 			# second condition of if statement
 			# even number checking via controlling last bit of value whether it is presence
-			andi $t3, $t2, 0x00000001
+			andi $t3, $t2, 1
 			bne $t3, 0, fi
 			
 			# operation inside if block, increasing counter if two conditions are OK
